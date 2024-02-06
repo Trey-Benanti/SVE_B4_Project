@@ -13,7 +13,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 400px;
 }
 h2 {
     background-color: #fd0202;
@@ -21,6 +21,7 @@ h2 {
     margin-bottom: 20px;
 }
 input[type="email"],
+input[type="tel"],
 input[type="text"],
 input[type="address"],
 input[type="password"],
@@ -44,6 +45,26 @@ input[type="submit"]:hover {
     text-align: center;
 }
 .signup-link a {
-    color: #fd0202;
+    color: #fff;
     text-decoration: none;
+}
+
+.creditcard-button-container {
+    display: flex;
+    align-items: center;
+}
+.creditcard-button-container button {
+    width: 25%;
+    height: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #fd0202;
+    color: #fff;
+    border: 1px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.creditcard-button-container button:hover {
+    background-color: #d6d6d6;
 }

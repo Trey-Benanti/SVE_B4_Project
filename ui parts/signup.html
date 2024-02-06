@@ -10,15 +10,102 @@
     <div class="container">
         <h2>Sign up</h2>
         <form action="#" method="post">
-            <input type="text" name="firstname" placeholder="FirstName" required>
-            <input type="text" name="lastname" placeholder="LastName" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="address" name="address1" placeholder="address" >
-            <input type="address" name="address2" placeholder="address" >
-            <input type="address" name="address3" placeholder="address" >
+            <label for="firstname">firstname:</label>
+            <input id="firstname" type="text" name="firstname" placeholder="FirstName" required>
+            
+            <label for="lastname">lastname:</label>
+            <input id="lastname" type="text" name="lastname" placeholder="LastName" required>
+            
+            <label for="email">Email:</label>
+            <input id="email" type="email" name="email" placeholder="Email" required>
+            
+            <label for="password">Password:</label>
+            <input id="password" type="password" name="password" placeholder="Password" required>
+            
+            <label for="address">Address:</label>
+            <input id="address" type="address" name="address" placeholder="address" >
+
+            <div id="creditCardContainer">
+              <!-- Credit card fields will be added here -->
+            </div>
+            <button type="button" id="addCreditCardButton">Add Credit Card</button>
+            <div>
+              <input type="checkbox" id="agreeCheckbox" name="agreeCheckbox">
+              <label for="agreeCheckBox">subcribe to promotional</label>
+            </div>
             <input type="submit" value="SignUp">
         </form>
-    </div>
+      </div>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const creditCardForm = document.getElementById("creditCardForm");
+          const creditCardContainer = document.getElementById("creditCardContainer");
+          const addCreditCardButton = document.getElementById("addCreditCardButton");
+    
+          let creditCardCount = 0;
+    
+          addCreditCardButton.addEventListener("click", function() {
+            if (creditCardCount < 3) { // Limit to 3 credit cards
+              const creditCardFields = document.createElement("div");
+              creditCardFields.classList.add("credit-card-info");
+              creditCardFields.dataset.card = creditCardCount + 1;
+    
+              creditCardFields.innerHTML = `
+                <div>
+                  <label for="ccn${creditCardCount + 1}">Card Number:</label>
+                  <input id="ccn${creditCardCount + 1}" 
+                    type="tel" 
+                    inputmode="numeric" 
+                    pattern="[0-9\s]{13,19}" 
+                    autocomplete="cc-number" maxlength="19" 
+                    placeholder="xxxx xxxx xxxx xxxx" 
+                    name="cardNumber${creditCardCount + 1}" 
+                    required>
+                </div>
+                <div>
+                  <label for="expiryDate${creditCardCount + 1}">Expiry Date:</label>
+                  <input type="date" id="expiryDate${creditCardCount + 1}" name="expiryDate${creditCardCount + 1}" required>
+                </div>
+                <div>
+                  <label for="cvv${creditCardCount + 1}">CVV:</label>
+                    
+                  <input type="text" id="cvv${creditCardCount + 1}" 
+                    type="tel" 
+                    inputmode="numeric" 
+                    pattern="[0-9\s]{3,4}" 
+                    autocomplete="cc-number" maxlength="4" 
+                    placeholder="xxxx" 
+                    name="cvv${creditCardCount + 1}" 
+                    required>
+                </div>
+                <div>
+                  <button type="button" class="removeCreditCardButton" data-card="${creditCardCount + 1}">Remove</button>
+                </div>
+              `;
+              creditCardContainer.appendChild(creditCardFields);
+              creditCardCount++;
+            } else {
+              alert("You can only add up to 3 credit cards.");
+            }
+          });
+    
+          creditCardContainer.addEventListener("click", function(event) {
+            if (event.target.classList.contains("removeCreditCardButton")) {
+              const cardToRemove = event.target.getAttribute("data-card");
+              const cardToRemoveElement = document.querySelector(`.credit-card-info[data-card="${cardToRemove}"]`);
+              creditCardContainer.removeChild(cardToRemoveElement);
+              creditCardCount--;
+            }
+          });
+    
+          creditCardForm.addEventListener("submit", function(event) {
+            // Perform form submission logic here
+            // This is just a placeholder
+            event.preventDefault();
+            console.log("Form submitted!");
+          });
+        });
+      </script>
+    
 </body>
 </html>
