@@ -41,3 +41,20 @@ body {
     height: 35px;
     margin-top: 0px;
 }
+
+#movie-overview {
+    display: grid;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.movie-ctr {
+    display: grid;
+}
+
+.movie-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin: auto;
+}
