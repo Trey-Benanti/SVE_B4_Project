@@ -1,12 +1,23 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background-color: #f4ebee
+    background-color: #fcffff
 }
 
 .top-nav {
-display: flex;
-background-color: #170f11;
-height: 75px;
-color: #cccccc;
+    display: flex;
+    background-color: #170f11;
+    height: 30px;
+    color: #cccccc;
+    overflow: hidden;
+    justify-content: space-evenly;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.top-nav a:hover {
+    color: #a59c9f;
+}
+
+.nav-link {
+    margin-top: 5px;
 }
