@@ -22,8 +22,15 @@
             <label for="password">Password:</label>
             <input id="password" type="password" name="password" placeholder="Password" required>
             
-            <label for="address">Address:</label>
-            <input id="address" type="address" name="address" placeholder="address" >
+            <label for="home-address">Address:</label>
+            <input id="home-address" type="address" name="home-address" placeholder="home-address  (optional)" >
+            <label for="home-city">city:</label>
+            <input id="home-city" type="text" name="home-city" placeholder="city  (optional)" >
+            <label for="home-state">State:</label>
+            <input for="home-state" type="text" name="home-state" placeholder="state (optional)" >
+            <label for="home-zipcode">zipcode:</label>
+            <input for="home-zipcode" type="text" name="home-zipcode" placeholder="zipcode (optional)" >
+            
 
             <div id="creditCardContainer">
               <!-- Credit card fields will be added here -->
@@ -78,6 +85,16 @@
                     name="cvv${creditCardCount + 1}" 
                     required>
                 </div>
+                <div>
+                  <label for="home-address">Address:</label>
+                  <input id="home-address" type="address" name="home-address" placeholder="home-address  (optional)" >
+                  <label for="home-city">city:</label>
+                  <input id="home-city" type="text" name="home-city" placeholder="city  (optional)" >
+                  <label for="home-state">State:</label>
+                  <input for="home-state" type="text" name="home-state" placeholder="state (optional)" >
+                  <label for="home-zipcode">zipcode:</label>
+                  <input for="home-zipcode" type="text" name="home-zipcode" placeholder="zipcode (optional)" >
+                  </div>
                 <div>
                   <button type="button" class="removeCreditCardButton" data-card="${creditCardCount + 1}">Remove</button>
                 </div>

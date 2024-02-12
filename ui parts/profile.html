@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" type="text/css" href="profile.css">
+</head>
+<body>
+
+<h1>User Profile</h1>
+
+<form id="profileForm">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" disabled>
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" disabled>
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" disabled>
+    <label for="creditCard">Credit Card Info:</label>
+    <input type="text" id="creditCard" name="creditCard" disabled>
+    <label for="billingAddress">Billing Address:</label>
+    <input type="text" id="billingAddress" name="billingAddress" disabled>
+    <label for="homeAddress">Home Address:</label>
+    <input type="text" id="homeAddress" name="homeAddress" disabled>
+    <button type="button" id="editButton">Edit</button>
+    <button type="submit" id="saveButton" style="display: none;">Save</button>
+</form>
+
+<script>
+    // Function to enable editing of form fields
+    function enableEditing() {
+        document.querySelectorAll('input').forEach(input => {
+            input.removeAttribute('disabled');
+        });
+        document.getElementById('saveButton').style.display = 'inline-block';
+        document.getElementById('editButton').style.display = 'none';
+    }
+
+    // Event listener for the edit button
+    document.getElementById('editButton').addEventListener('click', function() {
+        enableEditing();
+    });
+
+    // Event listener for the form submission (saving)
+    document.getElementById('profileForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting
+
+        // Here you can add code to save the updated profile information, like making an AJAX request
+        
+        // For demonstration purposes, let's just disable the form fields again
+        document.querySelectorAll('input').forEach(input => {
+            input.setAttribute('disabled', 'disabled');
+        });
+        document.getElementById('saveButton').style.display = 'none';
+        document.getElementById('editButton').style.display = 'inline-block';
+    });
+</script>
+
+</body>
+</html>
