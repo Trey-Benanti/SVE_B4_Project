@@ -1,0 +1,12 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4ebee
+}
+
+.top-nav {
+display: flex;
+background-color: #170f11;
+height: 75px;
+color: #cccccc;
+}
