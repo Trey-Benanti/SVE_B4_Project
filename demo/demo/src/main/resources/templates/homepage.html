@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Homepage</title>
-    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet"
+          href="/css/homepage.css"
+          th:href="@{/css/homepage.css}"
+    />
 </head>
 <body>
     <div id="nav-ctr">
@@ -12,7 +15,7 @@
             <a class="nav-link">Login</a>
             <a class="nav-link">About</a>
             <div class="search-ctr">
-                <label for="search-box" id="search-label">Search:</label><input type="text" id="search-box">
+                <label for="search-box" id="search-label">Search:</label><input type="text" id="search-box" />
             </div>
         </nav>
     </div>
