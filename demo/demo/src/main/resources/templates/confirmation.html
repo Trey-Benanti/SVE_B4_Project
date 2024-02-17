@@ -2,21 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Confirm Account</title>
-    <link rel="stylesheet" type="text/css" href="confirmation.css">
+    <link rel="stylesheet" type="text/css"
+          href="/css/confirmation.css"
+          th:href="@{css/confirmation.css}"
+    />
 </head>
 <body>
 
 <h1>Confirm Account</h1>
 
 <form id="numberForm">
-    <input type="number" id="number1" min="0" max="9" required>
-    <input type="number" id="number2" min="0" max="9" required>
-    <input type="number" id="number3" min="0" max="9" required>
-    <input type="number" id="number4" min="0" max="9" required>
-    <input type="number" id="number5" min="0" max="9" required>
-    <input type="number" id="number6" min="0" max="9" required>
+    <input type="number" id="number1" min="0" max="9" required />
+    <input type="number" id="number2" min="0" max="9" required />
+    <input type="number" id="number3" min="0" max="9" required />
+    <input type="number" id="number4" min="0" max="9" required />
+    <input type="number" id="number5" min="0" max="9" required />
+    <input type="number" id="number6" min="0" max="9" required />
     <br><br>
     <button type="submit">Confirm Account</button>
 </form>
