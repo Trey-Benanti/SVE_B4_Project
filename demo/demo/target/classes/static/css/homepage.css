@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.top-nav {
+    display: flex;
+    background-color: #170f11;
+    height: 30px;
+    gap: 30px;
+    color: #cccccc;
+    overflow: hidden;
+    padding-left: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding-bottom: 10px;
+    font-size: 18px;
+}
+
+.top-nav a:hover {
+    color: #a59c9f;
+}
+
+.nav-link {
+    margin-top: 8px;
+}
+
+.search-ctr {
+    margin-top: 8px;
+    font-size: 18px;
+}
+
+#search-label {
+    margin-right: 8px;
+}
+
+#search-box {
+    width: 250px;
+    border-radius: 8px;
+}
+
+#movie-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+    align-items: stretch;
+    grid-gap: 20px;
+    padding: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.movie-ctr {
+    display: grid;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 10px;
+    border-radius: 5px;
+    justify-content: center;
+}
+
+.movie-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: auto;
+    padding-bottom: 5px;
+    font-family: Didot, Arial, sans-serif;
+}
