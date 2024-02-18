@@ -1,0 +1,24 @@
+<!doctype HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Temp</title>
+    </head>
+    <body>
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>movieTitle</th>
+            </tr>
+            </thead>
+            <tr th:each="movie : ${movies}">
+                <td th:text="${movie.id}"></td>
+                <td th:text="${movie.movieTitle}"></td>
+            </tr>
+        </table>
+    </div>
+    </body>
+</html>
