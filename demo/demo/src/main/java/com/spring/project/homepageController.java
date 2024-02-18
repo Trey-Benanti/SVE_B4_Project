@@ -12,7 +12,9 @@ import java.util.List;
 public class homepageController {
 
     @GetMapping("/")
-    public String homepage() {
+    public String homepage(Model model) {
+        List<Movie> movies = repo.findAll();
+        model.addAttribute("movies", movies);
         return "homepage";
     } // homepage
 
