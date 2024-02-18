@@ -20,39 +20,14 @@
         </nav>
     </div>
     <div id="movie-overview">
-        <div class="movie-ctr">
-            <a class="movie-title">L’innocent</a>
+        <div class="movie-ctr" th:each="movie : ${movies}" >
+            <a class="movie-title" th:text="${movie.movieTitle}" />
             <iframe width="530" height="365"
-                    src="https://www.youtube.com/embed/A2kjh2Z1K0A?si=eV5gQnJcUfn7aT9L"
+                    th:src="${movie.trailerVideo}"
                     title="YouTube video player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
                     web-share" allowfullscreen>
             </iframe>
-        </div>
-        <div class="movie-ctr">
-            <a class="movie-title">Bob Marley: One Love</a>
-            <iframe width="530" height="365"
-                    src="https://www.youtube.com/embed/ajw425Kuvtw?si=QFVIJXYXmCQSjjwx"
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-            </iframe>
-        </div>
-        <div class="movie-ctr">
-            <a class="movie-title">Joker: Folie à Deux</a>
-            <iframe width="560" height="315"
-                    src="https://www.youtube.com/embed/2cul6B4AfLA?si=xx22xlH51jNgMPvO"
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen></iframe>
-        </div>
-        <div class="movie-ctr">
-            <a class="movie-title">Chien et Chat</a>
-            <iframe width="560" height="315"
-                    src="https://www.youtube.com/embed/oPfL-_LW3oE?si=uk6L3yDJBv_tLhW_"
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen></iframe>
         </div>
     </div>
 </body>
