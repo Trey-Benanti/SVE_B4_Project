@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirm Account</title>
+    <link rel="stylesheet" type="text/css"
+          href="/css/confirmation.css"
+          th:href="@{css/confirmation.css}"
+    />
+</head>
+<body>
+
+<h1>Confirm Account</h1>
+
+<form id="numberForm">
+    <input type="number" id="number1" min="0" max="9" required />
+    <input type="number" id="number2" min="0" max="9" required />
+    <input type="number" id="number3" min="0" max="9" required />
+    <input type="number" id="number4" min="0" max="9" required />
+    <input type="number" id="number5" min="0" max="9" required />
+    <input type="number" id="number6" min="0" max="9" required />
+    <br><br>
+    <button type="submit">Confirm Account</button>
+</form>
+
+<div id="confirmationPage" style="display: none;">
+    <h2>Account Confirmation</h2>
+    <p>Your numbers have been confirmed.</p>
+</div>
+
+<script>
+    document.getElementById('numberForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get the values of the input fields
+        var number1 = document.getElementById('number1').value;
+        var number2 = document.getElementById('number2').value;
+        var number3 = document.getElementById('number3').value;
+        var number4 = document.getElementById('number4').value;
+        var number5 = document.getElementById('number5').value;
+        var number6 = document.getElementById('number6').value;
+
+        // Here you could perform validation or additional checks on the numbers if needed
+
+        // Hide the form and show the confirmation page
+        document.getElementById('numberForm').style.display = 'none';
+        document.getElementById('confirmationPage').style.display = 'block';
+    });
+</script>
+
+</body>
+</html>

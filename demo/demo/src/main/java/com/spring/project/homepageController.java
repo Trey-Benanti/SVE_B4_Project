@@ -10,4 +10,8 @@ public class homepageController {
     public String homepage() {
         return "homepage";
     } // homepage
+
+    @GetMapping("/confirm")
+    public String confirm() { return "confirmation";} // confirm
 } // homepageController
+
