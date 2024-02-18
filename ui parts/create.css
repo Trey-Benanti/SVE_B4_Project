@@ -1,3 +1,86 @@
 body {
+    margin-left: 30px;
+    text-align: center;
+}
 
+#form-title {
+    margin-bottom: 15px;
+}
+
+#form-cast {
+    margin-bottom: 15px;
+}
+
+#form-director {
+    margin-bottom: 15px;
+}
+
+#form-producer {
+    margin-bottom: 15px;
+}
+
+#form-rating {
+    margin-bottom: 15px;
+}
+
+#form-reviews {
+    margin-bottom: 15px;
+}
+
+#form-synop {
+    margin-bottom: 15px;
+}
+
+#form-trailer-photo {
+    margin-bottom: 15px;
+}
+
+#form-trailer-video {
+    margin-bottom: 15px;
+}
+
+.form {
+    display: table;
+    font-weight: bold;
+    margin: auto;
+}
+
+label {
+    display: table-cell;
+}
+
+input {
+    display: table-cell;
+    width: 600px;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: black;
+}
+
+textarea {
+    width: 600px;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: black;
+}
+
+#form-synop-input {
+    height: 200px;
+}
+
+#form-cast-input {
+    height: 50px;
+}
+
+#create-form-ctr {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#form-submit-button {
+    margin-bottom: 20px;
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    border-width: 2px;
+    border-radius: 5px;
 }
