@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Create New Movie</title>
+    <link rel="stylesheet"
+          href="/css/create.css"
+          th:href="@{/css/create.css}"
+    />
+</head>
+<body>
+<div id="create-form-ctr">
+    <hr/><h1>Create New Movie</h1><hr/>
+    <form method="post" enctype="multipart/form-data" class="form">
+        <div id="form-title">
+            <p>
+            <label id="form-title-label" for="form-title-input">Movie Title</label>
+                <input id="form-title-input" th:field="${movieDTO.movieTitle}" />
+            </p>
+        </div>
+        <div id="form-cast">
+            <p>
+            <label id="form-cast-label" for="form-cast-input">Cast</label>
+            <textarea id="form-cast-input" th:field="${movieDTO.cast}"></textarea>
+            </p>
+        </div>
+        <div id="form-director">
+            <p>
+            <label id="form-director-label" for="form-director-input">Director</label>
+            <input id="form-director-input" th:field="${movieDTO.director}"/>
+            </p>
+        </div>
+        <div id="form-producer">
+            <p>
+            <label id="form-producer-label" for="form-producer-input">Producer</label>
+            <input id="form-producer-input" th:field="${movieDTO.producer}"/>
+            </p>
+        </div>
+        <div id="form-rating">
+            <p>
+            <label id="form-rating-label" for="form-rating-input">Rating</label>
+            <input id="form-rating-input" th:field="${movieDTO.rating}"/>
+            </p>
+        </div>
+        <div id="form-reviews">
+            <p>
+            <label id="form-reviews-label" for="form-reviews-input">Reviews Link</label>
+            <input id="form-reviews-input" th:field="${movieDTO.reviews}"/>
+            </p>
+        </div>
+        <div id="form-synop">
+            <p>
+            <label id="form-synop-label" for="form-synop-input">Synopsis</label>
+            <textarea id="form-synop-input" th:field="${movieDTO.synop}"></textarea>
+            </p>
+        </div>
+        <div id="form-trailer-photo">
+            <p>
+            <label id="form-trailer-photo-label" for="form-trailer-photo-input">Trailer Photo Link</label>
+            <input id="form-trailer-photo-input" th:field="${movieDTO.trailerPhoto}"/>
+            </p>
+        </div>
+        <div id="form-trailer-video">
+            <p>
+            <label id="form-trailer-video-label" for="form-trailer-video-input">Trailer Embedded Link</label>
+            <input id="form-trailer-video-input" th:field="${movieDTO.trailerVideo}"/>
+            </p>
+        </div>
+        <button type="submit" id="form-submit-button">Create</button>
+    </form>
+</div>
+</body>
+</html>

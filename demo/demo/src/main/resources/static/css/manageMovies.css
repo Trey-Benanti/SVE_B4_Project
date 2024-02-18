@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.top-nav {
+    display: flex;
+    background-color: #170f11;
+    height: 30px;
+    gap: 30px;
+    color: #cccccc;
+    overflow: hidden;
+    padding-left: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding-bottom: 10px;
+    font-size: 18px;
+}
+
+.top-nav a:hover {
+    color: #a59c9f;
+}
+
+.nav-link {
+    margin-top: 8px;
+}
+
+#main-header {
+    margin-left: 30px;
+}
+
+.option-header {
+    margin-left: 30px;
+}
+
+.option-header a:hover {
+    color: #a59c9f;
+}

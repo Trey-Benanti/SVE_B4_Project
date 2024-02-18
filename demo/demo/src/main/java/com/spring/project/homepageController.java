@@ -32,10 +32,15 @@ public class homepageController {
         return "create";
     } // create
 
-//    @GetMapping("/adminview")
-//    public String adminView() {
-//        return "adminView";
-//    }
+    @GetMapping("/adminview")
+    public String adminView() {
+        return "adminView";
+    } // adminView
+
+    @GetMapping("/managemovies")
+    public String manageMovies() {
+        return "manageMovies";
+    } // manageMovies
 
 } // homepageController
 
