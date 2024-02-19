@@ -30,14 +30,14 @@ public class homepageController {
     @GetMapping("/confirm")
     public String confirm() { return "confirmation";} // confirm
 
-    @GetMapping("/create")
+    @GetMapping("/create") // create get
     public String create(Model model) { // Render create page
         MovieDTO movieDTO = new MovieDTO();
         model.addAttribute("movieDTO", movieDTO);
         return "create";
     } // create
 
-    @PostMapping("/create")
+    @PostMapping("/create") // create post
     public String createMovie(
             @Valid @ModelAttribute MovieDTO movieDTO,
             BindingResult result
