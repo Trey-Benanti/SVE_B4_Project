@@ -4,6 +4,7 @@ import com.spring.project.models.Movie;
 import com.spring.project.models.MovieDTO;
 import com.spring.project.services.MoviesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,10 @@ public class homepageController {
 
     @Autowired
     private MoviesRepository repo;
+
+    public List<Movie> searchRepo(String keyword) {
+        return repo.search(keyword);
+    } // search
 
     @GetMapping("/")
     public String homepage(Model model) { // Render homepage
@@ -55,6 +60,7 @@ public class homepageController {
         movie.setSynop(movieDTO.getSynop());
         movie.setTrailerPhoto(movie.getTrailerPhoto());
         movie.setTrailerVideo(movieDTO.getTrailerVideo());
+        movie.setNowPlaying(movieDTO.getNowPlaying());
 
         repo.save(movie);
 
@@ -73,6 +79,12 @@ public class homepageController {
 
     @GetMapping("/promos")
     public String promos() { return "promos"; } // promos
+
+    @GetMapping("/search")
+    public String search(@Param("keyword") String keyword) {
+        System.out.println("Keyword + " + keyword);
+        return "searchresult";
+    }
 
 } // homepageController
 

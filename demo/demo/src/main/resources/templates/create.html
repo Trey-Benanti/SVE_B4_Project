@@ -66,6 +66,12 @@
             <input id="form-trailer-video-input" th:field="${movieDTO.trailerVideo}"/>
             </p>
         </div>
+        <div id="form-category-ctr">
+            <p>
+                <label id="form-category-label" for="form-cast-input">Now Showing (0 or 1)</label>
+                <input id="form-category-input" th:field="${movieDTO.nowPlaying}"/>
+            </p>
+        </div>
         <button type="submit" id="form-submit-button">Create</button>
     </form>
 </div>

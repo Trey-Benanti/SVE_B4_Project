@@ -31,7 +31,7 @@ public class MovieDTO {
     @NotEmpty(message = "Rating is required")
     private String rating;
 
-    @NotEmpty(message = "Now Playing is required")
+    @Min(0)
     private int nowPlaying;
 
     public int getNowPlaying() {
