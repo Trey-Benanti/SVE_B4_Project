@@ -71,5 +71,8 @@ public class homepageController {
         return "manageMovies";
     } // manageMovies
 
+    @GetMapping("/promos")
+    public String promos() { return "promos"; } // promos
+
 } // homepageController
 
