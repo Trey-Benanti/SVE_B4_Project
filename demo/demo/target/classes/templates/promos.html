@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Promotions</title>
+    <link rel="stylesheet" type="text/css"
+          href="/css/promos.css"
+          th:href="@{/css/promos.css}"
+    >
+</head>
+<body>
+<div id="nav-ctr">
+    <nav class="top-nav">
+        <a class="nav-link">Home</a>
+    </nav>
+</div>
+<h1 id="promo-header">Promotions</h1><hr/>
+<div id="promo-card">
+<div id="promo-btn-ctr">
+    <button class="promo-btn">Add New Discount</button>
+</div>
+<div id="promo-table-ctr">
+    <table id="promo-table">
+        <tr>
+            <th class="promo-id">ID</th>
+            <th class="promo-code">Code</th>
+            <th class="promo-discount">Discount Percentage</th>
+            <th class="promo-notes">Notes</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>TESTCODE</td>
+            <td>20%</td>
+            <td></td>
+            <td><button id="promo-del-btn">Delete</button></td>
+        </tr>
+    </table>
+</div>
+</div>
+</body>
+</html>
