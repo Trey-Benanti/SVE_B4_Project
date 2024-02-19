@@ -19,6 +19,15 @@ public class Movie {
     private String trailerPhoto;
     private String trailerVideo;
     private String rating;
+    private int nowPlaying;
+
+    public int getNowPlaying() {
+        return nowPlaying;
+    }
+
+    public void setNowPlaying(int nowPlaying) {
+        this.nowPlaying = nowPlaying;
+    }
 
     public String getMovieTitle() {
         return movieTitle;

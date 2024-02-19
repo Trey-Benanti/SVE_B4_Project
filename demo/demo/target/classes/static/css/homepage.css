@@ -38,7 +38,7 @@ body {
     border-radius: 8px;
 }
 
-#movie-overview {
+.movie-overview {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
     align-items: stretch;
@@ -62,4 +62,41 @@ body {
     margin: auto;
     padding-bottom: 5px;
     font-family: Didot, Arial, sans-serif;
+}
+
+#details-link-ctr {
+    text-align: right;
+}
+
+#details-link {
+    font-weight: bold;
+}
+
+#book-tickets-btn-ctr {
+    text-align: center;
+}
+
+#book-tickets-btn {
+    width: 130px;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 24px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    font-weight: bold;
+    border-width: 2px;
+    border-color: #000000;
+    color: #000000;
+    background-color: #BA0C2F;
+}
+
+#trailer-video {
+    border-color: #BA0C2F;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.now-showing-header {
+    text-align: center;
+    font-family: Georgia, SansSerif, serif;
+    margin-bottom: 10px;
 }

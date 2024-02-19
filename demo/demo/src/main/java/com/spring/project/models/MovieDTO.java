@@ -31,6 +31,17 @@ public class MovieDTO {
     @NotEmpty(message = "Rating is required")
     private String rating;
 
+    @NotEmpty(message = "Now Playing is required")
+    private int nowPlaying;
+
+    public int getNowPlaying() {
+        return nowPlaying;
+    }
+
+    public void setNowPlaying(int nowPlaying) {
+        this.nowPlaying = nowPlaying;
+    }
+
     public String getMovieTitle() {
         return movieTitle;
     }

@@ -21,7 +21,7 @@
     </div>
     <h1 class="now-showing-header">Now Showing</h1>
     <div class="movie-overview">
-            <div class="movie-ctr" th:each="movie : ${movies}" >
+            <div class="movie-ctr" th:each="movie : ${movies}" th:if="${movie.nowPlaying==1}">
                 <a class="movie-title" th:text="${movie.movieTitle}" />
                 <iframe width="530" height="365"
                         id="trailer-video"
@@ -40,7 +40,22 @@
     </div>
     <h1 class="now-showing-header">Coming Soon</h1>
     <div class="movie-overview">
-
+        <div class="movie-ctr" th:each="movie : ${movies}" th:if="${movie.nowPlaying==0}">
+            <a class="movie-title" th:text="${movie.movieTitle}" />
+            <iframe width="530" height="365"
+                    id="trailer-video"
+                    th:src="${movie.trailerVideo}"
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
+                        web-share" allowfullscreen>
+            </iframe>
+            <div id="details-link-ctr">
+                <p id="details-link">Details</p>
+            </div>
+            <div id="book-tickets-btn-ctr">
+                <button id="book-tickets-btn">Book</button>
+            </div>
+        </div>
     </div>
 </body>
 </html>
