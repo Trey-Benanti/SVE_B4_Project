@@ -20,7 +20,7 @@
                       method="get"
                 >
                     <label for="search-box" id="search-label">Search:</label>
-                    <input type="text" id="search-box" name="keyword"/>
+                    <input type="search" id="search-box" name="keyword"/>
                     <button id="search-button" type="submit" value="Search">Go</button>
                 </form>
             </div>
@@ -31,17 +31,17 @@
             <div class="movie-ctr" th:each="movie : ${movies}" th:if="${movie.nowPlaying==1}">
                 <a class="movie-title" th:text="${movie.movieTitle}" />
                 <iframe width="530" height="365"
-                        id="trailer-video"
+                        class="trailer-video"
                         th:src="${movie.trailerVideo}"
                         title="YouTube video player"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
                         web-share" allowfullscreen>
                 </iframe>
-                <div id="details-link-ctr">
-                    <p id="details-link">Details</p>
+                <div class="details-link-ctr">
+                    <p class="details-link">Details</p>
                 </div>
-                <div id="book-tickets-btn-ctr">
-                    <button id="book-tickets-btn">Book</button>
+                <div class="book-tickets-btn-ctr">
+                    <button class="book-tickets-btn">Book</button>
                 </div>
             </div>
     </div>
@@ -50,17 +50,17 @@
         <div class="movie-ctr" th:each="movie : ${movies}" th:if="${movie.nowPlaying==0}">
             <a class="movie-title" th:text="${movie.movieTitle}" />
             <iframe width="530" height="365"
-                    id="trailer-video"
+                    class="trailer-video"
                     th:src="${movie.trailerVideo}"
                     title="YouTube video player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
                         web-share" allowfullscreen>
             </iframe>
-            <div id="details-link-ctr">
-                <p id="details-link">Details</p>
+            <div class="details-link-ctr">
+                <p class="details-link">Details</p>
             </div>
-            <div id="book-tickets-btn-ctr">
-                <button id="book-tickets-btn">Book</button>
+            <div class="book-tickets-btn-ctr">
+                <button class="book-tickets-btn">Book</button>
             </div>
         </div>
     </div>

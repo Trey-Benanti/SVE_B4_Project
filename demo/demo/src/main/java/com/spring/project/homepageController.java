@@ -2,6 +2,7 @@ package com.spring.project;
 
 import com.spring.project.models.Movie;
 import com.spring.project.models.MovieDTO;
+import com.spring.project.services.MovieServices;
 import com.spring.project.services.MoviesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -19,11 +20,10 @@ import java.util.List;
 public class homepageController {
 
     @Autowired
-    private MoviesRepository repo;
+    private MoviesRepository repo; // Reference to movie repository interface
 
-    public List<Movie> searchRepo(String keyword) {
-        return repo.search(keyword);
-    } // search
+    @Autowired
+    private MovieServices movieService; // Reference to movie services interface
 
     @GetMapping("/")
     public String homepage(Model model) { // Render homepage
@@ -81,8 +81,13 @@ public class homepageController {
     public String promos() { return "promos"; } // promos
 
     @GetMapping("/search")
-    public String search(@Param("keyword") String keyword) {
-        System.out.println("Keyword + " + keyword);
+    public String search(@Param("keyword") String keyword, Model model) {
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("pageTitle", "Search results for " + keyword);
+
+        List<Movie> searchResult = movieService.search(keyword); // Get results of full text search
+        model.addAttribute("searchResult", searchResult); // Pass search results to front end
+
         return "searchresult";
     }
 
