@@ -9,7 +9,25 @@
     />
 </head>
 <body>
-    <h1>Results for "[[${keyword}]]"</h1>
+<div id="nav-ctr">
+    <nav class="top-nav">
+        <a class="nav-link">Book</a>
+        <a class="nav-link">Login</a>
+        <a class="nav-link">About</a>
+        <div class="search-ctr">
+            <form id="search-form"
+                  th:action="@{/search}"
+                  method="get"
+            >
+                <label for="search-box" id="search-label">Search:</label>
+                <input type="search" id="search-box" name="keyword"/>
+                <button id="search-button" type="submit" value="Search">Go</button>
+            </form>
+        </div>
+    </nav>
+</div>
+<h2 class="results-header">Results for "[[${keyword}]]"</h2>
+<h1 class="now-showing-header">Now Showing</h1>
     <div class="movie-overview">
         <div class="movie-ctr" th:each="movie : ${searchResult}" th:if="${movie.nowPlaying==1}">
             <a class="movie-title" th:text="${movie.movieTitle}" />

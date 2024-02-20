@@ -106,3 +106,7 @@ body {
     background-color: #BA0C2F;
     color: #ffffff;
 }
+
+.results-header {
+    margin-left: 20px;
+}
