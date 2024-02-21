@@ -68,7 +68,9 @@ public class homepageController {
     } // create
 
     @GetMapping("/adminview")
-    public String adminView() {
+    public String adminView(Model model) {
+        List<Movie> movies = repo.findAll();
+        model.addAttribute("movies", movies);
         return "adminView";
     } // adminView
 
