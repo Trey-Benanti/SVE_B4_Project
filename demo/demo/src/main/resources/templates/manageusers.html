@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Manage Users</title>
+    <link rel="stylesheet" type="text/css"
+          href="/css/manageusers.css"
+          th:href="@{/css/manageusers.css}" />
+</head>
+<div id="nav-ctr">
+    <nav class="top-nav">
+        <a class="nav-link">Home</a>
+    </nav>
+</div>
+<body>
+    <h1 id="manage-users-header">Manage Users</h1>
+    <div id="users-table-ctr">
+        <table id="users-table">
+            <tr>
+                <th class="user-id">ID</th>
+                <th class="username">Username</th>
+                <th class="user-account-status">Account Status</th>
+            </tr>
+            <td>1</td>
+            <td>Username</td>
+            <td>Active</td>
+            <td><button class="edit-button">Edit</button></td>
+        </table>
+    </div>
+</body>
+</html>

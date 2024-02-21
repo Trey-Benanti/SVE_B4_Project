@@ -23,6 +23,14 @@ body {
     margin-top: 8px;
 }
 
+.scheduling-card {
+    text-align: center;
+}
+
+#date-time-picker-label {
+    font-weight: bold;
+}
+
 table, th, td {
     border: 1px solid black;
     border-radius: 3px;
@@ -40,21 +48,33 @@ table, th, td {
     width: 500px;
 }
 
-#schedule-table-ctr {
+.schedule-table-ctr {
     margin-top: 20px;
     display: flex;
     justify-content: center;
 
 }
 
-#promo-card {
-    padding-top: 10px;
-    padding-bottom: 30px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+table, th, td {
+    border: 1px solid black;
+    border-radius: 3px;
 }
 
-#promo-header {
-    margin-bottom: 30px;
-    text-align: center;
+.schedule-movie-title {
+    width: 400px;
 }
 
+.show-times {
+    width: 500px;
+}
+
+#date-time-picker-button {
+    font-weight: bold;
+    border-width: 2px;
+    border-radius: 3px;
+}
+
+#date-time-picker {
+    border-width: 2px;
+    border-radius: 3px;
+}

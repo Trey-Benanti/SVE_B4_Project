@@ -107,5 +107,15 @@ public class homepageController {
         return "editmovies";
     } // editMovies
 
+    @GetMapping("/addschedule")
+    public String addSchedule() {
+        return "addschedule";
+    }
+
+    @GetMapping("/manageusers")
+    public String manageUsers() {
+        return "manageusers";
+    }
+
 } // homepageController
 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css"
+          href="/addschedule.css"
+          th:href="@{/css/addschedule.css}"
+    />
+    <title>Add Schedule</title>
+</head>
+<body>
+<div id="nav-ctr">
+    <nav class="top-nav">
+        <a class="nav-link">Home</a>
+    </nav>
+</div>
+<div class="scheduling-card">
+    <h1>Schedule New Showing</h1>
+    <div class="date-time-picker-ctr">
+        <label for="date-time-picker" id="date-time-picker-label">Show Time</label>
+        <input id="date-time-picker"
+               type="datetime-local"
+               name="date-time-picker"
+        />
+        <button id="date-time-picker-button">Add</button>
+    </div>
+    <div class="schedule-table-ctr">
+        <table class="schedule-table">
+            <tr>
+                <th class="show-times">Show Times</th>
+            </tr>
+            <div class="table-content-container">
+                <tr>
+                    <td>2024-06-01 12:00</td>
+                </tr>
+                <tr>
+                    <td>2024-06-01 15:00</td>
+                </tr>
+            </div>
+        </table>
+    </div>
+</div>
+</body>
+</html>

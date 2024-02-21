@@ -36,14 +36,6 @@ table, th, td {
     width: 400px;
 }
 
-.start-date {
-    width: 150px;
-}
-
-.end-date {
-    width: 150px;
-}
-
 .show-times {
     width: 500px;
 }
@@ -65,3 +57,4 @@ table, th, td {
     margin-bottom: 30px;
     text-align: center;
 }
+

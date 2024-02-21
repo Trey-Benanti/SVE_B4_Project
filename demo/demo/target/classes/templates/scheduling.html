@@ -19,10 +19,8 @@
   <div id="schedule-table-ctr">
     <table id="schedule-table">
         <tr>
-          <th class="mobie-id">Movie ID</th>
+          <th class="movie-id">Movie ID</th>
           <th class="schedule-movie-title">Movie Title</th>
-          <th class="start-date">Start Date</th>
-          <th class="end-date">End Date</th>
           <th class="show-times">Show Times</th>
           <th>Edit</th>
         </tr>
@@ -30,9 +28,7 @@
         <tr>
           <td th:text="${movie.id}" />
           <td th:text="${movie.movieTitle}" />
-          <td>11/11/11</td>
-          <td>12/12/12</td>
-          <td>Show Times</td>
+          <td></td>
           <td><button class="edit-dates-button">Edit</button></td>
         </tr>
       </div>
