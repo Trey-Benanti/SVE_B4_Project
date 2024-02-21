@@ -98,7 +98,14 @@ public class homepageController {
         List<Movie> movies = repo.findAll();
         model.addAttribute("movies", movies);
         return "scheduling";
-    }
+    } // scheduling
+
+    @GetMapping("/editmovies")
+    public String editMovies(Model model) {
+        List<Movie> movies = repo.findAll();
+        model.addAttribute("movies", movies);
+        return "editmovies";
+    } // editMovies
 
 } // homepageController
 

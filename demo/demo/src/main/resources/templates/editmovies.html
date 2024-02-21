@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Edit Movies</title>
+    <link rel="stylesheet" type="text/css"
+          href="/css/editmovies.css"
+          th:href="@{/css/editmovies.css}"
+    />
+</head>
+<body>
+<div id="nav-ctr">
+    <nav class="top-nav">
+        <a class="nav-link">Home</a>
+    </nav>
+</div>
+<h1 id="promo-header">Edit Movies</h1><hr/>
+
+    <div id="schedule-table-ctr">
+        <table id="schedule-table">
+            <tr>
+                <th class="movie-id">Movie ID</th>
+                <th class="schedule-movie-title">Movie Title</th>
+                <th class="cast">Cast</th>
+                <th class="director">Director</th>
+                <th class="producer">Producer</th>
+                <th class="rating">Rating</th>
+                <th class="reviews">Reviews Link</th>
+                <th class="trailer-photo">Trailer Photo</th>
+                <th class="trailer-video">Trailer Video</th>
+                <th class="synop">Synopsis</th>
+                <th class="now-playing">Now Showing</th>
+                <th>Edit</th>
+            </tr>
+            <div class="table-content-ctr" th:each="movie : ${movies}">
+                <tr>
+                    <td th:text="${movie.id}" />
+                    <td th:text="${movie.movieTitle}" />
+                    <td th:text="${movie.cast}" />
+                    <td th:text="${movie.director}" />
+                    <td th:text="${movie.producer}" />
+                    <td th:text="${movie.rating}" />
+                    <td th:text="${movie.reviews}" />
+                    <td th:text="${movie.trailerPhoto}" />
+                    <td th:text="${movie.trailerVideo}" />
+                    <td th:text="${movie.synop}" />
+                    <td th:text="${movie.nowPlaying}" />
+                    <td><button class="edit-dates-button">Edit</button></td>
+                </tr>
+            </div>
+        </table>
+    </div>
+
+</body>
+</html>
