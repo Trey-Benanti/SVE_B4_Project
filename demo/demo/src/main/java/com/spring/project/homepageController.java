@@ -93,6 +93,12 @@ public class homepageController {
         return "searchresult";
     } // search
 
+    @GetMapping("/scheduling")
+    public String scheduling(Model model) {
+        List<Movie> movies = repo.findAll();
+        model.addAttribute("movies", movies);
+        return "scheduling";
+    }
 
 } // homepageController
 

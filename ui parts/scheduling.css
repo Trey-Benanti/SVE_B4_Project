@@ -1,0 +1,67 @@
+body {
+    margin: 0px;
+}
+
+.top-nav {
+    display: flex;
+    background-color: #170f11;
+    height: 30px;
+    gap: 30px;
+    color: #cccccc;
+    overflow: hidden;
+    padding-left: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding-bottom: 10px;
+    font-size: 18px;
+}
+
+.top-nav a:hover {
+    color: #a59c9f;
+}
+
+.nav-link {
+    margin-top: 8px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.movie-id {
+    width: 80px;
+}
+
+.schedule-movie-title {
+    width: 400px;
+}
+
+.start-date {
+    width: 150px;
+}
+
+.end-date {
+    width: 150px;
+}
+
+.show-times {
+    width: 500px;
+}
+
+#schedule-table-ctr {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+
+}
+
+#promo-card {
+    padding-top: 10px;
+    padding-bottom: 30px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#promo-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
