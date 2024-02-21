@@ -110,3 +110,7 @@ body {
 .results-header {
     margin-left: 20px;
 }
+
+.rating-text {
+    font-weight: bold;
+}

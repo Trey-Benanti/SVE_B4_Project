@@ -65,7 +65,7 @@ public class homepageController {
         repo.save(movie);
 
         return "redirect:/"; // redirect home
-    }
+    } // create
 
     @GetMapping("/adminview")
     public String adminView() {
@@ -89,7 +89,8 @@ public class homepageController {
         model.addAttribute("searchResult", searchResult); // Pass search results to front end
 
         return "searchresult";
-    }
+    } // search
+
 
 } // homepageController
 
