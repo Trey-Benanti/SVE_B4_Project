@@ -7,55 +7,59 @@
     <link rel="stylesheet" type="text/css" href="profile.css">
 </head>
 <body>
+    <h1>User Profile</h1>
 
-<h1>User Profile</h1>
+    <form id="profileForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" disabled>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" disabled>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" disabled>
+        <label for="homeAddress">Home Address:</label>
+        <input type="text" id="homeAddress" name="homeAddress" disabled>
+        <label for="creditCard">Credit Card Info:</label>
+        <input type="text" id="creditCard" name="creditCard" disabled>
+        <label for="billingAddress">Billing Address:</label>
+        <input type="text" id="billingAddress" name="billingAddress" disabled>
+        <label for="creditCard">Credit Card Info:</label>
+        <input type="text" id="creditCard" name="creditCard" disabled>
+        <label for="billingAddress">Billing Address:</label>
+        <input type="text" id="billingAddress" name="billingAddress" disabled>
+        <label for="creditCard">Credit Card Info:</label>
+        <input type="text" id="creditCard" name="creditCard" disabled>
+        <label for="billingAddress">Billing Address:</label>
+        <input type="text" id="billingAddress" name="billingAddress" disabled>
+        <input type="checkbox" id="agreeCheckbox" name="agreeCheckbox">
+        <label for="agreeCheckBox">subcribe to promotional</label>
+        <button type="button" id="editButton">Edit</button>
+        <button type="submit" id="saveButton" style="display: none;">Save</button>
 
-<form id="profileForm">
-    <label for="firstName">First Name:</label>
-    <input type="text" id="firstName" name="firstName" disabled>
-    <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName" name="lastName" disabled>
-    <label for="email">Email:</label>
-    <input type="text" id="email" name="email" disabled>
-    <label for="creditCard">Credit Card Info:</label>
-    <input type="text" id="creditCard" name="creditCard" disabled>
-    <label for="billingAddress">Billing Address:</label>
-    <input type="text" id="billingAddress" name="billingAddress" disabled>
-    <label for="homeAddress">Home Address:</label>
-    <input type="text" id="homeAddress" name="homeAddress" disabled>
-    <button type="button" id="editButton">Edit</button>
-    <button type="submit" id="saveButton" style="display: none;">Save</button>
-</form>
+    </form>
+    <script>
+    
+        function enableEditing() {
+            document.querySelectorAll('input').forEach(input => {
+                input.removeAttribute('disabled');
+            });
+            document.getElementById('saveButton').style.display = 'inline-block';
+         document.getElementById('editButton').style.display = 'none';
+        }
 
-<script>
-    // Function to enable editing of form fields
-    function enableEditing() {
-        document.querySelectorAll('input').forEach(input => {
-            input.removeAttribute('disabled');
+        document.getElementById('editButton').addEventListener('click', function() {
+            enableEditing();
         });
-        document.getElementById('saveButton').style.display = 'inline-block';
-        document.getElementById('editButton').style.display = 'none';
-    }
 
-    // Event listener for the edit button
-    document.getElementById('editButton').addEventListener('click', function() {
-        enableEditing();
-    });
+        document.getElementById('profileForm').addEventListener('submit', function(event) {
+        event.preventDefault()
 
-    // Event listener for the form submission (saving)
-    document.getElementById('profileForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the form from submitting
-
-        // Here you can add code to save the updated profile information, like making an AJAX request
-        
-        // For demonstration purposes, let's just disable the form fields again
-        document.querySelectorAll('input').forEach(input => {
-            input.setAttribute('disabled', 'disabled');
+             document.querySelectorAll('input').forEach(input => {
+                input.setAttribute('disabled', 'disabled');
+            });
+            document.getElementById('saveButton').style.display = 'none';
+            document.getElementById('editButton').style.display = 'inline-block';
         });
-        document.getElementById('saveButton').style.display = 'none';
-        document.getElementById('editButton').style.display = 'inline-block';
-    });
-</script>
+    </script>
 
 </body>
 </html>

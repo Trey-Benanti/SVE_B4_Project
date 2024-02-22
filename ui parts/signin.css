@@ -21,9 +21,6 @@ h2 {
     margin-bottom: 20px;
 }
 input[type="email"],
-input[type="tel"],
-input[type="text"],
-input[type="address"],
 input[type="password"],
 input[type="submit"] {
     width: 100%;
@@ -49,22 +46,3 @@ input[type="submit"]:hover {
     text-decoration: none;
 }
 
-.creditcard-button-container {
-    display: flex;
-    align-items: center;
-}
-.creditcard-button-container button {
-    width: 25%;
-    height: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    background-color: #fd0202;
-    color: #fff;
-    border: 1px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.creditcard-button-container button:hover {
-    background-color: #d6d6d6;
-}
