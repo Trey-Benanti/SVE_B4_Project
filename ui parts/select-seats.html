@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Seats</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+        }
+        .seating-chart {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .seat {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ddd;
+            border: 2px solid #999;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .sidebar {
+            flex: 1;
+            background-color: #f9f9f9;
+            border-left: 1px solid #ddd;
+            padding: 20px;
+            text-align: left;
+        }
+        .selected-seat {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="seating-chart" id="seating-chart">
+        </div>
+        <div class="sidebar" id="sidebar" style="display: none;">
+            <h3>Selected Seat</h3>
+            <div class="selected-seat" id="selected-seat"></div>
+            <div id="age-range-dropdown" style="display: none;">
+                <label for="age-range">Select Age Range:</label>
+                <select id="age-range">
+                    <option value="child">Child (Under 12)</option>
+                    <option value="adult">Adult (12+)</option>
+                    <option value="senior">Senior (65+)</option>
+                </select>
+                <button id="add-to-cart-btn">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G']; // Row labels
+        const seatsPerRow = 6; // Number of seats per row
+
+        const seatingChart = document.getElementById('seating-chart');
+        const sidebar = document.getElementById('sidebar');
+        const selectedSeatContainer = document.getElementById('selected-seat');
+        const ageRangeDropdown = document.getElementById('age-range-dropdown');
+        const addToCartBtn = document.getElementById('add-to-cart-btn');
+
+        let selectedSeat = null;
+
+        // Create a row of seats
+        function createRow(rowLabel, numSeats) {
+            const row = document.createElement('div');
+            row.classList.add('row');
+
+            const rowLabelSpan = document.createElement('span');
+            rowLabelSpan.textContent = rowLabel;
+            row.appendChild(rowLabelSpan);
+
+            for (let i = 0; i < numSeats; i++) {
+                const seat = document.createElement('button');
+                seat.classList.add('seat');
+                seat.textContent = `${rowLabel}${i + 1}`;
+                seat.addEventListener('click', () => selectSeat(seat, rowLabel));
+                row.appendChild(seat);
+            }
+            seatingChart.appendChild(row);
+        }
+
+        // method to handle seat selection
+        function selectSeat(seat, rowLabel) {
+            selectedSeat = seat;
+            selectedSeatContainer.textContent = `Seat: ${rowLabel}${seat.textContent.substring(1)}`;
+            sidebar.style.display = 'block';
+            ageRangeDropdown.style.display = 'block';
+        }
+
+        // handle adding selected seat to cart
+        addToCartBtn.addEventListener('click', () => {
+            const selectedAgeRange = document.getElementById('age-range').value;
+            if (selectedSeat && selectedAgeRange) {
+                const seatNumber = selectedSeat.textContent.substring(1);
+                alert(`Seat: ${selectedSeat.textContent}: ${selectedAgeRange} ticket added to cart.`);
+            } else {
+                alert('Please select a seat and an age range.');
+            }
+        });
+
+        // Create rows based on labels and number of seats per row
+        rows.forEach(rowLabel => createRow(rowLabel, seatsPerRow));
+    </script>
+</body>
+</html>
