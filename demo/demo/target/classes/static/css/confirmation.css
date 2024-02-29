@@ -1,0 +1,30 @@
+body {
+    margin: 0px;
+}
+
+.top-nav {
+    display: flex;
+    height: 30px;
+    gap: 30px;
+    color: #cccccc;
+    overflow: hidden;
+    padding-left: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    font-size: 18px;
+    background: linear-gradient(to bottom, #170f11, #BA0C2F);
+    padding-top: 12px;
+}
+
+.confirm-ctr {
+    margin: auto;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: fit-content;
+    width: fit-content;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-color: #BA0C2F;
+}

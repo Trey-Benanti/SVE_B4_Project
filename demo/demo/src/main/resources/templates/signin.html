@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" type="text/css" href="signin.css">
+    <link rel="stylesheet" type="text/css"
+          href="/css/signin.css"
+          th:href="@{/css/signin.css}"  />
 </head>
 <body>
     <div class="container">
@@ -15,8 +17,8 @@
             <input type="submit" value="Login">
         </form>
         <div class="signup-link">
-            <p>Don't have an account? <a href="signup.html">Sign up</a></p>
-            <p>Don't remember your password? <a href="signup.html">Forgot Password</a></p>
+            <p>Don't have an account?Sign up</p>
+            <p>Don't remember your password? Forgot Password</p>
         </div>
     </div>
 </body>

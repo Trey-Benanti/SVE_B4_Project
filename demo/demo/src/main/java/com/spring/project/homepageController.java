@@ -110,12 +110,59 @@ public class homepageController {
     @GetMapping("/addschedule")
     public String addSchedule() {
         return "addschedule";
-    }
+    } // addschedule
 
     @GetMapping("/manageusers")
     public String manageUsers() {
         return "manageusers";
-    }
+    } // manageusers
+
+    @GetMapping("/checkout")
+    public String checkout() {
+        return "checkout";
+    } // checkout
+
+    @GetMapping("/order-confirmation")
+    public String orderConfirmation() {
+        return "order-confirmation";
+    } // orderConfirmation
+
+    @GetMapping("/order-summary")
+    public String orderSummary() {
+        return "order-summary";
+    } // orderSummary
+
+    @GetMapping("/select-seats")
+    public String selectSeats() {
+        return "select-seats";
+    } // selectSeats
+
+    @GetMapping("/profile")
+    public String profile() {
+        return "profile";
+    } // profile
+
+    @GetMapping("/select-show")
+    public String selectShow() {
+        return "select-show";
+    } // selectShow
+
+    @GetMapping("/signin")
+    public String signin() {
+        return "signin";
+    } // signin
+
+    @GetMapping("/signup")
+    public String signup() {
+        return "signup";
+    } // signup
+
+    @GetMapping("/confirmation")
+    public String confirmation() {
+        return "confirmation";
+    } // confirmation
+
+
 
 } // homepageController
 
