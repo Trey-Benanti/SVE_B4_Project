@@ -5,7 +5,6 @@ body {
 
 .top-nav {
     display: flex;
-    background-color: #170f11;
     height: 30px;
     gap: 30px;
     color: #cccccc;
@@ -14,6 +13,7 @@ body {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding-bottom: 10px;
     font-size: 18px;
+    background: linear-gradient(to bottom, #170f11, #BA0C2F);
 }
 
 .top-nav a:hover {
@@ -24,8 +24,18 @@ body {
     margin-top: 8px;
 }
 
-#main-header {
-    margin-left: 30px;
+.page-ctr {
+    margin: auto;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: fit-content;
+    width: fit-content;
+    text-align: left;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-color: #BA0C2F;
 }
 
 .option-header {
