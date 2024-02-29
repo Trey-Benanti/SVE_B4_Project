@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 25%;
+            padding: 20px;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .movie-preview img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .movie-info {
+            margin-bottom: 20px;
+        }
+
+        .movie-info h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+
+        .movie-info p {
+            margin: 5px 0;
+        }
+
+        .showtimes {
+            margin-top: 20px;
+        }
+
+        .showtimes button {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .showtimes button:disabled {
+            text-decoration: line-through;
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        /* carousel/horizontal */
+        /* dropdown button */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar movie-preview">
+            <img src="https://all.web.img.acsta.net/pictures/23/12/05/15/53/4355814.jpg/r_500_x" alt="Bob Marley Movie Preview">
+        </div>
+        <div class="main-content">
+            <div class="main-idea">
+                <h2>Bob Marley: One Love</h2>
+                <p>PG-13</p>
+                <p>1 hr 47 min</p>
+                <p>2/14/2024</p>
+                <p>BOB MARLEY: ONE LOVE celebrates the life and music of an icon who inspired generations through his message of love and unity. On the big screen for the first time, discover Bob’s powerful story of overcoming adversity and the journey behind his revolutionary music.</p>
+            </div>
+            <div class="theater-dropdown">
+                <button aria-label="Select Theater">AT: Theater 13 ▼</button>
+                <!-- Dropdown menu content goes here -->
+            </div>
+            <div class="showtimes">
+                <h3 aria-label="Calendar">Calendar</h3>
+                <div id="calendar"></div>
+                <button>Monday, Feb 14</button>
+                <button>Tuesday, Feb 15</button>
+                <button>Wednesday, Feb 16</button>
+            </div>
+            <div class="showtimes">
+                <h3>Showtimes</h3>
+                <div class="showtime-buttons">
+                    <button><time datetime="2024-02-14T15:00">3:00 PM</time></button>
+                    <button disabled><time datetime="2024-02-14T18:00">6:00 PM</time></button>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar movie-info">
+            <h3>Movie Information</h3>
+            <p>Title: Bob Marley: One Love</p>
+            <p>Category: Music/Biography</p>
+            <p>Cast: Bob Marley</p>
+            <p>Director: Director Name</p>
+            <p>Producer: Producer Name</p>
+            <p>Synopsis: Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+            <p>Trailer: <a href="#">Watch Trailer</a></p>
+            <p>MPAA-US Rating: PG-13</p>
+        </div>
+    </div>
+    <script>
+       // Calender
+    </script>
+</body>
+</html>
