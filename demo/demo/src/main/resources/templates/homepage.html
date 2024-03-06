@@ -11,9 +11,9 @@
 <body>
     <div id="nav-ctr">
         <nav class="top-nav">
+            <img th:src="@{/images/wave.png}" alt="wave logo" id="header-logo" />
             <a class="nav-link">Book</a>
-            <a class="nav-link">Login</a>
-            <a class="nav-link">About</a>
+            <a class="nav-link" th:href="@{/signin}">Login</a>
             <div class="search-ctr">
                 <form id="search-form"
                 th:action="@{/search}"
@@ -36,14 +36,16 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
                         web-share" allowfullscreen>
                 </iframe>
-                <div class="rating-ctr">
-                    <p class="rating-text" th:text="${movie.rating}" />
-                </div>
-                <div class="details-link-ctr">
-                    <p class="details-link">Details</p>
-                </div>
-                <div class="book-tickets-btn-ctr">
-                    <button class="book-tickets-btn">Book</button>
+                <div class="movie-options">
+                    <div class="rating-ctr">
+                        <p class="rating-text" th:text="${movie.rating}" />
+                    </div>
+                    <div class="book-tickets-btn-ctr">
+                        <button class="book-tickets-btn">Book</button>
+                    </div>
+                    <div class="details-link-ctr">
+                        <p class="details-link">Details</p>
+                    </div>
                 </div>
             </div>
     </div>
@@ -58,14 +60,16 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
                         web-share" allowfullscreen>
             </iframe>
-            <div class="rating-ctr">
-                <p class="rating-text" th:text="${movie.rating}" />
-            </div>
-            <div class="details-link-ctr">
-                <p class="details-link">Details</p>
-            </div>
-            <div class="book-tickets-btn-ctr">
-                <button class="book-tickets-btn">Book</button>
+            <div class="movie-options">
+                <div class="rating-ctr">
+                    <p class="rating-text" th:text="${movie.rating}" />
+                </div>
+                <div class="book-tickets-btn-ctr">
+                    <button class="book-tickets-btn">Book</button>
+                </div>
+                <div class="details-link-ctr">
+                    <p class="details-link">Details</p>
+                </div>
             </div>
         </div>
     </div>

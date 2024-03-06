@@ -5,16 +5,16 @@ body {
 
 .top-nav {
     display: flex;
-    height: 30px;
+    justify-content: center;
+    height: 60px;
     gap: 30px;
-    color: #cccccc;
+    color: black;
     overflow: hidden;
     padding-left: 20px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding-bottom: 10px;
     font-size: 18px;
     padding-top: 12px;
-    background: linear-gradient(to bottom, #170f11, #BA0C2F);
+    background: linear-gradient(to bottom, #f9b971, #ffffff);
 }
 
 .top-nav a:hover {
@@ -23,6 +23,9 @@ body {
 
 .nav-link {
     margin-top: 8px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
 }
 
 .search-ctr {
@@ -32,11 +35,18 @@ body {
 
 #search-label {
     margin-right: 8px;
+    font-weight: bold;
+    color: black;
 }
 
 #search-box {
     width: 250px;
     border-radius: 8px;
+}
+
+#header-logo {
+    width: 40px;
+    height: 40px;
 }
 
 .movie-overview {
@@ -55,6 +65,7 @@ body {
     padding: 10px;
     border-radius: 5px;
     justify-content: center;
+    background-color: #ffffff;
 }
 
 .movie-title {
@@ -77,21 +88,26 @@ body {
     text-align: center;
 }
 
+.movie-options {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
 .book-tickets-btn {
     width: 130px;
-    height: 50px;
-    border-radius: 5px;
-    font-size: 24px;
+    height: 35px;
+    border-radius: 25px;
+    font-size: 18px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    font-weight: bold;
-    border-width: 2px;
+    border-width: 1px;
     border-color: #000000;
     color: #000000;
-    background-color: #BA0C2F;
+    background-color: #29729e;
 }
 
 .trailer-video {
-    border-color: #BA0C2F;
+    border-color: #375188;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
@@ -104,7 +120,7 @@ body {
 
 #search-button {
     border-radius: 5px;
-    background-color: #BA0C2F;
+    background-color: #375188;
     color: #ffffff;
 }
 
