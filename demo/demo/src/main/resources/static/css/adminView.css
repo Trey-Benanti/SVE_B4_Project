@@ -24,11 +24,19 @@ body {
 
 .nav-link {
     margin-top: 8px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
 }
 
 .admin-subhead {
     margin-left: 30px;
     margin-bottom: 30px;
+}
+
+.subhead-link {
+    text-decoration: none;
+    color: black;
 }
 
 #options-ctr {

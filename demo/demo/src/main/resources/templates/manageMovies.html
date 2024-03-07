@@ -11,15 +11,15 @@
 <body>
 <div id="nav-ctr">
     <nav class="top-nav">
-        <a class="nav-link">Home</a>
+        <a class="nav-link" th:href="@{/}">Home</a>
     </nav>
 </div>
 <div class="page-ctr">
     <h1 id="main-header">Admin - Manage Movies</h1><hr/>
     <div options-ctr>
-        <h2 class="option-header">Add New Movie</h2>
-        <h2 class="option-header">Edit Movies</h2>
-        <h2 class="option-header">Scheduling</h2>
+        <h2 class="option-header"><a class="subhead-link" th:href="@{/create}"> Add New Movie</a></h2>
+        <h2 class="option-header"><a class="subhead-link" th:href="@{/editmovies}">Edit Movies</a></h2>
+        <h2 class="option-header"><a class="subhead-link" th:href="@{/scheduling}"> Scheduling</a></h2>
     </div>
 </div>
 </body>

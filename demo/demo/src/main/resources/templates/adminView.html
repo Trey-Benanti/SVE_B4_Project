@@ -11,13 +11,13 @@
 <body>
 <div class="nav-ctr">
     <nav class="top-nav">
-        <a class="nav-link">Home</a>
+        <a class="nav-link" th:href="@{/}">Home</a>
     </nav>
 </div>
 <div id="options-ctr">
 <h1 id="main-header">Admin Options Overview</h1><hr/>
-    <h2 class="admin-subhead">Manage Movies</h2>
-    <h2 class="admin-subhead">Manage Promotions</h2>
+    <h2 class="admin-subhead"><a class="subhead-link" th:href="@{/managemovies}">Manage Movies</a></h2>
+    <h2 class="admin-subhead"><a class="subhead-link" th:href="@{/promos}"> Manage Promotions</a></h2>
 </div>
 </body>
 </html>
