@@ -3,13 +3,15 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BeansEndpointTabSettings">
+    <option name="showLibraryBeans" value="false" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="926a88b2-0698-4dc3-878f-54db37f28c66" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/models/CustomerState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/models/TicketType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/models/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/models/Movie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/models/Rating.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/models/Rating.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/Movie.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/Movie.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +22,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -42,7 +45,7 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.SeB4ProjectApplication.executor": "Run",
+    "Spring Boot.SeB4ProjectApplication.executor": "Debug",
     "git-widget-placeholder": "allie's-branch",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
