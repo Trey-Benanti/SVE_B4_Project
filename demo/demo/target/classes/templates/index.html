@@ -1,73 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Homepage</title>
-    <link rel="stylesheet"
-          href="/css/index.css"
-          th:href="@{/css/index.css}"
-    />
+    <meta charset="ISO-8859-1">
+    <title>Welcome to CodeJava Home</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div id="nav-ctr">
-        <nav class="top-nav">
-            <a class="nav-link">Book</a>
-            <a class="nav-link">Login</a>
-            <a class="nav-link">About</a>
-            <div class="search-ctr">
-                <form id="search-form"
-                th:action="@{/search}"
-                      method="get">
-                    <label for="search-box" id="search-label">Search:</label>
-                    <input type="search" id="search-box" name="keyword"/>
-                    <button id="search-button" type="submit" value="Search">Go</button>
-                </form>
-            </div>
-        </nav>
+    <div class="container text-center">
+        <h1>Welcome to CodeJava.net</h1>
+        <h3><a th:href="/@{/users}">List of Users</a></h3>
+        <h3><a th:href="/@{/register}">Register</a></h3>
+        <h3><a th:href="/@{/login}">Login</a></h3>
     </div>
-    <h1 class="now-showing-header">Now Showing</h1>
-    <div class="movie-overview">
-            <div class="movie-ctr" th:each="movie : ${movies}" th:if="${movie.nowPlaying==1}">
-                <a class="movie-title" th:text="${movie.movieTitle}" />
-                <iframe width="530" height="365"
-                        class="trailer-video"
-                        th:src="${movie.trailerVideo}"
-                        title="YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
-                        web-share" allowfullscreen>
-                </iframe>
-                <div class="rating-ctr">
-                    <p class="rating-text" th:text="${movie.rating}" />
-                </div>
-                <div class="details-link-ctr">
-                    <p class="details-link">Details</p>
-                </div>
-                <div class="book-tickets-btn-ctr">
-                    <button class="book-tickets-btn">Book</button>
-                </div>
-            </div>
-    </div>
-    <h1 class="now-showing-header">Coming Soon</h1>
-    <div class="movie-overview">
-        <div class="movie-ctr" th:each="movie : ${movies}" th:if="${movie.nowPlaying==0}">
-            <a class="movie-title" th:text="${movie.movieTitle}" />
-            <iframe width="530" height="365"
-                    class="trailer-video"
-                    th:src="${movie.trailerVideo}"
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
-                        web-share" allowfullscreen>
-            </iframe>
-            <div class="rating-ctr">
-                <p class="rating-text" th:text="${movie.rating}" />
-            </div>
-            <div class="details-link-ctr">
-                <p class="details-link">Details</p>
-            </div>
-            <div class="book-tickets-btn-ctr">
-                <button class="book-tickets-btn">Book</button>
-            </div>
-        </div>
-    </div>
+     
 </body>
 </html>

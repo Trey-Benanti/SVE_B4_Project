@@ -29,7 +29,7 @@ public class homepageController {
     public String homepage(Model model) { // Render homepage
         List<Movie> movies = repo.findAll();
         model.addAttribute("movies", movies);
-        return "index";
+        return "homepage";
     } // homepage
 
     @GetMapping("/confirm")
