@@ -1,8 +1,9 @@
 package com.spring.project.services;
 
-import com.spring.project.models.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.spring.project.models.Movie;
 
 import java.util.List;
 

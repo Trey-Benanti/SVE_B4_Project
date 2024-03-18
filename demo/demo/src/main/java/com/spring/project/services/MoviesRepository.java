@@ -1,8 +1,9 @@
 package com.spring.project.services;
 
-import com.spring.project.models.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import com.spring.project.models.Movie;
 
 import java.util.List;
 
