@@ -25,7 +25,7 @@ public class homepageController {
     @Autowired
     private MovieServices movieService; // Reference to movie services interface
 
-    @GetMapping("/")
+    @GetMapping("")
     public String homepage(Model model) { // Render homepage
         List<Movie> movies = repo.findAll();
         model.addAttribute("movies", movies);
