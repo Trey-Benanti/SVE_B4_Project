@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.spring.project.SeB4ProjectApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.082 s -- in com.spring.project.SeB4ProjectApplicationTests
