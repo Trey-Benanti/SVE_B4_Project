@@ -13,14 +13,17 @@ public class User {
     @Column(nullable = false, unique = true, length = 45)
     private String email;
      
-    @Column(nullable = false, length = 64)
+    @Column(name = "userPassword", nullable = false, length = 64)
     private String password;
      
-    @Column(name = "first_name", nullable = false, length = 20)
+    @Column(name = "firstName", nullable = false, length = 20)
     private String firstName;
      
-    @Column(name = "last_name", nullable = false, length = 20)
+    @Column(name = "lastName", nullable = false, length = 20)
     private String lastName;
+
+    @Column(name = "userType", nullable = false)
+    private UserType type = UserType.CUSTOMER;
 
     // All setters lns 26-40
     public void setEmail(String mail) {
@@ -37,6 +40,14 @@ public class User {
 
     public void setLastName(String last) {
         this.lastName = last;
+    }
+
+    public void promote() {
+        this.type = UserType.ADMIN;
+    }
+
+    public void demote() {
+        this.type = UserType.CUSTOMER;
     }
 
     // All getters lns 43-61
@@ -58,6 +69,10 @@ public class User {
 
     public String getLastName() {
         return this.lastName;
+    }
+
+    public UserType getType() {
+        return this.type;
     }
 
 }
