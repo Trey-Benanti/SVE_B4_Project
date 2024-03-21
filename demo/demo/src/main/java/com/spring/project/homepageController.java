@@ -2,6 +2,9 @@ package com.spring.project;
 
 import com.spring.project.models.Movie;
 import com.spring.project.models.MovieDTO;
+import com.spring.project.models.User;
+import com.spring.project.models.UserRepository;
+import com.spring.project.models.SecurityController;
 import com.spring.project.services.MovieServices;
 import com.spring.project.services.MoviesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +16,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.validation.Valid;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class homepageController {
@@ -23,10 +29,20 @@ public class homepageController {
     private MoviesRepository repo; // Reference to movie repository interface
 
     @Autowired
+    private UserRepository userRepo; // Reference to user repository interface
+
+    @Autowired
     private MovieServices movieService; // Reference to movie services interface
 
     @GetMapping("")
     public String homepage(Model model) { // Render homepage
+        List<Movie> movies = repo.findAll();
+        model.addAttribute("movies", movies);
+        return "index";
+    } // homepage
+
+    @GetMapping("/home")
+    public String customerHome(Model model) { // Render homepage
         List<Movie> movies = repo.findAll();
         model.addAttribute("movies", movies);
         return "homepage";
@@ -113,7 +129,9 @@ public class homepageController {
     } // addschedule
 
     @GetMapping("/manageusers")
-    public String manageUsers() {
+    public String manageUsers(Model model) {
+        List<User> listUsers = userRepo.findAll();
+        model.addAttribute("listUsers", listUsers); 
         return "manageusers";
     } // manageusers
 
@@ -153,9 +171,22 @@ public class homepageController {
     } // signin
 
     @GetMapping("/signup")
-    public String signup() {
+    public String signup(Model model) {
+        model.addAttribute("user", new User());
         return "signup";
     } // signup
+
+    @PostMapping("/process_register")
+    public String processRegister(User user) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+    
+        userRepo.save(user);
+    
+        return "register_success";
+    }
+    
 
     @GetMapping("/confirmation")
     public String confirmation() {
