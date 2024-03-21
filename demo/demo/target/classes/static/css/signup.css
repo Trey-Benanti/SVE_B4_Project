@@ -24,7 +24,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    width: 550px;
     overflow: auto;
     border: 1px solid #fff;
     background-color: var(--cloudy-grey);
@@ -59,9 +59,13 @@ input[type="email"],
 input[type="tel"],
 input[type="text"],
 input[type="address"],
-input[type="password"] {
+input[type="password"],
+input[type="firstname"],
+input[type="lastname"] {
     width: 100%;
-    padding: 12px;
+    padding-top: 12px;
+    padding-bottom: 5px;
+    margin-right: 10px;
     margin-bottom: 15px;
     border: 1px solid var(--stormy-sky);
     border-radius: 4px;
@@ -85,3 +89,7 @@ input[type="submit"]:hover {
     padding-top: 15px;
 }
 
+.removeCreditCardButton {
+    padding: 2px;
+    margin: 5px;
+}

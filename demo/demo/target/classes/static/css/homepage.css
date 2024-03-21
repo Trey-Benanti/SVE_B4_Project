@@ -12,7 +12,14 @@
     --terra-cotta: rgb(206,98,67);
 }
 
+html {
+    height: 100%;
+}
+
 body {
+    min-height: 100%;
+    position: relative;
+
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     background-color: var(--sand-yellow);
@@ -90,7 +97,7 @@ body {
     border-width: 2px;
     border-color: #000000;
     color: #000000;
-    background-color: #BA0C2F;
+    background-color: var(--sand-yellow);
 }
 
 .trailer-video {
@@ -163,14 +170,16 @@ body {
     text-align: center;
     flex: auto;
     justify-content: center;
-    padding-left: 50px;
-    padding-right: 50px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
 }
 
 .footer-content {
     background-image: radial-gradient(#CBE1EB, #5DA9C2);
-    padding: 20px 200px;
+    padding: 20px 20px;
     box-shadow: 0 20px 30px rgba(0,0,0,.3);
+
 }
 
 .copyright {
