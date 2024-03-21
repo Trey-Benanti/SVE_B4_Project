@@ -142,6 +142,24 @@ public class homepageController {
         return "profile";
     } // profile
 
+    @GetMapping("/editprofile")
+    public String editprofile() {
+        return "editprofile";
+    } // editprofile
+    @GetMapping("/creditcards")
+    public String creditcards() {
+        return "creditcards";
+    } // creditcards
+
+    @GetMapping("/editcards")
+    public String editcards() {
+        return "editcards";
+    } // editcards
+
+    @GetMapping("/orders")
+    public String prders() {
+        return "orders";
+    } // orders
     @GetMapping("/select-show")
     public String selectShow() {
         return "select-show";

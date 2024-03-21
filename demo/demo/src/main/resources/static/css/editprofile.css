@@ -13,47 +13,47 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
 
-    overflow: auto; 
-    border: 1px solid #fff; 
+    overflow: auto;
+    border: 1px solid #fff;
 }
 /** home controller **/
- .top-nav {
-     display: flex;
-     height: 30px;
-     gap: 30px;
-     color: #cccccc;
-     overflow: hidden;
-     padding-left: 20px;
-     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-     padding-bottom: 10px;
-     font-size: 18px;
-     padding-top: 12px;
-     background: linear-gradient(to bottom, var(--sand-yellow), var(--burgundy-wine));
- }
+.top-nav {
+    display: flex;
+    height: 30px;
+    gap: 30px;
+    color: #cccccc;
+    overflow: hidden;
+    padding-left: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    padding-top: 12px;
+    background: linear-gradient(to bottom, var(--sand-yellow), var(--burgundy-wine));
+}
 
- .top-nav a:hover {
-     color: #a59c9f;
- }
+.top-nav a:hover {
+    color: #a59c9f;
+}
 
- .nav-link {
-     margin-top: 8px;
- }
+.nav-link {
+    margin-top: 8px;
+}
 
- .search-ctr {
-     margin-top: 8px;
-     font-size: 18px;
- }
+.search-ctr {
+    margin-top: 8px;
+    font-size: 18px;
+}
 
- #search-label {
-     margin-right: 8px;
- }
+#search-label {
+    margin-right: 8px;
+}
 
- #search-box {
-     width: 250px;
-     border-radius: 8px;
- }
+#search-box {
+    width: 250px;
+    border-radius: 8px;
+}
 
- /** home controller end **/
+/** home controller end **/
 
 /** side nav bar**/
 div.profilenav {
@@ -101,3 +101,30 @@ div.content {
     height: 1000px;
     background-color: var(--cloudy-grey);
 }
+
+/** input styling**/
+input[type="email"],
+input[type="tel"],
+input[type="text"],
+input[type="address"],
+input[type="password"] {
+    width: 50%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--stormy-sky);
+    border-radius: 4px;
+    background-color: #fff;
+    color: var(--stormy-sky);
+}
+
+input[type="submit"] {
+    background-color: var(--golden-sun);
+    border: none;
+    padding: 12px;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover {
+    background-color: var(--terra-cotta);
+}
+
