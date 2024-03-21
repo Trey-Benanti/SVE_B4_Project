@@ -11,7 +11,7 @@
 <body>
 <div id="nav-ctr">
     <nav class="top-nav">
-        <a class="nav-link">Home</a>
+        <a class="nav-link"><a th:href="@{/}">Home</a></a>
     </nav>
 </div>
     <div class="container">
@@ -22,7 +22,7 @@
             <input type="submit" value="Login">
         </form>
         <div class="signup-link">
-            <p>Don't have an account? Sign up</p>
+            <p>Don't have an account? <a th:href="@{/signup}">Sign Up</a></p>
             <p>Don't remember your password? Forgot Password</p>
         </div>
     </div>
