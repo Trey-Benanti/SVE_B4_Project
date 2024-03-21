@@ -4,6 +4,7 @@ import com.spring.project.models.Movie;
 import com.spring.project.models.MovieDTO;
 import com.spring.project.models.User;
 import com.spring.project.models.UserRepository;
+import com.spring.project.models.SecurityController;
 import com.spring.project.services.MovieServices;
 import com.spring.project.services.MoviesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,13 @@ public class homepageController {
 
     @GetMapping("")
     public String homepage(Model model) { // Render homepage
+        List<Movie> movies = repo.findAll();
+        model.addAttribute("movies", movies);
+        return "index";
+    } // homepage
+
+    @GetMapping("/home")
+    public String customerHome(Model model) { // Render homepage
         List<Movie> movies = repo.findAll();
         model.addAttribute("movies", movies);
         return "homepage";

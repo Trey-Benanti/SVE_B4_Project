@@ -1,4 +1,6 @@
 com\spring\project\models\Ticket.class
+com\spring\project\models\LoginPageInterceptor.class
+com\spring\project\models\LoginRedirect.class
 com\spring\project\services\MoviesRepository.class
 com\spring\project\models\MovieDTO.class
 com\spring\project\models\UserRepository.class
