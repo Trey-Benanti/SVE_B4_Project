@@ -6,6 +6,8 @@
     <link rel="stylesheet" type="text/css"
           href="/css/manageusers.css"
           th:href="@{/css/manageusers.css}" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div id="nav-ctr">
@@ -31,8 +33,8 @@
                 <tr th:each="user: ${listUsers}">
                     <td th:text="${user.id}">User ID</td>
                     <td th:text="${user.email}">E-mail</td>
-                    <td th:text="${user.firstName}">First Name</td>
-                    <td th:text="${user.lastName}">Last Name</td>
+                    <td th:text="${user.first_name}">First Name</td>
+                    <td th:text="${user.last_name}">Last Name</td>
                 </tr>
             </tbody>
         </table>

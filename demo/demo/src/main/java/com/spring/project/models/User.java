@@ -8,22 +8,22 @@ public class User {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
      
     @Column(name = "email")
-    private String email;
+    public String email;
      
-    @Column(name = "userPassword")
-    private String password;
+    @Column(name = "user_password")
+    public String password;
      
-    @Column(name = "firstName")
-    private String firstName;
+    @Column(name = "first_name")
+    public String firstName;
      
-    @Column(name = "lastName")
-    private String lastName;
+    @Column(name = "last_name")
+    public String lastName;
 
     @Column(name = "orderType")
-    private UserType type = UserType.CUSTOMER;
+    public UserType type = UserType.CUSTOMER;
 
     // All setters lns 26-40
     public void setEmail(String mail) {
