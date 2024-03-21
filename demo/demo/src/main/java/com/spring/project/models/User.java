@@ -10,19 +10,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
      
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(name = "email")
     private String email;
      
-    @Column(name = "userPassword", nullable = false, length = 64)
+    @Column(name = "userPassword")
     private String password;
      
-    @Column(name = "firstName", nullable = false, length = 20)
+    @Column(name = "firstName")
     private String firstName;
      
-    @Column(name = "lastName", nullable = false, length = 20)
+    @Column(name = "lastName")
     private String lastName;
 
-    @Column(name = "userType", nullable = false)
+    @Column(name = "orderType")
     private UserType type = UserType.CUSTOMER;
 
     // All setters lns 26-40

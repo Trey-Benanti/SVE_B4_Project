@@ -9,9 +9,12 @@ com\spring\project\models\Promotion.class
 com\spring\project\models\Booking.class
 com\spring\project\models\TicketType.class
 com\spring\project\models\Customer.class
+com\spring\project\models\SecurityController.class
+com\spring\project\models\CustomUserDetails.class
 com\spring\project\models\Actor.class
 com\spring\project\models\Showroom.class
 com\spring\project\models\UserType.class
+com\spring\project\models\CustomUserDetailsService.class
 com\spring\project\models\CardInfo.class
 com\spring\project\models\Show.class
 com\spring\project\models\User.class

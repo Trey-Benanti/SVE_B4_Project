@@ -121,7 +121,9 @@ public class homepageController {
     } // addschedule
 
     @GetMapping("/manageusers")
-    public String manageUsers() {
+    public String manageUsers(Model model) {
+        List<User> listUsers = userRepo.findAll();
+        model.addAttribute("listUsers", listUsers); 
         return "manageusers";
     } // manageusers
 
