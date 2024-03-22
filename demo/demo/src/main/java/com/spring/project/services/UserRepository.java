@@ -1,7 +1,9 @@
-package com.spring.project.models;
+package com.spring.project.services;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import com.spring.project.users.User;
  
 public interface UserRepository extends JpaRepository<User, Long> {
  

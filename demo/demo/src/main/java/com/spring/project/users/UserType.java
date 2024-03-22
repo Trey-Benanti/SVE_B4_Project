@@ -1,4 +1,4 @@
-package com.spring.project.models;
+package com.spring.project.users;
 
 public enum UserType {
 

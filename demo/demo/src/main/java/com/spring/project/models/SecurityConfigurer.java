@@ -2,18 +2,15 @@ package com.spring.project.models;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
  
 @Configuration
-public class SecurityController   {
+public class SecurityConfigurer   {
      
     @Bean
     UserDetailsService userDetailsService() {
@@ -45,9 +42,10 @@ public class SecurityController   {
             )
             .formLogin(login ->
                 login.usernameParameter("email")
-                .defaultSuccessUrl("/home")
+                .defaultSuccessUrl("/")
                 .permitAll()
             )
+
             .logout(logout -> logout.logoutSuccessUrl("/").permitAll()
         );
          

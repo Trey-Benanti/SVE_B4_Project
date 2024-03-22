@@ -1,4 +1,4 @@
-package com.spring.project.models;
+package com.spring.project.users;
 
 import jakarta.persistence.*;
 
@@ -10,22 +10,30 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
      
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true)
     public String email;
      
-    @Column(name = "user_password")
+    @Column(name = "user_password", nullable = false)
     public String password;
      
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     public String firstName;
      
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     public String lastName;
 
-    @Column(name = "orderType")
+    @Column(name = "user_type", nullable = false)
     public UserType type = UserType.CUSTOMER;
 
-    // All setters lns 26-40
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = true)
+    private Address address;
+
+    @Column(name = "subscription", nullable = false)
+    private boolean subscribed;
+
+    // Setters
+
     public void setEmail(String mail) {
         this.email = mail;
     }
@@ -42,6 +50,10 @@ public class User {
         this.lastName = last;
     }
 
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     public void promote() {
         this.type = UserType.ADMIN;
     }
@@ -50,7 +62,16 @@ public class User {
         this.type = UserType.CUSTOMER;
     }
 
-    // All getters lns 43-61
+    public void subscribe() {
+        this.subscribed = true;
+    }
+
+    public void unsubscribe() {
+        this.subscribed = false;
+    }
+
+    // Getters
+
     public String getID() {
         return this.id.toString();
     }
@@ -75,4 +96,11 @@ public class User {
         return this.type;
     }
 
+    public Address getAddress() {
+        return this.address;
+    }
+
+    public boolean getSubscription() {
+        return this.subscribed;
+    }
 }
