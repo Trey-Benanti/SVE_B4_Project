@@ -43,8 +43,7 @@ public class CustomUserDetails implements UserDetails {
     public boolean isCredentialsNonExpired() {
         return true;
     }
-
-    // Verification
+ 
     @Override
     public boolean isEnabled() {
         return true;
