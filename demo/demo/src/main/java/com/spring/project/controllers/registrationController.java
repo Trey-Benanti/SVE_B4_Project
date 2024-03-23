@@ -33,7 +33,16 @@ public class registrationController {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-    
+
+        // checking if email exists
+        User existingAccount = userRepo.findByEmail(user.getEmail());
+        if (existingAccount != null)
+        {
+            return "account_exists";
+        }
+
+        // TODO: send verification email and save code (spring-starter-mail)
+
         userRepo.save(user);
     
         return "register_success";
