@@ -19,6 +19,7 @@ public class Address {
     @Column(name = "city", nullable = false)
     public String cityName;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "state_code", nullable = false)
     public StateCode stateCode;
     
