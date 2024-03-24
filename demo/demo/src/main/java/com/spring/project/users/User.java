@@ -1,6 +1,7 @@
 package com.spring.project.users;
 
 import jakarta.persistence.*;
+import com.spring.project.users.userinfo.*;
 
 @Entity
 @Table(name = "users")
