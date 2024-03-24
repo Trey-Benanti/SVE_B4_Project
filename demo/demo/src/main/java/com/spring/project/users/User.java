@@ -22,6 +22,9 @@ public class User {
     @Column(name = "last_name", nullable = false)
     public String lastName;
 
+    @Column(name = "verCode")
+    public String verCode;
+
     @Column(name = "user_type", nullable = false)
     public UserType type = UserType.CUSTOMER;
 
@@ -70,6 +73,10 @@ public class User {
         this.subscribed = false;
     }
 
+    public void setVerCode(String code) {
+        this.verCode = code;
+    }
+
     // Getters
 
     public String getID() {
@@ -102,5 +109,9 @@ public class User {
 
     public boolean getSubscription() {
         return this.subscribed;
+    }
+
+    public String getVerCode() {
+        return this.verCode;
     }
 }
