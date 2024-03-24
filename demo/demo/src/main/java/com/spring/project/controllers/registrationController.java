@@ -43,25 +43,15 @@ public class registrationController {
         user.setPassword(encodedPassword);
 
         // checking if email exists
-        // TODO: route back to registration page
- /*       User existingAccount = userRepo.findByEmail(user.getEmail());
+        // TODO: Have reg page say duplicate email
+       User existingAccount = userRepo.findByEmail(user.getEmail());
         if (existingAccount != null)
         {
-            return "account_exists";
+            return "signup";
         }
 
-        // TODO: send verification email and save code (spring-starter-mail)
-       // sending verification code
-        EmailDetails ver = new EmailDetails();
-        ver.setRecipient(user.getEmail());
-        ver.setSubject("test");
-        ver.setMsgBody("test");
 
-        EmailService sender = new EmailService();
-        sender.sendEmail(ver);
-*/
         sendVerEmail(user);
-
         userRepo.save(user);
     
         return "register_success";
@@ -71,12 +61,11 @@ public class registrationController {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
-        helper.setFrom("samuelwilson1123@gmail.com", "test");
+        helper.setFrom("tidalwavetheaters@gmail.com", "test");
         helper.setTo(user.getEmail());
         helper.setSubject("testSub");
         helper.setText("test text");
 
-        System.out.println("SENDING to " + user.getEmail());
         mailSender.send(message);
 
     }
