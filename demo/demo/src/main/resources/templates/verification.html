@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>verification</title>
+    <link rel="stylesheet" type="text/css"
+          href="/css/signup.css"
+          th:href="@{/css/signup.css}"  />
+</head>
+<body>
+    <div id="nav-ctr">
+        <nav class="top-nav">
+            <a class="nav-link"><a th:href="@{/}">Home</a></a>
+        </nav>
+    </div>
+    <div>
+        <div>
+            <h2>Account Verification</h2>
+        </div>
+        <form id="verify" th:action="@{/verifyUser}" method="post">
+            <label for="verification-box" id="verification-label">Enter code:</label>
+            <input type="text" id="verification-box" name="code" />
+            <button id="submit-button" type="submit" value="Submit">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>

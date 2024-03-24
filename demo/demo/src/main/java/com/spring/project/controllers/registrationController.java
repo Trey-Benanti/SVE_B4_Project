@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.spring.project.users.*;
 import com.spring.project.services.UserRepository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.UnsupportedEncodingException;
 
@@ -50,11 +51,26 @@ public class registrationController {
             return "signup";
         }
 
-
         sendVerEmail(user);
         userRepo.save(user);
     
         return "register_success";
+    }
+
+    @PostMapping("/verification")
+    public String verification() {
+        return "verification";
+    }
+
+    @PostMapping("/verifyUser")
+    public String verifyUser(@RequestParam("code") String code) {
+        //TODO: check code and verify respective user
+
+        return "verify_success";
+    }
+
+    public void generateCode(User user) {
+        // TODO: generate random 6 digit code
     }
 
     public void sendVerEmail(User user) throws MessagingException, UnsupportedEncodingException {
