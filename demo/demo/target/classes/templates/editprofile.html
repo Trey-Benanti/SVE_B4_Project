@@ -54,7 +54,7 @@
             <label><strong>Zipcode:   </strong><input id="home-zipcode" type="text" th:field="*{address.zipCode}" name="home-zipcode" placeholder="zipcode (optional)" ></label>
             <br/>
             <br/>
-            <label><strong>Subscribed to promotions  </strong><input type="checkbox" id="agreeCheckbox" name="agreeCheckbox" ></label>
+            <label><strong>Subscribed to promotions  </strong><input type="checkbox" th:field="*{subscription}"id="agreeCheckbox" name="agreeCheckbox" ></label>
             <br/>
             <br/>
             <input type="submit" value="editprofile"><a th:href="@{/editprofile}" ></a>
