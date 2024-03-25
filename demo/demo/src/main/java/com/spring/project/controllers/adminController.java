@@ -93,16 +93,16 @@ public class adminController {
         return "redirect:/admin/"; // redirect home
     } // create
 
-        @GetMapping("/search")
-    public String search(@Param("keyword") String keyword, Model model) {
-        model.addAttribute("keyword", keyword);
-        model.addAttribute("pageTitle", "Search results for " + keyword);
-
-        List<Movie> searchResult = movieService.search(keyword); // Get results of full text search
-        model.addAttribute("searchResult", searchResult); // Pass search results to front end
-
-        return "searchresult";
-    } // search
+//        @GetMapping("/search")
+//    public String search(@Param("keyword") String keyword, Model model) {
+//        model.addAttribute("keyword", keyword);
+//        model.addAttribute("pageTitle", "Search results for " + keyword);
+//
+//        List<Movie> searchResult = movieService.search(keyword); // Get results of full text search
+//        model.addAttribute("searchResult", searchResult); // Pass search results to front end
+//
+//        return "searchresult";
+//    } // search
 
     @GetMapping("/admin/promos")
     public String promos() { return "promos"; } // promos
