@@ -1,14 +1,20 @@
 package com.spring.project.users.userinfo;
 
-import org.springframework.security.core.GrantedAuthority;
+import jakarta.persistence.*;
 
-public enum Role implements GrantedAuthority {
+import java.util.Collection;
+import com.spring.project.users.*;
 
-    ROLE_CUSTOMER,
-    ROLE_ADMIN;
+@Entity
+@Table(name = "user_types")
+public class Role {
+ 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    @Override
-    public String getAuthority() {
-        return name();
-    }
+    private String name;
+    @ManyToOne(mappedBy = "roles")
+    private Collection<User> users;
+
 }

@@ -1,6 +1,9 @@
 package com.spring.project.users;
 
 import jakarta.persistence.*;
+
+import java.util.Collection;
+
 import com.spring.project.users.userinfo.*;
 
 @Entity
@@ -26,8 +29,14 @@ public class User {
     @Column(name = "verCode")
     private String verCode;
 
-    @Column(name = "user_type", nullable = false)
-    private Role type = Role.ROLE_CUSTOMER;
+    @OneToMany
+    @JoinTable( 
+        name = "user_type", 
+        joinColumns = @JoinColumn(
+          name = "user_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "role_id", referencedColumnName = "id")) 
+    private Role role;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = true)
@@ -58,13 +67,7 @@ public class User {
         this.address = address;
     }
 
-    public void promote() {
-        this.type = Role.ROLE_ADMIN;
-    }
-
-    public void demote() {
-        this.type = Role.ROLE_CUSTOMER;
-    }
+    public void setRole
 
     public void subscribe() {
         this.subscribed = true;
