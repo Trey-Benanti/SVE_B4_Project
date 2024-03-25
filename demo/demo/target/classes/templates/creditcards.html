@@ -33,34 +33,49 @@
     </div>
     <div class="content">
         <h1 id="content-title">Credit Cards </h1>
-        <a th:href="@{/editcards}" ><button id="cardbutton"><strong>Edit cards</strong></button></a>
-        <div id="carddisplay">
-            <div class="card">
-                <h4>Card Number:</h4>
-                <h4>Expiration date:</h4>
-                <h4>sid</h4>
-                <h4>Name: </h4>
-                <h4>Address:</h4>
-                <h4>City:</h4>
-                <h4>State:</h4>
-                <h4>Zipcode:</h4>
-            </div>
-            <div class="card">
-                <h4>Card Number:</h4>
-                <h4>Expiration date:</h4>
-                <h4>sid</h4>
-                <h4>Name: </h4>
-                <h4>Address:</h4>
-                <h4>City:</h4>
-                <h4>State:</h4>
-                <h4>Zipcode:</h4>
-            </div>
-        </div>
-    </div>
-    <a th:href="@{/editcards}" ><button><strong>Edit cards</strong></button></a>
-    </div>
+        <select id="SelectCar" onchange="displayCarDetails()">
+            <option value="Indica">Indica</option>
+            <option value="Nano">Nano</option>
+            <option value="i20">i20</option>
+        </select>
+        <a th:href="@{/editcards}" ><button id="cardbutton"><strong>Edit card</strong></button></a>
+        <p id="CardDetail"></p>
 
+    </div>
+</div>
 </body>
+<script>
+    var cars = [
+        {carName:"Indica",Price:"900000",yearOfModel:"2016"},
+        {carName:"Nano",Price:"700000",yearOfModel:"2017"},
+        {carName:"i20",Price:"500000",yearOfModel:"2013"}
+    ]
 
+    var selectNode = document.getElementById('SelectCar');
+    var detailNode = document.getElementById('CardDetail');
+
+    function displayCarDetails(){
+        var selected = selectNode.value;
+        cars.forEach(function (car) {
+            if (car.carName === selected) {
+
+
+                detailNode.innerHTML = `
+                <div class="card">
+                <h4>Card Number: ${car.carName}</h4>
+                <h4>Expiration date: ${car.carName}</h4>
+                <h4>sid: ${car.carName}</h4>
+                <h4>Name: ${car.carName}</h4>
+                <h4>Address: ${car.carName}</h4>
+                <h4>City: ${car.carName}</h4>
+                <h4>State: ${car.carName}</h4>
+                <h4>Zipcode: ${car.carName}</h4>
+            </div>
+              `;
+            }
+        });
+    }
+    displayCarDetails(); // show which car is selected on start
+</script>
 </html>
 
