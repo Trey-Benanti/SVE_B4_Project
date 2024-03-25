@@ -27,14 +27,14 @@ public class User {
     public String verCode;
 
     @Column(name = "user_type", nullable = false)
-    public UserType type = UserType.CUSTOMER;
+    public Role role = Role.ROLE_CUSTOMER;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = true)
     private Address address;
 
     @Column(name = "subscription", nullable = false)
-    private boolean subscribed;
+    private boolean subscription;
 
     // Setters
 
@@ -58,20 +58,12 @@ public class User {
         this.address = address;
     }
 
-    public void promote() {
-        this.type = UserType.ADMIN;
+    public void setRole(Role r) {
+        this.role = r;
     }
 
-    public void demote() {
-        this.type = UserType.CUSTOMER;
-    }
-
-    public void subscribe() {
-        this.subscribed = true;
-    }
-
-    public void unsubscribe() {
-        this.subscribed = false;
+    public void setSubscription(boolean tf) {
+        this.subscription = tf;
     }
 
     public void setVerCode(String code) {
@@ -100,8 +92,8 @@ public class User {
         return this.lastName;
     }
 
-    public UserType getType() {
-        return this.type;
+    public Role getRole() {
+        return this.role;
     }
 
     public Address getAddress() {
@@ -109,7 +101,7 @@ public class User {
     }
 
     public boolean getSubscription() {
-        return this.subscribed;
+        return this.subscription;
     }
 
     public String getVerCode() {

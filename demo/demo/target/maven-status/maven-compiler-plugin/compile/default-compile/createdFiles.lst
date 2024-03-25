@@ -18,6 +18,7 @@ com\spring\project\controllers\adminController.class
 com\spring\project\models\TicketType.class
 com\spring\project\controllers\registrationController.class
 com\spring\project\models\SecurityConfigurer.class
+com\spring\project\users\userinfo\Role.class
 com\spring\project\users\userinfo\CardInfo.class
 com\spring\project\models\Customer.class
 com\spring\project\controllers\loginController.class
