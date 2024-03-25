@@ -1,4 +1,5 @@
 package com.spring.project.models;
+import java.util.ArrayList;
 import java.util.Collection;
  
 import org.springframework.security.core.GrantedAuthority;
@@ -7,7 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.spring.project.users.User;
  
 public class CustomUserDetails implements UserDetails {
- 
+    String rolePrefix = "ROLE_";
+
     private User user;
      
     public CustomUserDetails(User user) {
@@ -16,7 +18,11 @@ public class CustomUserDetails implements UserDetails {
  
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        Collection<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+
+        list.add(this.user.role);
+
+        return list;
     }
  
     @Override

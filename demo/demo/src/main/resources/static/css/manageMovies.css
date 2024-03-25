@@ -1,6 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+:root {
+    --ocean-blue: rgb(30,152,188);
+    --sand-yellow: rgb(241,218,165);
+    --burgundy-wine: rgb(86,37,58);
+    --olive-green: rgb(122,103,49);
+    --cloudy-grey: rgb(155,182,189);
+    --turquoise-sea: rgb(70,225,232);
+    --stormy-sky: rgb(59,91,114);
+    --golden-sun: rgb(221,160,57);
+    --terra-cotta: rgb(206,98,67);
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
+    -webkit-text-stroke-width: thin;
+    -webkit-text-stroke-color: white;
+    background-color: var(--cloudy-grey);
 }
 
 .top-nav {
@@ -13,7 +30,8 @@ body {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding-bottom: 10px;
     font-size: 18px;
-    background: linear-gradient(to bottom, #170f11, #BA0C2F);
+    padding-top: 12px;
+    background: linear-gradient(to bottom, var(--sand-yellow), var(--burgundy-wine));
 }
 
 .top-nav a:hover {
@@ -25,6 +43,9 @@ body {
 }
 
 .page-ctr {
+
+    color: var(--sand-yellow);
+    background-color: var(--burgundy-wine);
     margin: auto;
     margin-top: 20px;
     padding-left: 20px;
@@ -44,4 +65,26 @@ body {
 
 .option-header a:hover {
     color: #a59c9f;
+}
+
+#schedule-table-ctr {
+    height: 100px;
+}
+
+a.options {
+    display: block;
+    color:var(--sand-yellow);
+    padding: 16px;
+    text-decoration: none;
+}
+
+a.options:hover {
+    background-color: #a59c9f;
+    color: white;
+
+}
+
+a.options:hover:not(.active) {
+    background-color: #a59c9f;
+    color: white;
 }

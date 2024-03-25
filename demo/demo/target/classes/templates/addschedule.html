@@ -11,7 +11,9 @@
 <body>
 <div id="nav-ctr">
     <nav class="top-nav">
-        <a class="nav-link">Home</a>
+        <a class="nav-link" th:href="@{/}">Home</a>
+        <a class="nav-link" th:href="@{/admin/}">Admin Options</a>
+        <a class="nav-link" th:href="@{/admin/managemovies}">Manage Movies</a>
     </nav>
 </div>
 <div class="scheduling-card">
@@ -31,10 +33,10 @@
             </tr>
             <div class="table-content-container">
                 <tr>
-                    <td>2024-06-01 12:00</td>
+                    <td class="date">2024-06-01 12:00</td>
                 </tr>
                 <tr>
-                    <td>2024-06-01 15:00</td>
+                    <td class="date">2024-06-01 15:00</td>
                 </tr>
             </div>
         </table>

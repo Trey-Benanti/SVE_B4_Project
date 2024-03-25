@@ -10,12 +10,12 @@ public class customerController {
     public String profile() {
         return "profile";
     } // profile
-    
+
     @GetMapping("/editprofile")
     public String editprofile() {
         return "editprofile";
     } // editprofile
-    
+
     @GetMapping("/creditcards")
     public String creditcards() {
         return "creditcards";

@@ -11,8 +11,10 @@
 }
 
 body {
-margin: 0;
-    background-color: var(--sand-yellow);
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--sand-yellow);
+    background-color: var(--cloudy-grey);
 }
 
 .top-nav {
@@ -25,7 +27,8 @@ margin: 0;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding-bottom: 10px;
     font-size: 18px;
-    background: linear-gradient(to bottom, #170f11, #BA0C2F);
+    padding-top: 12px;
+    background: linear-gradient(to bottom, var(--sand-yellow), var(--burgundy-wine));
 }
 
 .top-nav a:hover {
@@ -35,6 +38,8 @@ margin: 0;
 .nav-link {
     margin-top: 8px;
 }
+
+
 
 table, th, td {
     border: 1px solid black;
