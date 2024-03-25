@@ -12,7 +12,7 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-
+    background-color: var(--cloudy-grey);
     overflow: auto;
     border: 1px solid #fff;
 }
@@ -95,6 +95,7 @@ div.profilenav {
 }
 
 div.content {
+    animation: 0.8s slipIn;
     grid-column: 2;
     margin-left: 200px;
     padding: 1px 16px;
@@ -128,3 +129,23 @@ input[type="submit"]:hover {
     background-color: var(--terra-cotta);
 }
 
+@keyframes fillIn {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+@keyframes slipIn {
+    0% {
+        transform: translateZ(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}

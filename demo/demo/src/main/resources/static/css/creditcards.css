@@ -12,7 +12,7 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-
+    background-color: var(--cloudy-grey);
     overflow: auto;
     border: 1px solid #fff;
 }
@@ -95,6 +95,7 @@ div.profilenav {
 }
 
 div.content {
+    animation: 1.2s fillIn;
     grid-column:2;
     background: var(--cloudy-grey);
     margin-left: 200px;
@@ -105,13 +106,14 @@ div.content {
 .cardbutton{
 gap:20px;
 }
-.carddisplay {
+
+#carddisplay {
     display: flex;
     gap: 20px;
     padding: 10px;
     margin: 20px auto;
     overflow-x: auto;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .card {
@@ -129,4 +131,24 @@ gap:20px;
     flex: 1;
     min-width: 16px;
     max-width: 500px;
+}
+@keyframes fillIn {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+@keyframes slipIn {
+    0% {
+        transform: translateZ(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
 }

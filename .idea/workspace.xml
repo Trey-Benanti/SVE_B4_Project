@@ -4,27 +4,77 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c58c1a30-6124-4166-b42d-e330698b43b8" name="Changes" comment="Homepage design added">
+    <list default="true" id="c58c1a30-6124-4166-b42d-e330698b43b8" name="Changes" comment="Homepage design">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/images/Waves_Sand.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/images/cinema-chair.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/homepage.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/homepage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/signup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/select-seats.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/select-seats.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/select-show.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/select-show.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/static/css/homepage.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/static/css/homepage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/static/css/signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/static/css/signup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/select-seats.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/select-seats.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/select-show.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/select-show.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/signup.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "Spring Boot.SeB4ProjectApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2dudr6GwTZecwvskq7uySKdHFmm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.SeB4ProjectApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/images" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="SeB4ProjectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -35,11 +85,56 @@
       </method>
     </configuration>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-53826d6a" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="Homepage design">
+      <option name="closed" value="true" />
+      <created>1710800919005</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1710800919005</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c58c1a30-6124-4166-b42d-e330698b43b8" name="Changes" comment="Homepage design" />
+      <created>1710862094960</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710862094960</updated>
+      <workItem from="1710862097177" duration="6455000" />
+      <workItem from="1710953330236" duration="412000" />
+      <workItem from="1710953977040" duration="8860000" />
+      <workItem from="1711034583881" duration="6913000" />
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Homepage design added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Homepage design added" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="Homepage design" />
+    <option name="LAST_COMMIT_MESSAGE" value="Homepage design" />
   </component>
 </project>

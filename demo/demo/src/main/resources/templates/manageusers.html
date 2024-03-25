@@ -1,33 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8" />
     <title>Manage Users</title>
     <link rel="stylesheet" type="text/css"
           href="/css/manageusers.css"
           th:href="@{/css/manageusers.css}" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div id="nav-ctr">
         <nav class="top-nav">
-            <a class="nav-link">Home</a>
+            <a class="nav-link"><a th:href="@{/}">Home</a></a>
         </nav>
     </div>
-    <div class="page-ctr">
-        <h1 id="manage-users-header">Manage Users</h1><hr/>
-        <div id="users-table-ctr">
-            <table id="users-table">
+    <div>
+        <h1>List of Users</h1>
+    </div>
+     
+    <div>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
                 <tr>
-                    <th class="user-id">ID</th>
-                    <th class="username">Username</th>
-                    <th class="user-account-status">Account Status</th>
+                    <th>User ID</th>
+                    <th>E-mail</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
                 </tr>
-                <td>1</td>
-                <td>Sample Username</td>
-                <td>Active</td>
-                <td><button class="edit-button">Actions</button></td>
-            </table>
-        </div>
-</div>
+            </thead>
+            <tbody>
+                <tr th:each="user: ${listUsers}">
+                    <td th:text="${user.id}">User ID</td>
+                    <td th:text="${user.email}">E-mail</td>
+                    <td th:text="${user.first_name}">First Name</td>
+                    <td th:text="${user.last_name}">Last Name</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

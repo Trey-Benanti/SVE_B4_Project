@@ -9,36 +9,92 @@
           th:href="@{/css/signup.css}"  />
 </head>
 <body>
-<div id="nav-ctr">
+  <div id="nav-ctr">
     <nav class="top-nav">
-        <a class="nav-link">Home</a>
+      <a class="nav-link"><a th:href="@{/}">Home</a></a>
     </nav>
-</div>
-<div class="page-ctr">
+  </div>
+  <div class="page-ctr">
+    <div>
+      <h2>Customer Registration - Sign Up</h2>
+    </div>
+    <form th:action="@{/process_register}" th:object="${user}"
+    method="post" style="max-width: 600px; margin: 0 auto;">
     <div class="container">
-        <h2>Sign up</h2>
-        <form action="#" method="post">
-            <label for="firstname">firstname:</label>
-            <input id="firstname" type="text" name="firstname" placeholder="FirstName" required>
-            
-            <label for="lastname">lastname:</label>
-            <input id="lastname" type="text" name="lastname" placeholder="LastName" required>
-            
-            <label for="email">Email:</label>
-            <input id="email" type="email" name="email" placeholder="Email" required>
-            
-            <label for="password">Password:</label>
-            <input id="password" type="password" name="password" placeholder="Password" required>
-            
-            <label for="home-address">Address:</label>
-            <input id="home-address" type="address" name="home-address" placeholder="home-address  (optional)" >
-            <label for="home-city">city:</label>
-            <input id="home-city" type="text" name="home-city" placeholder="city  (optional)" >
-            <label for="home-state">State:</label>
-            <input for="home-state" type="text" name="home-state" placeholder="state (optional)" >
-            <label for="home-zipcode">zipcode:</label>
-            <input for="home-zipcode" type="text" name="home-zipcode" placeholder="zipcode (optional)" >
-            
+      <div class="form-group row">
+          <label class="col-4 col-form-label">E-mail: </label>
+          <div class="col-8">
+              <input type="email" th:field="*{email}" class="form-control" required />
+          </div>
+      </div>
+       
+      <div class="form-group row">
+          <label class="col-4 col-form-label">Password: </label>
+          <div class="col-8">
+              <input type="password" th:field="*{password}" class="form-control"
+                      required minlength="6" maxlength="20"/>
+          </div>
+      </div>
+       
+      <div class="form-group row">
+          <label class="col-4 col-form-label">First Name: </label>
+          <div class="col-8">
+              <input type="text" th:field="*{firstName}" class="form-control"
+                      required minlength="2" maxlength="20"/>
+          </div>
+      </div>
+       
+      <div class="form-group row">
+          <label class="col-4 col-form-label">Last Name: </label>
+          <div class="col-8">
+              <input type="text" th:field="*{lastName}" class="form-control"
+                      required minlength="2" maxlength="20" />
+          </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-4 col-form-label">Home Address (Optional): </label>
+        <div class="col-8">
+            <input type="text" th:field="*{address.streetAddress}" class="form-control"
+                     minlength="2" maxlength="255" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-4 col-form-label">Apartment/Suite Number (Optional): </label>
+        <div class="col-8">
+            <input type="text" th:field="*{address.apartmentNumber}" class="form-control"
+                     minlength="2" maxlength="255" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-4 col-form-label">City (Optional): </label>
+        <div class="col-8">
+            <input type="text" th:field="*{address.cityName}" class="form-control"
+                   minlength="2" maxlength="255" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-4 col-form-label">State Code (Optional): </label>
+        <div class="col-8">
+            <select th:field="*{address.stateCode}">
+              <option th:each="code : ${T(com.spring.project.users.userinfo.StateCode).values()}"
+                      th:value="${code}"
+                      th:text="${code}">
+              </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-4 col-form-label">Zip Code (Optional): </label>
+        <div class="col-8">
+            <input type="number" th:field="*{address.zipCode}" class="form-control"
+                     minlength="2" maxlength="5" />
+        </div>
+      </div>
 
             <div id="creditCardContainer">
               <!-- Credit card fields will be added here -->
@@ -46,9 +102,11 @@
             <button type="button" id="addCreditCardButton">Add Credit Card</button>
             <div>
               <input type="checkbox" id="agreeCheckbox" name="agreeCheckbox">
-              <label for="agreeCheckBox">subcribe to promotional</label>
+              <label for="agreeCheckBox">subscribe to promotions</label>
             </div>
-            <input type="submit" value="SignUp">
+            <div>
+              <button type="submit" class="btn btn-primary">Sign Up</button>
+          </div>
         </form>
       </div>
       <script>
@@ -93,16 +151,6 @@
                     name="cvv${creditCardCount + 1}" 
                     required>
                 </div>
-                <div>
-                  <label for="home-address">Address:</label>
-                  <input id="home-address" type="address" name="home-address" placeholder="home-address  (optional)" >
-                  <label for="home-city">city:</label>
-                  <input id="home-city" type="text" name="home-city" placeholder="city  (optional)" >
-                  <label for="home-state">State:</label>
-                  <input for="home-state" type="text" name="home-state" placeholder="state (optional)" >
-                  <label for="home-zipcode">zipcode:</label>
-                  <input for="home-zipcode" type="text" name="home-zipcode" placeholder="zipcode (optional)" >
-                  </div>
                 <div>
                   <button type="button" class="removeCreditCardButton" data-card="${creditCardCount + 1}">Remove</button>
                 </div>

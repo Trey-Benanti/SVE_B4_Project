@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <title>Homepage</title>
@@ -12,7 +12,8 @@
     <div id="nav-ctr">
         <nav class="top-nav">
             <a class="nav-link">Book</a>
-            <a class="nav-link" th:href="@{/signin}">Login</a>
+            <a class="nav-link" th:href="@{/login}">Login</a>
+            <a class="nav-link" th:href="@{/signup}">Register</a>
             <a class="nav-link">About</a>
             <div class="search-ctr">
                 <form id="search-form"
@@ -23,6 +24,17 @@
                     <button id="search-button" type="submit" value="Search">Go</button>
                 </form>
             </div>
+            <div sec:authorize="isAuthenticated">
+            <p>
+                Welcome <b><span sec:authentication="principal.fullName"></span></b>
+            </p>
+            </div>
+            <div sec:authorize="isAuthenticated">
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Sign Out" />
+                </form>
+            </div>
+
         </nav>
     </div>
     <div>
