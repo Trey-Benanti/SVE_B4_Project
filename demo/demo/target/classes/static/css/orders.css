@@ -12,47 +12,48 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    overflow: auto; 
-    border: 1px solid #fff; 
+    background-color: var(--cloudy-grey);
+    overflow: auto;
+    border: 1px solid #fff;
 }
 /** home controller **/
- .top-nav {
-     display: flex;
-     height: 30px;
-     gap: 30px;
-     color: #cccccc;
-     overflow: hidden;
-     padding-left: 20px;
-     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-     padding-bottom: 10px;
-     font-size: 18px;
-     padding-top: 12px;
-     background: linear-gradient(to bottom, var(--sand-yellow), var(--burgundy-wine));
- }
+.top-nav {
+    display: flex;
+    height: 30px;
+    gap: 30px;
+    color: #cccccc;
+    overflow: hidden;
+    padding-left: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    padding-top: 12px;
+    background: linear-gradient(to bottom, var(--sand-yellow), var(--burgundy-wine));
+}
 
- .top-nav a:hover {
-     color: #a59c9f;
- }
+.top-nav a:hover {
+    color: #a59c9f;
+}
 
- .nav-link {
-     margin-top: 8px;
- }
+.nav-link {
+    margin-top: 8px;
+}
 
- .search-ctr {
-     margin-top: 8px;
-     font-size: 18px;
- }
+.search-ctr {
+    margin-top: 8px;
+    font-size: 18px;
+}
 
- #search-label {
-     margin-right: 8px;
- }
+#search-label {
+    margin-right: 8px;
+}
 
- #search-box {
-     width: 250px;
-     border-radius: 8px;
- }
+#search-box {
+    width: 250px;
+    border-radius: 8px;
+}
 
- /** home controller end **/
+/** home controller end **/
 
 /** side nav bar**/
 div.profilenav {
@@ -95,11 +96,41 @@ div.profilenav {
 
 div.content {
     animation: 1.2s fillIn;
-    grid-column: 2;
+    grid-column:2;
+    background: var(--cloudy-grey);
     margin-left: 200px;
     padding: 1px 16px;
-    height: 1000px;
-    background-color: var(--cloudy-grey);
+    width: auto;
+}
+
+.cardbutton{
+    gap:20px;
+}
+
+#orderdisplay {
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    margin: 20px auto;
+    overflow-x: auto;
+    flex-direction: row;
+}
+
+.receipt {
+    min-height: 160px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    position: relative;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--sand-yellow);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all .5s ease;
+    flex: 1;
+    min-width: 16px;
+    max-width: 500px;
 }
 
 @keyframes fillIn {
