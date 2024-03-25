@@ -12,6 +12,7 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
+    background-color: var(--cloudy-grey);
     overflow: auto;
     border: 1px solid #fff;
 }
@@ -94,12 +95,38 @@ div.profilenav {
 }
 
 div.content {
-    animation: 1.2s fillIn;
+    animation: 0.8s slipIn;
     grid-column: 2;
     margin-left: 200px;
     padding: 1px 16px;
     height: 1000px;
     background-color: var(--cloudy-grey);
+}
+
+/** input styling**/
+input[type="email"],
+input[type="tel"],
+input[type="text"],
+input[type="address"],
+input[type="password"] {
+    width: 50%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--stormy-sky);
+    border-radius: 4px;
+    background-color: #fff;
+    color: var(--stormy-sky);
+}
+
+input[type="submit"] {
+    background-color: var(--golden-sun);
+    border: none;
+    padding: 12px;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover {
+    background-color: var(--terra-cotta);
 }
 
 @keyframes fillIn {

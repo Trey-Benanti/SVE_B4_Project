@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
+    <title>Orders</title>
     <link rel="stylesheet" type="text/css"
-          href="/css/profile.css"
-          th:href="@{/css/profile.css}" />
+          href="/css/orders.css"
+          th:href="@{/css/orders.css}" />
 </head>
 <body>
 <div id="nav-ctr">
@@ -27,25 +27,20 @@
 </div>
 <div class="profilenav">
     <div class="sidenav">
-        <a class="active" th:href="@{/profile}">Profile</a>
+        <a th:href="@{/profile}">Profile</a>
         <a th:href="@{/creditcards}">Credit cards</a>
-        <a th:href="@{/orders}">Orders</a>
+        <a class="active" th:href="@{/orders}">Orders</a>
+    </div>
+    <div class="content">
+        <h1 id="content-title">Orders </h1>
+        <div id="orderdisplay">
+            <div class="receipt">
+                <h4>Name: </h4>
+            </div>
+
+        </div>
     </div>
 
-    <div class="content">
-        <h1>Profile </h1>
-        <h4>Email: </h4>
-        <h4>First Name:</h4>
-        <h4>Last Name:</h4>
-        <h4>Address:</h4>
-        <h4>City:</h4>
-        <h4>State:</h4>
-        <h4>Zipcode:</h4>
-        <label><strong>Subscribed to promotions  </strong><input type="checkbox" id="agreeCheckbox" name="agreeCheckbox" disabled></label>
-        <br/>
-        <br/>
-        <a th:href="@{/editprofile}" ><button><strong>Edit profile</strong></button></a>
-    </div>
 </div>
 
 </body>

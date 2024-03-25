@@ -9,66 +9,45 @@
           th:href="@{/css/profile.css}" />
 </head>
 <body>
-
-<div class="nav-ctr">
+<div id="nav-ctr">
     <nav class="top-nav">
-        <a class="nav-link">Home</a>
+        <a class="nav-link">Book</a>
+        <a class="nav-link" th:href="@{/signin}">Login</a>
+        <a class="nav-link">About</a>
+        <div class="search-ctr">
+            <form id="search-form"
+                  th:action="@{/search}"
+                  method="get">
+                <label for="search-box" id="search-label">Search:</label>
+                <input type="search" id="search-box" name="keyword"/>
+                <button id="search-button" type="submit" value="Search">Go</button>
+            </form>
+        </div>
     </nav>
 </div>
-<div class="page-ctr">
-    <h1>User Profile</h1>
+<div class="profilenav">
+    <div class="sidenav">
+        <a class="active" th:href="@{/profile}">Profile</a>
+        <a th:href="@{/creditcards}">Credit cards</a>
+        <a th:href="@{/orders}">Orders</a>
+    </div>
 
-    <form id="profileForm">
-        <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" disabled>
-        <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName" disabled>
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" disabled>
-        <label for="homeAddress">Home Address:</label>
-        <input type="text" id="homeAddress" name="homeAddress" disabled>
-        <label for="creditCard">Credit Card Info:</label>
-        <input type="text" id="creditCard" name="creditCard" disabled>
-        <label for="billingAddress">Billing Address:</label>
-        <input type="text" id="billingAddress" name="billingAddress" disabled>
-        <label for="creditCard">Credit Card Info:</label>
-        <input type="text" id="creditCard" name="creditCard" disabled>
-        <label for="billingAddress">Billing Address:</label>
-        <input type="text" id="billingAddress" name="billingAddress" disabled>
-        <label for="creditCard">Credit Card Info:</label>
-        <input type="text" id="creditCard" name="creditCard" disabled>
-        <label for="billingAddress">Billing Address:</label>
-        <input type="text" id="billingAddress" name="billingAddress" disabled>
-        <input type="checkbox" id="agreeCheckbox" name="agreeCheckbox">
-        <label for="agreeCheckBox">subscribe to promotional</label>
-        <button type="button" id="editButton">Edit</button>
-        <button type="submit" id="saveButton" style="display: none;">Save</button>
-
-    </form>
-    <script>
-    
-        function enableEditing() {
-            document.querySelectorAll('input').forEach(input => {
-                input.removeAttribute('disabled');
-            });
-            document.getElementById('saveButton').style.display = 'inline-block';
-         document.getElementById('editButton').style.display = 'none';
-        }
-
-        document.getElementById('editButton').addEventListener('click', function() {
-            enableEditing();
-        });
-
-        document.getElementById('profileForm').addEventListener('submit', function(event) {
-        event.preventDefault()
-
-             document.querySelectorAll('input').forEach(input => {
-                input.setAttribute('disabled', 'disabled');
-            });
-            document.getElementById('saveButton').style.display = 'none';
-            document.getElementById('editButton').style.display = 'inline-block';
-        });
-    </script>
+    <div class="content">
+        <h1>Profile </h1>
+        <h4>Email: </h4>
+        <h4>First Name:</h4>
+        <h4>Last Name:</h4>
+        <h4>Address:</h4>
+        <h4>City:</h4>
+        <h4>State:</h4>
+        <h4>Zipcode:</h4>
+        <label><strong>Subscribed to promotions  </strong><input type="checkbox" id="agreeCheckbox" name="agreeCheckbox" disabled></label>
+        <br/>
+        <br/>
+        <a th:href="@{/editprofile}" ><button><strong>Edit profile</strong></button></a>
+    </div>
 </div>
+
 </body>
+
 </html>

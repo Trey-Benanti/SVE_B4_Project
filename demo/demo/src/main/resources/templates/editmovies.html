@@ -11,7 +11,9 @@
 <body>
 <div id="nav-ctr">
     <nav class="top-nav">
-        <a class="nav-link">Home</a>
+        <a class="nav-link" th:href="@{/}">Home</a>
+        <a class="nav-link" th:href="@{/admin/}">Admin Options</a>
+        <a class="nav-link" th:href="@{/admin/managemovies}">Manage Movies</a>
     </nav>
 </div>
 <div class="page-ctr">
@@ -41,10 +43,10 @@
                     <td th:text="${movie.director}" />
                     <td th:text="${movie.producer}" />
                     <td th:text="${movie.rating}" />
-                    <td th:text="${movie.reviews}" />
-                    <td th:text="${movie.trailerPhoto}" />
-                    <td th:text="${movie.trailerVideo}" />
-                    <td th:text="${movie.synop}" />
+                    <td class="reviews-content" th:text="${movie.reviews}" />
+                    <td class="photo-content" th:text="${movie.trailerPhoto}" />
+                    <td class="video-content" th:text="${movie.trailerVideo}" />
+                    <td class="synopsis" th:text="${movie.synop}" />
                     <td th:text="${movie.nowPlaying}" />
                     <td><button class="edit-dates-button">Edit</button></td>
                 </tr>

@@ -19,7 +19,6 @@ html {
 body {
     min-height: 100%;
     position: relative;
-
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     background-color: var(--sand-yellow);
