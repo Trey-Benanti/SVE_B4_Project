@@ -67,7 +67,9 @@ public class registrationController {
 
     @PostMapping("/verifyUser")
     public String verifyUser(@RequestParam("code") String code) {
-        if (code == "VERIFIED") {
+        String ver = "VERIFIED";
+
+        if (code == ver) {
             return verification();
         }
 
@@ -78,7 +80,8 @@ public class registrationController {
             return "verification";
         }
 
-        user.setVerCode("VERIFIED");
+        user.setVerCode(ver);
+        userRepo.save(user);
 
         return "verify_success";
     }
