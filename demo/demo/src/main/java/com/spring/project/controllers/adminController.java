@@ -30,50 +30,50 @@ public class adminController {
     @Autowired
     private MovieServices movieService; // Reference to movie services interface
     
-    @GetMapping("/adminview")
+    @GetMapping("/admin")
     public String adminView(Model model) {
         List<Movie> movies = repo.findAll();
         model.addAttribute("movies", movies);
         return "adminView";
     } // adminView
 
-    @GetMapping("/managemovies")
+    @GetMapping("/admin/managemovies")
     public String manageMovies() {
         return "manageMovies";
     } // manageMovies
 
-    @GetMapping("/editmovies")
+    @GetMapping("/admin/editmovies")
     public String editMovies(Model model) {
         List<Movie> movies = repo.findAll();
         model.addAttribute("movies", movies);
         return "editmovies";
     } // editMovies
 
-    @GetMapping("/addschedule")
+    @GetMapping("/admin/addschedule")
     public String addSchedule() {
         return "addschedule";
     } // addschedule
 
-    @GetMapping("/manageusers")
+    @GetMapping("/admin/manageusers")
     public String manageUsers(Model model) {
         List<User> listUsers = userRepo.findAll();
         model.addAttribute("listUsers", listUsers); 
         return "manageusers";
     } // manageusers
 
-    @GetMapping("/create") // create get
+    @GetMapping("/admin/create") // create get
     public String create(Model model) { // Render create page
         MovieDTO movieDTO = new MovieDTO();
         model.addAttribute("movieDTO", movieDTO);
         return "create";
     } // create
 
-    @PostMapping("/create") // create post
+    @PostMapping("/admin/create") // create post
     public String createMovie(
             @Valid @ModelAttribute MovieDTO movieDTO,
             BindingResult result
     ) {
-        if (result.hasErrors()) {return "/create";} // Return to create if form input error
+        if (result.hasErrors()) {return "/admin/create";} // Return to create if form input error
 
         // Post form input to DB
         Movie movie = new Movie();
@@ -90,7 +90,7 @@ public class adminController {
 
         repo.save(movie);
 
-        return "redirect:/"; // redirect home
+        return "redirect:/admin/"; // redirect home
     } // create
 
         @GetMapping("/search")
@@ -104,7 +104,7 @@ public class adminController {
         return "searchresult";
     } // search
 
-    @GetMapping("/promos")
+    @GetMapping("/admin/promos")
     public String promos() { return "promos"; } // promos
 
 }

@@ -9,25 +9,25 @@ public class User {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
      
     @Column(name = "email", nullable = false, unique = true)
-    public String email;
+    private String email;
      
     @Column(name = "user_password", nullable = false)
-    public String password;
+    private String password;
      
     @Column(name = "first_name", nullable = false)
-    public String firstName;
+    private String firstName;
      
     @Column(name = "last_name", nullable = false)
-    public String lastName;
+    private String lastName;
 
     @Column(name = "verCode")
-    public String verCode;
+    private String verCode;
 
     @Column(name = "user_type", nullable = false)
-    public UserType type = UserType.CUSTOMER;
+    private Role type = Role.ROLE_CUSTOMER;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = true)
@@ -59,11 +59,11 @@ public class User {
     }
 
     public void promote() {
-        this.type = UserType.ADMIN;
+        this.type = Role.ROLE_ADMIN;
     }
 
     public void demote() {
-        this.type = UserType.CUSTOMER;
+        this.type = Role.ROLE_CUSTOMER;
     }
 
     public void subscribe() {
@@ -100,7 +100,7 @@ public class User {
         return this.lastName;
     }
 
-    public UserType getType() {
+    public Role getType() {
         return this.type;
     }
 

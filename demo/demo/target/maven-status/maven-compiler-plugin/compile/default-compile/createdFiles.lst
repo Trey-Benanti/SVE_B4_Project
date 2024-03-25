@@ -12,12 +12,12 @@ com\spring\project\models\Movie.class
 com\spring\project\models\Theatre.class
 com\spring\project\models\Promotion.class
 com\spring\project\models\Booking.class
-com\spring\project\users\userinfo\UserType.class
 com\spring\project\services\CardInfoRepository.class
 com\spring\project\controllers\adminController.class
 com\spring\project\models\TicketType.class
 com\spring\project\controllers\registrationController.class
 com\spring\project\models\SecurityConfigurer.class
+com\spring\project\users\userinfo\Role.class
 com\spring\project\users\userinfo\CardInfo.class
 com\spring\project\models\Customer.class
 com\spring\project\controllers\loginController.class
