@@ -50,6 +50,7 @@ public class customerController {
         edited.setFirstName(user.getFirstName());
         edited.setLastName(user.getLastName());
         edited.setAddress(user.getAddress());
+        edited.setSubscription(user.getSubscription());
 
         userRepo.save(edited);
 
