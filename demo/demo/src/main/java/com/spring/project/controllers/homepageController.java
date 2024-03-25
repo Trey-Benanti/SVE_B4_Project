@@ -38,5 +38,11 @@ public class homepageController {
 
         return "searchresult";
     } // search
+
+    @GetMapping("/filter")
+    public String filter(@Param("keyword") String keyword, Model model) {
+        model.addAttribute("keyword", keyword);
+        return "filter";
+    }
     
 }

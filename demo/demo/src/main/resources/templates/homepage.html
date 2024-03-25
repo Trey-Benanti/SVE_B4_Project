@@ -24,6 +24,15 @@
                     <button id="search-button" type="submit" value="Search">Go</button>
                 </form>
             </div>
+                <p class="nav-link">Filter</p>
+            <div id="ns-filter-ctr">
+                <label id="now-showing-label" for="now_showing_check">Now Showing</label>
+                <input type="checkbox" id="now-showing-check" name="now-showing-check" />
+            </div>
+            <div id="cs-filter-ctr">
+                <label id="coming-soon-label" for="coming-soon-check">Coming Soon</label>
+                <input type="checkbox" id="coming-soon-check" name="coming-soon-check" />
+            </div>
             <div sec:authorize="isAuthenticated">
             <p>
                 Welcome <b><span sec:authentication="principal.fullName"></span></b>

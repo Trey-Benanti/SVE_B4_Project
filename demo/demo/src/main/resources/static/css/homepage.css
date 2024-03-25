@@ -185,3 +185,19 @@ body {
 .copyright {
     margin-bottom: 0;
 }
+
+#now-showing-label {
+    margin-top: 8px;
+}
+
+#now-showing-check {
+    margin-top: 10px;
+}
+
+#coming-soon-label {
+    margin-top: 8px;
+}
+
+#coming-soon-check {
+    margin-top: 10px;
+}
