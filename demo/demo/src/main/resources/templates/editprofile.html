@@ -35,23 +35,23 @@
     <div class="content">
         <h1>Profile </h1>
         <h4>Email: </h4>
-        <form action="#" method="post">
-            <label><strong>First Name:</strong><input id="firstname" type="text" name="firstname" placeholder="FirstName" required></label>
+        <form th:action="@{/make_edits}" th:object="${user}"method="post">
+            <label><strong>First Name:</strong><input id="firstname" type="text" th:field="*{firstName}" name="firstname" placeholder="FirstName" required></label>
             <br/>
             <br/>
-            <label><strong>Last Name: </strong><input id="lastname" type="text" name="lastname" placeholder="LastName" required> </label>
+            <label><strong>Last Name: </strong><input id="lastname" type="text" th:field="*{lastName}" name="lastname" placeholder="LastName" required> </label>
             <br/>
             <br/>
-            <label><strong>Address:   </strong><input id="home-address" type="address" name="home-address" placeholder="home-address  (optional)" ></label>
+            <label><strong>Address:   </strong><input id="home-address" type="text" th:field="*{address.streetAddress}" name="home-address" placeholder="home-address  (optional)" ></label>
             <br/>
             <br/>
-            <label><strong>City:      </strong><input id="home-city" type="text" name="home-city" placeholder="city  (optional)" ></label>
+            <label><strong>City:      </strong><input id="home-city" type="text" th:field="*{address.cityName}" name="home-city" placeholder="city  (optional)" ></label>
             <br/>
             <br/>
-            <label><strong>State:     </strong><input id="home-state" type="text" name="home-state" placeholder="state (optional)" ></label>
+            <label><strong>State:     </strong><input id="home-state" type="text" th:field="*{address.stateCode}" name="home-state" placeholder="state (optional)" ></label>
             <br/>
             <br/>
-            <label><strong>Zipcode:   </strong><input id="home-zipcode" type="text" name="home-zipcode" placeholder="zipcode (optional)" ></label>
+            <label><strong>Zipcode:   </strong><input id="home-zipcode" type="text" th:field="*{address.zipCode}" name="home-zipcode" placeholder="zipcode (optional)" ></label>
             <br/>
             <br/>
             <label><strong>Subscribed to promotions  </strong><input type="checkbox" id="agreeCheckbox" name="agreeCheckbox" ></label>
