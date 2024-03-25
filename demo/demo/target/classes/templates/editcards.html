@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreditCards</title>
+    <link rel="stylesheet" type="text/css"
+          href="/css/creditcards.css"
+          th:href="@{/css/creditcards.css}" />
+</head>
+<body>
+<div id="nav-ctr">
+    <nav class="top-nav">
+        <a class="nav-link">Book</a>
+        <a class="nav-link" th:href="@{/signin}">Login</a>
+        <a class="nav-link">About</a>
+        <div class="search-ctr">
+            <form id="search-form"
+                  th:action="@{/search}"
+                  method="get">
+                <label for="search-box" id="search-label">Search:</label>
+                <input type="search" id="search-box" name="keyword"/>
+                <button id="search-button" type="submit" value="Search">Go</button>
+            </form>
+        </div>
+    </nav>
+</div>
+<div class="profilenav">
+    <div class="sidenav">
+        <a th:href="@{/profile}">Profile</a>
+        <a class="active" th:href="@{/creditcards}">Credit cards</a>
+        <a th:href="@{/orders}">Orders</a>
+    </div>
+    <div class="content">
+        <h1 id="content-title">Credit Cards </h1>
+        <a th:href="@{/editcards}" ><button id="cardbutton"><strong>Edit cards</strong></button></a>
+        <div id="carddisplay">
+            <div class="card">
+                <div>
+                    <label for="ccn">Card Number:</label>
+                    <input id="ccn"
+                           type="tel"
+                           inputmode="numeric"
+                           pattern="[0-9\s]{13,19}"
+                           autocomplete="cc-number" maxlength="19"
+                           placeholder="xxxx xxxx xxxx xxxx"
+                           name="cardNumber"
+                           required>
+                </div>
+
+                div>
+                <div>
+                    <label for="expiryDate">Expiry Date:</label>
+                    <input type="date" id="expiryDate" name="expiryDate" required>
+                </div>
+                <div>
+                    <label for="cvv">CVV:</label>
+
+
+                </div>
+                <div>
+                    <label for="home-address">Address:</label>
+                    <input id="home-address" type="address" name="home-address" placeholder="home-address  (optional)" >
+                    <label for="home-city">city:</label>
+                    <input id="home-city" type="text" name="home-city" placeholder="city  (optional)" >
+                    <label for="home-state">State:</label>
+                    <input id="home-state" type="text" name="home-state" placeholder="state (optional)" >
+                    <label for="home-zipcode">zipcode:</label>
+                    <input id="home-zipcode" type="text" name="home-zipcode" placeholder="zipcode (optional)" >
+                </div>
+
+            </div>
+            <input type="submit" value="editcards"><a th:href="@{/editcards}" ></a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

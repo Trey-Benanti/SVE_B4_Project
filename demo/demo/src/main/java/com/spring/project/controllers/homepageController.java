@@ -36,13 +36,14 @@ public class homepageController {
         model.addAttribute("movies", movies);
         return "homepage";
     } // homepage
-// I AM ADDING THIS SO I CAN WORK ON IT LOCALLY
-@GetMapping("/admin/")
-public String adminView(Model model) {
-    List<Movie> movies = repo.findAll();
-    model.addAttribute("movies", movies);
-    return "adminView";
-} // adminView
+    
+    // I AM ADDING THIS SO I CAN WORK ON IT LOCALLY
+    @GetMapping("/admin/")
+    public String adminView(Model model) {
+        List<Movie> movies = repo.findAll();
+        model.addAttribute("movies", movies);
+        return "adminView";
+    } // adminView
 
     @GetMapping("/admin/managemovies")
     public String manageMovies() {
@@ -115,4 +116,4 @@ public String adminView(Model model) {
     public String promos() { return "promos"; } // promos
 
 }
-// I AM ADDING THIS SO I CAN WORK ON IT LOCALLY
+
