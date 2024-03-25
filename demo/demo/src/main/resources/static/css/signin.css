@@ -13,7 +13,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: var(--burgundy-wine);
     height: 100vh;
 
 }
@@ -55,6 +55,44 @@ body {
 }
 
 /** home controller end **/
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 1px solid var(--stormy-sky);
+    background-color: #fff;
+    color: var(--stormy-sky);
+}
+
+
+input[type="submit"] {
+    background-color: var(--sand-yellow);
+    border: none;
+    padding: 12px;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover {
+    background-color: var(--golden-sun);
+}
+
+.signup-link a {
+    color: var(--ocean-blue);
+    padding-top: 15px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    height: 100vh;
+}
 .container {
     margin: auto;
     margin-top: 20px;
@@ -65,45 +103,12 @@ body {
     height: fit-content;
     width: fit-content;
     text-align: center;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: auto;
-    border: 1px solid #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: var(--cloudy-grey);
     color: var(--stormy-sky);
 }
-
 
 h2 {
     text-align: center;
     margin-bottom: 20px;
 }
-input[type="email"],
-input[type="password"],
-input[type="submit"] {
-    width: 100%;
-    padding-top: 12px;
-    padding-bottom: 5px;
-    margin-right: 10px;
-    margin-bottom: 15px;
-    border: 1px solid var(--stormy-sky);
-    border-radius: 4px;
-    background-color: #fff;
-    color: var(--stormy-sky);
-}
-input[type="submit"] {
-    background-color: var(--golden-sun);
-    border: none;
-    padding: 12px;
-    margin-top: 10px;
-}
-
-input[type="submit"]:hover {
-    background-color: var(--terra-cotta);
-}
-
-.signup-link a {
-    color: var(--ocean-blue);
-    padding-top: 15px;
-}
-
