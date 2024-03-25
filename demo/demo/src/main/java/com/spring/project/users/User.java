@@ -23,7 +23,7 @@ public class User {
     @Column(name = "last_name", nullable = false)
     public String lastName;
 
-    @Column(name = "verCode")
+    @Column(name = "verCode", nullable = false)
     public String verCode;
 
     @Column(name = "user_type", nullable = false)

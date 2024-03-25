@@ -46,10 +46,12 @@ public class CustomUserDetails implements UserDetails {
  
     @Override
     public boolean isEnabled() {
-        if (user.getVerCode() == "VERIFIED") {
+        if (user.getVerCode().equals("VERIFIED")) {
             return true;
+        } else {
+            System.out.println(user.getVerCode());
+            return false;
         }
-        return false;
     }
      
     public String getFullName() {
