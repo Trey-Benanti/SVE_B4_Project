@@ -104,7 +104,87 @@ public class adminController {
         return "searchresult";
     } // search
 
+
+    @GetMapping("/scheduling")
+    public String scheduling(Model model) {
+        List<Movie> movies = repo.findAll();
+        model.addAttribute("movies", movies);
+        return "scheduling";
+    } // scheduling
+
+    @GetMapping("/manageusers")
+    public String manageUsers() {
+        return "manageusers";
+    } // manageusers
+
+    @GetMapping("/checkout")
+    public String checkout() {
+        return "checkout";
+    } // checkout
+
+    @GetMapping("/order-confirmation")
+    public String orderConfirmation() {
+        return "order-confirmation";
+    } // orderConfirmation
+
+    @GetMapping("/order-summary")
+    public String orderSummary() {
+        return "order-summary";
+    } // orderSummary
+
+    @GetMapping("/select-seats")
+    public String selectSeats() {
+        return "select-seats";
+    } // selectSeats
+
+    @GetMapping("/profile")
+    public String profile() {
+        return "profile";
+    } // profile
+
+    @GetMapping("/editprofile")
+    public String editprofile() {
+        return "editprofile";
+    } // editprofile
+    @GetMapping("/creditcards")
+    public String creditcards() {
+        return "creditcards";
+    } // creditcards
+
+    @GetMapping("/editcards")
+    public String editcards() {
+        return "editcards";
+    } // editcards
+
+    @GetMapping("/orders")
+    public String prders() {
+        return "orders";
+    } // orders
+    @GetMapping("/select-show")
+    public String selectShow() {
+        return "select-show";
+    } // selectShow
+
+    @GetMapping("/signin")
+    public String signin() {
+        return "signin";
+    } // signin
+
+    @GetMapping("/signup")
+    public String signup() {
+        return "signup";
+    } // signup
+
+    @GetMapping("/confirmation")
+    public String confirmation() {
+        return "confirmation";
+    } // confirmation
+
+
+
+
+
     @GetMapping("/admin/promos")
     public String promos() { return "promos"; } // promos
 
-}
+} // homepageController
