@@ -38,6 +38,7 @@
             <h4 th:text="${card.getExpirationDate()}"></h4>
             <h4 th:text="${card.getSecurityCode()}"></h4>
             <h4 th:text="${card.getCardName()}"></h4>
+            <a th:href="@{'/editcards/' + ${card.getId()}}"><button>Edit</button></a>
         </div>
 
     </div>

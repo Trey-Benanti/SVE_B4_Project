@@ -9,9 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.security.Security;
@@ -24,6 +22,9 @@ public class customerController {
 
     @Autowired
     private UserRepository userRepo;
+
+    @Autowired
+    private CardInfoRepository cardRepo;
 
     @GetMapping("/profile")
     public String profile(Model model, Principal principal) {
@@ -60,10 +61,26 @@ public class customerController {
         return "creditcards";
     } // creditcards
 
-    @GetMapping("/editcards")
-    public String editcards() {
+    @GetMapping("/editcards/{id}")
+    public String editcards(@PathVariable Long id, Model model) {
+        CardInfo card = cardRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Card ID"));
+        model.addAttribute("card", card);
         return "editcards";
     } // editcards
+
+    @PostMapping("/editcards")
+    public String saveCard(@ModelAttribute CardInfo card, Principal principal) {
+        User user = userRepo.findByEmail(principal.getName());
+        CardInfo editedCard = cardRepo.findById(card.getId()).orElseThrow(() -> new IllegalArgumentException("Invalid Card ID"));
+        editedCard.setId(card.getId());
+        editedCard.setCardName(card.getCardName());
+        editedCard.setCardNumber(card.getCardNumber());
+        editedCard.setExpirationDate(card.getExpirationDate());
+        editedCard.setSecurityCode(card.getSecurityCode());
+        editedCard.setUserId(user);
+        cardRepo.save(editedCard);
+        return "redirect:/creditcards";
+    }
 
     @GetMapping("/orders")
     public String orders() {
