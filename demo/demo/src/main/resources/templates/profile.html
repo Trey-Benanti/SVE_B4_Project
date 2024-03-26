@@ -42,7 +42,7 @@
         <h4>City: <span th:text="*{address?.cityName}"></span></h4>
         <h4>State: <span th:text="*{address?.stateCode}"></span></h4>
         <h4>Zipcode: <span th:text="*{address?.zipCode}"></span></h4>
-        <label><strong>Subscribed to promotions  </strong><input type="checkbox" id="agreeCheckbox" name="agreeCheckbox" disabled></label>
+        <label><strong>Subscribed to promotions  </strong><div th:if="*{subscription}">YES</div><div th:unless="*{subscription}">NO</div></label>
         <br/>
         <br/>
         <a th:href="@{/editprofile}" ><button><strong>Edit profile</strong></button></a>
