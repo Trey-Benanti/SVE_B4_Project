@@ -88,7 +88,13 @@ public class registrationController {
 
     public void generateCode(User user) {
         Random rand = new Random();
-        int code = rand.nextInt(900000) + 100000;
+
+        int code;
+
+        do {
+            code = rand.nextInt(900000) + 100000;
+        } while (userRepo.findByVerCode(String.valueOf(code)) != null);
+
         user.setVerCode(String.valueOf(code));
     }
 
