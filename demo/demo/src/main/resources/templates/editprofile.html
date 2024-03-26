@@ -30,6 +30,7 @@
         <a class="active" th:href="@{/profile}">Profile</a>
         <a th:href="@{/creditcards}">Credit cards</a>
         <a th:href="@{/orders}">Orders</a>
+        <a th:href="@{/changepassword}">Change Password</a>
     </div>
 
     <div class="content">
@@ -48,7 +49,14 @@
             <label><strong>City:      </strong><input id="home-city" type="text" th:field="*{address.cityName}" name="home-city" placeholder="city  (optional)" ></label>
             <br/>
             <br/>
-            <label><strong>State:     </strong><input id="home-state" type="text" th:field="*{address.stateCode}" name="home-state" placeholder="state (optional)" ></label>
+            <label><strong>State:     </strong>
+                <select th:field="*{address.stateCode}">
+                    <option th:each="code : ${T(com.spring.project.users.userinfo.StateCode).values()}"
+                            th:value="${code}"
+                            th:text="${code}">
+                    </option>
+                </select>
+            </label>
             <br/>
             <br/>
             <label><strong>Zipcode:   </strong><input id="home-zipcode" type="text" th:field="*{address.zipCode}" name="home-zipcode" placeholder="zipcode (optional)" ></label>

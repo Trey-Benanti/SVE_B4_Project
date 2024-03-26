@@ -12,7 +12,7 @@
 <div id="nav-ctr">
     <nav class="top-nav">
         <a class="nav-link">Book</a>
-        <a class="nav-link" th:href="@{/signin}">Login</a>
+        <a class="nav-link" th:href="@{/}">Home</a>
         <a class="nav-link">About</a>
         <div class="search-ctr">
             <form id="search-form"
@@ -30,17 +30,18 @@
         <a class="active" th:href="@{/profile}">Profile</a>
         <a th:href="@{/creditcards}">Credit cards</a>
         <a th:href="@{/orders}">Orders</a>
+        <a th:href="@{/changepassword}">Change Password</a>
     </div>
 
     <div class="content" th:object="${user}">
         <h1>Profile </h1>
-        <h4>Email: <span th:text="${email}"></span>email</h4>
-        <h4>First Name: <span th:text="${firstName}">first Name</span></h4>
-        <h4>Last Name: <span th:text="${lastName}">last Name</span></h4>
-        <h4>Address: <span th:text="${address?.streetAddress}"></span></h4>
-        <h4>City: <span th:text="${address?.cityName}"></span></h4>
-        <h4>State: <span th:text="${address?.stateCode}"></span></h4>
-        <h4>Zipcode: <span th:text="${address?.zipCode}"></span></h4>
+        <h4>Email: <span th:text="*{email}"></span></h4>
+        <h4>First Name: <span th:text="*{firstName}"></span></h4>
+        <h4>Last Name: <span th:text="*{lastName}"></span></h4>
+        <h4>Address: <span th:text="*{address?.streetAddress}"></span></h4>
+        <h4>City: <span th:text="*{address?.cityName}"></span></h4>
+        <h4>State: <span th:text="*{address?.stateCode}"></span></h4>
+        <h4>Zipcode: <span th:text="*{address?.zipCode}"></span></h4>
         <label><strong>Subscribed to promotions  </strong><input type="checkbox" id="agreeCheckbox" name="agreeCheckbox" disabled></label>
         <br/>
         <br/>
