@@ -3,10 +3,12 @@ package com.spring.project.controllers;
 import com.spring.project.services.UserRepository;
 import com.spring.project.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 
@@ -43,6 +45,11 @@ public class customerController {
         return "orders";
     } // orders
 
+    @GetMapping("/changepassword")
+    public String changepassword() {
+        return "changepassword";
+    }
+
     @PostMapping("/make_edits")
     public String make_edits(User user, Principal principal) {
 
@@ -58,6 +65,36 @@ public class customerController {
         return "profile";
 
     }
+
+    @PostMapping("/changepw")
+    public String changepw(@RequestParam("currPass") String currPass,
+                           @RequestParam("newPass") String newPass,
+                           @RequestParam("confirmPass") String confirmPass,
+                           Model model,
+                           Principal principal) {
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        User user = userRepo.findByEmail(principal.getName());
+
+        System.out.println(user.getPassword());
+        if (!passwordEncoder.matches(currPass, user.getPassword())) {
+            model.addAttribute("wrong_pass", "Incorrect Password");
+            return "changepw";
+        }
+
+        if (!newPass.equals(confirmPass)) {
+            model.addAttribute("no_match", "Passwords do not match");
+            return "changepw";
+        }
+
+        String encodedPassword = passwordEncoder.encode(newPass);
+        user.setPassword(encodedPassword);
+
+        userRepo.save(user);
+
+        return "profile";
+    }
+
 
 } // homepageController
 
