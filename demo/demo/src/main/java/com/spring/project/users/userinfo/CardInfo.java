@@ -39,6 +39,16 @@ public class CardInfo {
     public CardInfo() {}
 
     // Setters
+
+
+    public void setUserId(User userId) {
+        this.userId = userId;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setCardNumber(String num) {
         this.cardNum = num;
     }
@@ -59,6 +69,10 @@ public class CardInfo {
 
     public User getUserId() {
         return this.userId;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getCardNumber() {
