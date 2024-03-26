@@ -1,11 +1,13 @@
 package com.spring.project.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import com.spring.project.models.MovieDTO;
 import com.spring.project.services.MovieServices;
 import com.spring.project.services.UserRepository;
 import com.spring.project.users.User;
+import com.spring.project.users.userinfo.Role;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -31,9 +33,15 @@ public class homepageController {
     private MovieServices movieService; // Reference to movie services interface
 
     @GetMapping("")
-    public String homepage(Model model) { // Render homepage
+    public String homepage(Model model, Principal principal) { // Render homepage
         List<Movie> movies = repo.findAll();
         model.addAttribute("movies", movies);
+
+        if (principal != null && userRepo.findByEmail(principal.getName()).getRole() == Role.ROLE_ADMIN)
+        {
+            return "adminView";
+        }
+
         return "homepage";
     } // homepage
     
