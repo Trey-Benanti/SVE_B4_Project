@@ -184,3 +184,15 @@ body {
 .copyright {
     margin-bottom: 0;
 }
+
+#ns-filter-ctr {
+    margin-top: 8px;
+}
+
+#cs-filter-ctr {
+    margin-top: 8px;
+}
+
+#date-filter-ctr {
+    margin-top: 8px;
+}
