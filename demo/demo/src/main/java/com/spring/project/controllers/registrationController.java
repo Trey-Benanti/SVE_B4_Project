@@ -39,25 +39,25 @@ public class registrationController {
     } // signup
 
     @PostMapping("/process_register")
-    public String processRegister(User user) throws MessagingException, UnsupportedEncodingException {
+    public String processRegister(User user, Model model) throws MessagingException, UnsupportedEncodingException {
+        // checking if email exists
+        User existingAccount = userRepo.findByEmail(user.getEmail());
+        if (existingAccount != null)
+        {
+            model.addAttribute("wrong_email", "Error: Email already in use");
+            return "signup";
+        }
+
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-
-        // checking if email exists
-        // TODO: Have reg page say duplicate email if duplicate
-       User existingAccount = userRepo.findByEmail(user.getEmail());
-        if (existingAccount != null)
-        {
-            return "signup";
-        }
 
         generateCode(user);
         sendVerEmail(user);
 
         userRepo.save(user);
     
-        return "register_success";
+        return "verification";
     }
 
     @GetMapping("verification")

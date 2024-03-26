@@ -17,7 +17,8 @@ public class customerController {
     private UserRepository userRepo;
 
     @GetMapping("/profile")
-    public String profile() {
+    public String profile(Model model, Principal principal) {
+        model.addAttribute("user", userRepo.findByEmail(principal.getName()));
         return "profile";
     } // profile
 
