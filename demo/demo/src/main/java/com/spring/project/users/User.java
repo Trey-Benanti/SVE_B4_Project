@@ -1,6 +1,11 @@
 package com.spring.project.users;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.spring.project.users.userinfo.*;
 
 @Entity
@@ -35,6 +40,10 @@ public class User {
 
     @Column(name = "subscription", nullable = false)
     private boolean subscription;
+
+    @OneToMany(mappedBy = "userId")
+    @Column(name = "payment_info", nullable = true)
+    public List<CardInfo> paymentInfo = new ArrayList<CardInfo>(Arrays.asList(new CardInfo(), new CardInfo(), new CardInfo()));
 
     // Setters
 
@@ -106,5 +115,9 @@ public class User {
 
     public String getVerCode() {
         return this.verCode;
+    }
+
+    public List<CardInfo> getPaymentInfo() {
+        return this.paymentInfo;
     }
 }

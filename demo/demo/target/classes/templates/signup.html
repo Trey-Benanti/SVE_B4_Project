@@ -96,90 +96,109 @@
         </div>
       </div>
 
-            <div id="creditCardContainer">
-              <!-- Credit card fields will be added here -->
-            </div>
-            <button type="button" id="addCreditCardButton">Add Credit Card</button>
-            <div>
-              <input type="checkbox" th:field="*{subscription}" id="agreeCheckbox" name="agreeCheckbox">
-              <label for="agreeCheckBox">subscribe to promotions</label>
-            </div>
-            <div>
-              <button type="submit" class="btn btn-primary">Sign Up</button>
-          </div>
-        </form>
+      <div class="form-group row">
+        <label class="col-4 col-form-label">Card Number 1 (Optional): </label>
+        <div class="col-8">
+            <input type="text" name="cn1" class="form-control"
+                     minlength="12" maxlength="16" />
+        </div>
       </div>
-      <script>
-        document.addEventListener("DOMContentLoaded", function() {
-          const creditCardForm = document.getElementById("creditCardForm");
-          const creditCardContainer = document.getElementById("creditCardContainer");
-          const addCreditCardButton = document.getElementById("addCreditCardButton");
-    
-          let creditCardCount = 0;
-    
-          addCreditCardButton.addEventListener("click", function() {
-            if (creditCardCount < 3) { // Limit to 3 credit cards
-              const creditCardFields = document.createElement("div");
-              creditCardFields.classList.add("credit-card-info");
-              creditCardFields.dataset.card = creditCardCount + 1;
-    
-              creditCardFields.innerHTML = `
-                <div>
-                  <label for="ccn${creditCardCount + 1}">Card Number:</label>
-                  <input id="ccn${creditCardCount + 1}" 
-                    type="tel" 
-                    inputmode="numeric" 
-                    pattern="[0-9\s]{13,19}" 
-                    autocomplete="cc-number" maxlength="19" 
-                    placeholder="xxxx xxxx xxxx xxxx" 
-                    name="cardNumber${creditCardCount + 1}" 
-                    required>
-                </div>
-                <div>
-                  <label for="expiryDate${creditCardCount + 1}">Expiry Date:</label>
-                  <input type="date" id="expiryDate${creditCardCount + 1}" name="expiryDate${creditCardCount + 1}" required>
-                </div>
-                <div>
-                  <label for="cvv${creditCardCount + 1}">CVV:</label>
-                    
-                  <input type="text" id="cvv${creditCardCount + 1}" 
-                    type="tel" 
-                    inputmode="numeric" 
-                    pattern="[0-9\s]{3,4}" 
-                    autocomplete="cc-number" maxlength="4" 
-                    placeholder="xxxx" 
-                    name="cvv${creditCardCount + 1}" 
-                    required>
-                </div>
-                <div>
-                  <button type="button" class="removeCreditCardButton" data-card="${creditCardCount + 1}">Remove</button>
-                </div>
-              `;
-              creditCardContainer.appendChild(creditCardFields);
-              creditCardCount++;
-            } else {
-              alert("You can only add up to 3 credit cards.");
-            }
-          });
-    
-          creditCardContainer.addEventListener("click", function(event) {
-            if (event.target.classList.contains("removeCreditCardButton")) {
-              const cardToRemove = event.target.getAttribute("data-card");
-              const cardToRemoveElement = document.querySelector(`.credit-card-info[data-card="${cardToRemove}"]`);
-              creditCardContainer.removeChild(cardToRemoveElement);
-              creditCardCount--;
-            }
-          });
-    
-          creditCardForm.addEventListener("submit", function(event) {
-            // Perform form submission logic here
-            // This is just a placeholder
-            event.preventDefault();
-            console.log("Form submitted!");
-          });
-        });
-      </script>
-</div>
+
+      <div class="form-group row">
+        <label class="col-4 col-form-label">Name on Card 1 (Optional): </label>
+        <div class="col-8">
+            <input type="text" name="cna1" class="form-control"/>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-4 col-form-label">Expiration Date 1 (Optional): </label>
+        <div class="col-8">
+            <input type="text" name="ex1" class="form-control" maxlength="5" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-4 col-form-label">Security Code 1 (Optional): </label>
+        <div class="col-8">
+            <input type="text" name="cv1" class="form-control"
+                     minlength="2" maxlength="3" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-4 col-form-label">Card Number 2 (Optional): </label>
+        <div class="col-8">
+            <input type="text" name="cn2" class="form-control"
+                     minlength="12" maxlength="16" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-4 col-form-label">Name on Card 2 (Optional): </label>
+        <div class="col-8">
+            <input type="text" name="cna2" class="form-control"/>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-4 col-form-label">Expiration Date 2 (Optional): </label>
+        <div class="col-8">
+            <input type="text" name="ex2" class="form-control" maxlength="5" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-4 col-form-label">Security Code 2 (Optional): </label>
+        <div class="col-8">
+            <input type="text" name="cv2" class="form-control"
+                     minlength="2" maxlength="3" />
+        </div>
+      </div>      
+      
+      <div class="form-group row">
+        <label class="col-4 col-form-label">Card Number 3 (Optional): </label>
+        <div class="col-8">
+            <input type="text" name="cn3" class="form-control"
+                     minlength="12" maxlength="16" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-4 col-form-label">Name on Card 3 (Optional): </label>
+        <div class="col-8">
+            <input type="text" name="cna3" class="form-control"/>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-4 col-form-label">Expiration Date 3 (Optional): </label>
+        <div class="col-8">
+            <input type="text" name="ex3" class="form-control" maxlength="5" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-4 col-form-label">Security Code 3 (Optional): </label>
+        <div class="col-8">
+            <input type="text" name="cv3" class="form-control"
+                     minlength="2" maxlength="3" />
+        </div>
+      </div>
+
+      <div>
+        <input type="checkbox" th:field="*{subscription}" id="agreeCheckbox" name="agreeCheckbox">
+        <label for="agreeCheckBox">subscribe to promotions</label>
+      </div>
+            
+      <div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      </div>
+      
+      </form>
+    </div>
+        
+  </div>
 </body>
 </html>
 

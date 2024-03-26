@@ -39,7 +39,19 @@ public class registrationController {
     } // signup
 
     @PostMapping("/process_register")
-    public String processRegister(User user, Model model) throws MessagingException, UnsupportedEncodingException {
+    public String processRegister(@RequestParam("cn1") String cn1,
+    @RequestParam("cna1") String cna1,
+    @RequestParam("ex1") String ex1,
+    @RequestParam("cv1") String cv1,
+    @RequestParam("cn2") String cn2,
+    @RequestParam("cna2") String cna2,
+    @RequestParam("ex2") String ex2,
+    @RequestParam("cv2") String cv2,
+    @RequestParam("cn3") String cn3,
+    @RequestParam("cna3") String cna3,
+    @RequestParam("ex3") String ex3,
+    @RequestParam("cv3") String cv3,
+        User user, Model model) throws MessagingException, UnsupportedEncodingException {
         // checking if email exists
         User existingAccount = userRepo.findByEmail(user.getEmail());
         if (existingAccount != null)
@@ -51,6 +63,18 @@ public class registrationController {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
+        user.getPaymentInfo().get(0).setCardNumber(cn1);
+        user.getPaymentInfo().get(0).setCardName(cna1);
+        user.getPaymentInfo().get(0).setExpirationDate(ex1);
+        user.getPaymentInfo().get(0).setSecurityCode(cv1);
+        user.getPaymentInfo().get(1).setCardNumber(cn2);
+        user.getPaymentInfo().get(1).setCardName(cna2);
+        user.getPaymentInfo().get(1).setExpirationDate(ex2);
+        user.getPaymentInfo().get(1).setSecurityCode(cv2);
+        user.getPaymentInfo().get(2).setCardNumber(cn3);
+        user.getPaymentInfo().get(2).setCardName(cna3);
+        user.getPaymentInfo().get(2).setExpirationDate(ex3);
+        user.getPaymentInfo().get(2).setSecurityCode(cv3);
 
         generateCode(user);
         sendVerEmail(user);
