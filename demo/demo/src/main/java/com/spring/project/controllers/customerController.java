@@ -104,12 +104,12 @@ public class customerController {
         System.out.println(user.getPassword());
         if (!passwordEncoder.matches(currPass, user.getPassword())) {
             model.addAttribute("wrong_pass", "Incorrect Password");
-            return "changepw";
+            return "changepassword";
         }
 
         if (!newPass.equals(confirmPass)) {
             model.addAttribute("no_match", "Passwords do not match");
-            return "changepw";
+            return "changepassword";
         }
 
         String encodedPassword = passwordEncoder.encode(newPass);
@@ -117,7 +117,7 @@ public class customerController {
 
         userRepo.save(user);
 
-        return "profile";
+        return "homepage";
     }
 
 
