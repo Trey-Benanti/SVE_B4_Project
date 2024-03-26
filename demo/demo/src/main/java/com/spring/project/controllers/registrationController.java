@@ -1,5 +1,6 @@
 package com.spring.project.controllers;
 
+import com.spring.project.users.userinfo.CardInfo;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,18 +64,13 @@ public class registrationController {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        user.getPaymentInfo().get(0).setCardNumber(cn1);
-        user.getPaymentInfo().get(0).setCardName(cna1);
-        user.getPaymentInfo().get(0).setExpirationDate(ex1);
-        user.getPaymentInfo().get(0).setSecurityCode(cv1);
-        user.getPaymentInfo().get(1).setCardNumber(cn2);
-        user.getPaymentInfo().get(1).setCardName(cna2);
-        user.getPaymentInfo().get(1).setExpirationDate(ex2);
-        user.getPaymentInfo().get(1).setSecurityCode(cv2);
-        user.getPaymentInfo().get(2).setCardNumber(cn3);
-        user.getPaymentInfo().get(2).setCardName(cna3);
-        user.getPaymentInfo().get(2).setExpirationDate(ex3);
-        user.getPaymentInfo().get(2).setSecurityCode(cv3);
+
+            CardInfo card1 = new CardInfo(user, cn1, cna1, ex1, cv1);
+            CardInfo card2 = new CardInfo(user, cn2, cna2, ex2, cv2);
+            CardInfo card3 = new CardInfo(user, cn3, cna3, ex3, cv3);
+            user.getPaymentInfo().add(card1);
+            user.getPaymentInfo().add(card2);
+            user.getPaymentInfo().add(card3);
 
         generateCode(user);
         sendVerEmail(user);

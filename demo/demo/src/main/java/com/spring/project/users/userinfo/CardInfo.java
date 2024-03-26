@@ -28,6 +28,14 @@ public class CardInfo {
     @Column(name = "secCode", nullable = false)
     private String securityCode;
 
+    public CardInfo(User userId, String cardNum, String cardName, String expirationDate, String securityCode) {
+        this.userId = userId;
+        this.cardNum = cardNum;
+        this.cardName = cardName;
+        this.expirationDate = expirationDate;
+        this.securityCode = securityCode;
+    }
+
     // Setters
     public void setCardNumber(String num) {
         this.cardNum = num;

@@ -41,11 +41,22 @@ public class User {
     @Column(name = "subscription", nullable = false)
     private boolean subscription;
 
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(
+            mappedBy = "userId",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     @Column(name = "payment_info", nullable = true)
-    public List<CardInfo> paymentInfo = new ArrayList<CardInfo>(Arrays.asList(new CardInfo(), new CardInfo(), new CardInfo()));
+    private List<CardInfo> paymentInfo = new ArrayList<>();
+   // public List<CardInfo> paymentInfo = new ArrayList<CardInfo>(Arrays.asList(new CardInfo(), new CardInfo(), new CardInfo()));
+
+
 
     // Setters
+
+    public void setPaymentInfo(List<CardInfo> paymentInfo) {
+        this.paymentInfo = paymentInfo;
+    }
 
     public void setEmail(String mail) {
         this.email = mail;
@@ -118,6 +129,6 @@ public class User {
     }
 
     public List<CardInfo> getPaymentInfo() {
-        return this.paymentInfo;
+        return paymentInfo;
     }
 }
