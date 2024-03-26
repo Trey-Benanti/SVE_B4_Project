@@ -42,7 +42,6 @@
                     <input type="submit" value="Sign Out" />
                 </form>
             </div>
-            <p class="nav-link">Filter</p>
             <div id="ns-filter-ctr">
                 <label id="now-showing-label" for="now_showing_check">Now Showing</label>
                 <input type="checkbox" id="now-showing-check" name="now-showing-check" />
@@ -64,7 +63,7 @@
 
     <div class="movie-list-container">
         <div class="movie-overview">
-            <div th:each="movie : ${movies}" th:if="${movie.nowPlaying==1}" class="movie-ctr">
+            <div th:each="movie : ${movies}" th:if="${movie.nowPlaying==1}" class="movie-ctr now-showing">
                 <a href="#" class="movie-title" th:text="${movie.movieTitle}"></a>
                 <iframe width="530" height="365"
                         class="trailer-video"
@@ -89,7 +88,7 @@
     <h1 class="now-showing-header">Coming Soon</h1>
     <div class="movie-list-container">
     <div class="movie-overview">
-        <div class="movie-ctr box" th:each="movie : ${movies}" th:if="${movie.nowPlaying==0}">
+        <div class="movie-ctr box coming-soon" th:each="movie : ${movies}" th:if="${movie.nowPlaying==0}">
             <a class="movie-title" th:text="${movie.movieTitle}" />
             <iframe width="530" height="365"
                     class="trailer-video"
@@ -140,5 +139,34 @@
     <div>
         <img th:src="@{css/images/Tidal_Waves_Overview.webp}" alt="Tidal Waves Background" width="100%">
     </div>
+    <script th:inline="javascript">
+        document.getElementById('now-showing-check').addEventListener('change', function() {
+            var nowShowingMovies = document.getElementsByClassName('now-showing');
+            var comingSoonMovies = document.getElementsByClassName('coming-soon');
+            for(var i = 0; i < nowShowingMovies.length; i++) {
+                if(this.checked) {
+                    nowShowingMovies[i].style.display = 'block';
+                    comingSoonMovies[i].style.display = 'none';
+                } else {
+                    nowShowingMovies[i].style.display = 'block';
+                    comingSoonMovies[i].style.display = 'block';
+                }
+            }
+        });
+
+        document.getElementById('coming-soon-check').addEventListener('change', function() {
+            var nowShowingMovies = document.getElementsByClassName('now-showing');
+            var comingSoonMovies = document.getElementsByClassName('coming-soon');
+            for(var i = 0; i < comingSoonMovies.length; i++) {
+                if(this.checked) {
+                    comingSoonMovies[i].style.display = 'block';
+                    nowShowingMovies[i].style.display = 'none';
+                } else {
+                    comingSoonMovies[i].style.display = 'block';
+                    nowShowingMovies[i].style.display = 'block';
+                }
+            }
+        });
+    </script>
 </body>
 </html>
