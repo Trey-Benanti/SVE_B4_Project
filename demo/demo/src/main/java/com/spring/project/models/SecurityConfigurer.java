@@ -43,6 +43,7 @@ public class SecurityConfigurer   {
             )
             .formLogin(login ->
                 login.usernameParameter("email")
+                .loginPage("/login")
                 .defaultSuccessUrl("/")
                 .permitAll()
             )

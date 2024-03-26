@@ -12,7 +12,6 @@
 <div id="nav-ctr">
     <nav class="top-nav">
         <a class="nav-link">Book</a>
-        <a class="nav-link active" th:href="@{/login}">Login</a>
         <a class="nav-link" th:href="@{/signup}">Register</a>
         <a class="nav-link">About</a>
         <a class="nav-link" th:href="@{/admin/}">Admin</a>
@@ -44,9 +43,9 @@
     Invalid username and password.</div>
 <div th:if="${param.logout}">
     You have been logged out.</div>
-<form th:action="@{/login}" method="post">
+<form class="form-signin" th:action="@{/login}" method="post">
     <div>
-    <input type="text" name="username" placeholder="Username"/>
+    <input type="email" name="email" placeholder="Email"/>
     </div>
     <div>
     <input type="password" name="password" placeholder="Password"/>
