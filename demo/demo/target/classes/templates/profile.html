@@ -32,15 +32,15 @@
         <a th:href="@{/orders}">Orders</a>
     </div>
 
-    <div class="content">
+    <div class="content" th:object="${user}">
         <h1>Profile </h1>
-        <h4>Email: </h4>
-        <h4>First Name:</h4>
-        <h4>Last Name:</h4>
-        <h4>Address:</h4>
-        <h4>City:</h4>
-        <h4>State:</h4>
-        <h4>Zipcode:</h4>
+        <h4>Email: <span th:text="${email}"></span>email</h4>
+        <h4>First Name: <span th:text="${firstName}">first Name</span></h4>
+        <h4>Last Name: <span th:text="${lastName}">last Name</span></h4>
+        <h4>Address: <span th:text="${address?.streetAddress}"></span></h4>
+        <h4>City: <span th:text="${address?.cityName}"></span></h4>
+        <h4>State: <span th:text="${address?.stateCode}"></span></h4>
+        <h4>Zipcode: <span th:text="${address?.zipCode}"></span></h4>
         <label><strong>Subscribed to promotions  </strong><input type="checkbox" id="agreeCheckbox" name="agreeCheckbox" disabled></label>
         <br/>
         <br/>
