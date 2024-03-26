@@ -176,6 +176,18 @@
                 opacity: 1;
             }
         }
+
+        @keyframes fillIn1 {
+            0% {
+                transform: translate(0px);
+                opacity: 0;
+            }
+            100% {
+                transform: translate(0);
+                opacity: 1;
+            }
+        }
+
         @keyframes slipIn {
             0% {
                 transform: translateZ(100px);
@@ -195,7 +207,76 @@
             padding-right: 30px;
             justify-content: center;
         }
+        body {
+            margin: 0;
+            text-align: center;
+        }
+        #order-summary {
+            max-width: 600px;
+            max-height: 250px;
+            min-height: 200px;
+            overflow: scroll;
+            background-color: inherit;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            flex: auto;
+            margin: 0 auto;
 
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            position: relative;
+            animation: 1s fillIn1;
+        }
+        li:hover {
+            background-color: #f9f9f9;
+        }
+        .delete-btn {
+            display: none;
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            background-color: #ff4444;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        li:hover .delete-btn {
+            display: inline-block;
+        }
+        .order-total {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        #order-summary > button {
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -235,11 +316,14 @@
                     <option value="adult">Adult (12+)</option>
                     <option value="senior">Senior (65+)</option>
                 </select>
-                <button id="add-to-cart-btn">Add to Cart</button>
+                <<button id="add-to-cart-btn"></button>
+                <button id="add-random-ticket-btn">Add to Cart</button>
             </div>
         </div>
     </div>
 </div>
+
+
     <script id="tests">
         const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G']; // Row labels
         const seatsPerRow = 6; // Number of seats per row
@@ -301,9 +385,113 @@
 
         // Create rows based on labels and number of seats per row
         rows.forEach(rowLabel => createRow(rowLabel, seatsPerRow));
+
+
     </script>
+
+
+<script id="test">
+    // Sample data for tickets
+    const tickets = [
+        { id: 1, movie: "Movie 1", date: "2024-02-20", time: "15:00", seat: "A1", price: 10.00 },
+        { id: 2, movie: "Movie 2", date: "2024-02-20", time: "18:00", seat: "B3", price: 12.00 },
+    ];
+
+    // Function to display ticket details and calculate total
+    function displayOrderSummary() {
+        const ticketList = document.getElementById('ticket-list');
+        const orderTotal = document.getElementById('order-total');
+        let total = 0;
+
+        ticketList.innerHTML = '';
+
+        // Display each ticket and calculate total
+        tickets.forEach(ticket => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${ticket.movie} | Date: ${ticket.date} | Time: ${ticket.time} | Seat: ${ticket.seat} | Price: $${ticket.price.toFixed(2)}`;
+
+            // Create delete button
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.className = 'delete-btn';
+
+            deleteBtn.addEventListener('click', () => deleteTicket(ticket.id));
+
+            listItem.appendChild(deleteBtn);
+            ticketList.appendChild(listItem);
+            total += ticket.price;
+        });
+
+        // Update order total
+        orderTotal.textContent = total.toFixed(2);
+    }
+
+    function deleteTicket(ticketId) {
+        const index = tickets.findIndex(ticket => ticket.id === ticketId);
+        if (index !== -1) {
+            tickets.splice(index, 1);
+            displayOrderSummary(); // Update order summary after deleting ticket
+        }
+    }
+
+    // Call displayOrderSummary function to initially populate the order summary
+    displayOrderSummary();
+
+    document.getElementById('update-order-btn').addEventListener('click', displayOrderSummary);
+
+    document.getElementById('checkout-btn').addEventListener('click', () => {
+        // go to checkout
+    });
+
+    // add a random movie ticket
+    function addRandomTicket() {
+        const movieTitles = ["Avengers: Endgame", "The Godfather", "The Shawshank Redemption", "The Dark Knight", "Inception"];
+        const seatNumbers = ["A1", "B2", "C3", "D4", "E5"];
+
+        // random values for movie title, date, time, seat, and price
+        const randomMovie = movieTitles[Math.floor(Math.random() * movieTitles.length)];
+        const randomDate = "2024-02-21";
+        const randomTime = "20:00";
+        const randomSeat = seatNumbers[Math.floor(Math.random() * seatNumbers.length)];
+        const randomPrice = Math.floor(Math.random() * 10 + 10);
+
+        // Create a new ticket object
+        const newTicket = {
+            id: tickets.length + 1,
+            movie: randomMovie,
+            date: randomDate,
+            time: randomTime,
+            seat: randomSeat,
+            price: randomPrice
+        };
+
+        // Add the new ticket to the tickets array
+        tickets.push(newTicket);
+
+        // Update the order summary
+        displayOrderSummary();
+    }
+
+    // add a random movie ticket
+    document.getElementById('add-random-ticket-btn').addEventListener('click', addRandomTicket);
+
+</script>
+<div id="order-summary">
+    <h2>Order Summary</h2>
+    <ul id="ticket-list">
+        <!-- Ticket details will be dynamically added here -->
+    </ul>
+    <p class="order-total">Total: $<span id="order-total">0.00</span></p>
+    <button id="update-order-btn">Update Order</button>
+    <button id="checkout-btn">
+        <a th:href="@{/order-confirmation}">
+            Checkout
+        </a>
+    </button>
+</div>
 <footer class="img-footer">
     <img th:src="@{/css/images/Waves_Sand.png}" alt="Tidal Waves Theaters" width="100%">
 </footer>
+
 </body>
 </html>
