@@ -36,6 +36,8 @@ public class CardInfo {
         this.securityCode = securityCode;
     }
 
+    public CardInfo() {}
+
     // Setters
     public void setCardNumber(String num) {
         this.cardNum = num;

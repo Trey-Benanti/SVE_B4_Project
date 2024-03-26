@@ -1,8 +1,11 @@
 package com.spring.project.controllers;
 
+import com.spring.project.services.CardInfoRepository;
 import com.spring.project.services.UserRepository;
 import com.spring.project.users.User;
+import com.spring.project.users.userinfo.CardInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.security.Security;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class customerController {
@@ -31,7 +38,11 @@ public class customerController {
     } // editprofile
 
     @GetMapping("/creditcards")
-    public String creditcards() {
+    public String creditcards(Principal principal, Model model) {
+        // Copying off Sam here O_o
+        User edited = userRepo.findByEmail(principal.getName());
+        List<CardInfo> cards = edited.getPaymentInfo(); // Gets each list of card info
+        model.addAttribute("cards", cards);
         return "creditcards";
     } // creditcards
 

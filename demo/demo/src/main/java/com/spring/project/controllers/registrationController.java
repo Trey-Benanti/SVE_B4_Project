@@ -65,12 +65,13 @@ public class registrationController {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
 
-            CardInfo card1 = new CardInfo(user, cn1, cna1, ex1, cv1);
-            CardInfo card2 = new CardInfo(user, cn2, cna2, ex2, cv2);
-            CardInfo card3 = new CardInfo(user, cn3, cna3, ex3, cv3);
-            user.getPaymentInfo().add(card1);
-            user.getPaymentInfo().add(card2);
-            user.getPaymentInfo().add(card3);
+        // Adds credit card info to paymentInfo list.
+        CardInfo card1 = new CardInfo(user, cn1, cna1, ex1, cv1);
+        CardInfo card2 = new CardInfo(user, cn2, cna2, ex2, cv2);
+        CardInfo card3 = new CardInfo(user, cn3, cna3, ex3, cv3);
+        user.getPaymentInfo().add(card1);
+        user.getPaymentInfo().add(card2);
+        user.getPaymentInfo().add(card3);
 
         generateCode(user);
         sendVerEmail(user);
