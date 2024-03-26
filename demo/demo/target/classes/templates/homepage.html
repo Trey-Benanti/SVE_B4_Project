@@ -12,9 +12,13 @@
     <div id="nav-ctr">
         <nav class="top-nav">
             <a class="nav-link">Book</a>
-            <div sec:authorize="!(isAuthenticated)"><a class="nav-link" th:href="@{/login}">Login</a></div>
+            <div sec:authorize="!(isAuthenticated)">
+                <a class="nav-link" th:href="@{/login}">Login</a>
+            </div>
+            <div sec:authorize="!(isAuthenticated)">
+                <a class="nav-link" th:href="@{/signup}">Register</a>
+            </div>
             <div sec:authorize="isAuthenticated"><a class="nav-link" th:href="@{/profile}">Profile</a></div>
-            <a class="nav-link" th:href="@{/signup}">Register</a>
             <a class="nav-link">About</a>
             <div sec:authorize="hasRole('ROLE_ADMIN')">
                 <a class="nav-link" th:href="@{/admin/}">Admin</a>
