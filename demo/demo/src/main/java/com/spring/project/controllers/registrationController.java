@@ -66,7 +66,7 @@ public class registrationController {
     }
 
     @PostMapping("/verifyUser")
-    public String verifyUser(@RequestParam("code") String code) {
+    public String verifyUser(@RequestParam("code") String code, Model model) {
         String ver = "VERIFIED";
 
         if (code == ver) {
@@ -76,7 +76,7 @@ public class registrationController {
         User user = userRepo.findByVerCode(code);
 
         if (user == null) {
-            // TODO: make it so verification page says that the code was wrong
+            model.addAttribute("wrong_code", "Error: Code not found");
             return "verification";
         }
 

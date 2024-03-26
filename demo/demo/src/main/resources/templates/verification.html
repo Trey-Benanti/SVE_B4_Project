@@ -21,6 +21,7 @@
         <form id="verify" th:action="@{/verifyUser}" method="post">
             <label for="verification-box" id="verification-label">Enter code:</label>
             <input type="text" id="verification-box" name="code" />
+            <p th:text="${wrong_code}"></p>
             <button id="submit-button" type="submit" value="Submit">Submit</button>
         </form>
     </div>
