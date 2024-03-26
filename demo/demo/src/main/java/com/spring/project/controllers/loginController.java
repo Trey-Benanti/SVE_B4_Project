@@ -27,7 +27,12 @@ public class loginController {
     @Autowired
     private JavaMailSender mailSender;
     @GetMapping("/login")
-    public String login() {
+    public String login(Principal principal) {
+        if (principal != null)
+        {
+            return "homepage";
+        }
+
         return "login";
     } // signin
 

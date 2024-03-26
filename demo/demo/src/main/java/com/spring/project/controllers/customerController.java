@@ -27,18 +27,32 @@ public class customerController {
 
     @GetMapping("/profile")
     public String profile(Model model, Principal principal) {
+        if (principal == null)
+        {
+            return "homepage";
+        }
+
         model.addAttribute("user", userRepo.findByEmail(principal.getName()));
         return "profile";
     } // profile
 
     @GetMapping("/editprofile")
     public String editprofile(Model model, Principal principal) {
+        if (principal == null)
+        {
+            return "homepage";
+        }
         model.addAttribute("user", userRepo.findByEmail(principal.getName()));
         return "editprofile";
     } // editprofile
 
     @GetMapping("/creditcards")
     public String creditcards(Principal principal, Model model) {
+        if (principal == null)
+        {
+            return "homepage";
+        }
+
         // Copying off Sam here O_o
         User edited = userRepo.findByEmail(principal.getName());
         List<CardInfo> cards = edited.getPaymentInfo(); // Gets each list of card info
