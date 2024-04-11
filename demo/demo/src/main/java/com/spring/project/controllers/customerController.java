@@ -74,10 +74,13 @@ public class customerController {
         CardInfo editedCard = cardRepo.findById(card.getId()).orElseThrow(() -> new IllegalArgumentException("Invalid Card ID"));
         editedCard.setId(card.getId());
         editedCard.setCardName(card.getCardName());
-        editedCard.setCardNumber(card.getCardNumber());
         editedCard.setExpirationDate(card.getExpirationDate());
         editedCard.setSecurityCode(card.getSecurityCode());
         editedCard.setUserId(user);
+
+        BCryptPasswordEncoder paymentEncoder = new BCryptPasswordEncoder(); // Encrypt card number
+        editedCard.setCardNumber(paymentEncoder.encode(card.getCardNumber()));
+
         cardRepo.save(editedCard);
         return "redirect:/creditcards";
     }

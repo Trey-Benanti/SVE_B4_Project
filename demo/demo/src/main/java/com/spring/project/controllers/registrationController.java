@@ -73,6 +73,12 @@ public class registrationController {
         user.getPaymentInfo().add(card2);
         user.getPaymentInfo().add(card3);
 
+        for(int i = 0; i < user.getPaymentInfo().size(); i++) { // encrypt card number if exists
+            if(!user.getPaymentInfo().get(i).getCardNumber().equals("")) {
+                user.getPaymentInfo().get(i).setCardNumber(passwordEncoder.encode(user.getPaymentInfo().get(i).getCardNumber()));
+            }
+        } // for
+
         generateCode(user);
         sendVerEmail(user);
 
