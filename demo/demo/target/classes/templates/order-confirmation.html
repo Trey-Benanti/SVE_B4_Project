@@ -5,17 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Confirmation</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-            background-color: #f7f7f7;
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+        :root {
+            --ocean-blue: rgb(30,152,188);
+            --sand-yellow: rgb(241,218,165);
+            --burgundy-wine: rgb(86,37,58);
+            --olive-green: rgb(122,103,49);
+            --cloudy-grey: rgb(155,182,189);
+            --turquoise-sea: rgb(70,225,232);
+            --stormy-sky: rgb(59,91,114);
+            --golden-sun: rgb(221,160,57);
+            --terra-cotta: rgb(206,98,67);
         }
+        body {
+            min-height: 100%;
+            font-family: 'Montserrat', sans-serif, bold;
+            margin: 0;
+            padding: 0px;
+            width: 100%;
+            background-color: #f4f4f4;
+            text-align: center;
+            background-color: var(--sand-yellow);
+        }
+
+        .top-nav {
+            display: flex;
+            height: 30px;
+            gap: 30px;
+            color: #cccccc;
+            overflow: hidden;
+            padding-left: 20px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            padding-bottom: 10px;
+            font-size: 18px;
+            padding-top: 12px;
+            background: linear-gradient(to bottom, var(--sand-yellow), var(--burgundy-wine));
+        }
+
+        .top-nav a:hover {
+            color: #a59c9f;
+        }
+
+        .nav-link {
+            margin-top: 8px;
+        }
+
+        .search-ctr {
+            margin-top: 8px;
+            font-size: 18px;
+        }
+
+        #search-label {
+            margin-right: 8px;
+        }
+
+        #search-box {
+            width: 250px;
+            border-radius: 8px;
+        }
+
+        #search-button {
+            border-radius: 5px;
+            background-color: #BA0C2F;
+            color: #ffffff;
+        }
+
         .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
+            color: var(--ocean-blue);
+            margin-top: 20px;
+            justify-content: center;
+            max-width: 750px;
+            max-height: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            background-image: radial-gradient(#CBE1EB, #5DA9C2);
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 40px;
@@ -49,13 +112,42 @@
         .contact-info p {
             margin-bottom: 5px;
         }
-        .fun-visual {
-            margin-bottom: 40px;
-        }
+
     </style>
 </head>
 <body>
+<div id="nav-ctr">
+    <nav class="top-nav">
+        <a th:href="@{/}" >Home</a>
+        <a class="nav-link">Book</a>
+        <div sec:authorize="!(isAuthenticated)">
+            <a class="nav-link" th:href="@{/login}">Login</a>
+        </div>
+        <div sec:authorize="!(isAuthenticated)">
+            <a class="nav-link" th:href="@{/signup}">Register</a>
+        </div>
+        <div sec:authorize="isAuthenticated"><a class="nav-link" th:href="@{/profile}">Profile</a></div>
+        <a class="nav-link">About</a>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <a class="nav-link" th:href="@{/admin/}">Admin</a>
+        </div>
+        <div class="search-ctr">
+            <form id="search-form"
+                  th:action="@{/search}"
+                  method="get">
+                <label for="search-box" id="search-label">Search:</label>
+                <input type="search" id="search-box" name="keyword"/>
+                <button id="search-button" type="submit" value="Search">Go</button>
+            </form>
+        </div>
+        <div sec:authorize="isAuthenticated">
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out" />
+            </form>
+        </div>
 
+    </nav>
+</div>
 <div class="container">
     <h1>Order Confirmation</h1>
 
@@ -73,10 +165,6 @@
         <h2>Reward Program</h2>
     </div>
 
-    <div class="fun-visual">
-        <!-- animation/image of popcorn bucket splashing popcorn? -->
-    </div>
-
     <div class="contact-info">
         <h2>Need Help? Contact Customer Support</h2>
         <p>For assistance with your order, please contact us at:</p>
@@ -84,5 +172,8 @@
         <p>Email: support@example.com</p>
     </div>
 </div>
+<footer class="img-footer">
+    <img th:src="@{/css/images/Waves_Sand.png}" alt="Tidal Waves Theaters" width="100%">
+</footer>
 </body>
 </html>

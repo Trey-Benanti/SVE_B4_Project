@@ -1,6 +1,7 @@
 package com.spring.project.controllers;
 
 import com.spring.project.services.CardInfoRepository;
+import com.spring.project.services.Encrypt;
 import com.spring.project.services.UserRepository;
 import com.spring.project.users.User;
 import com.spring.project.users.userinfo.CardInfo;
@@ -11,8 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
-import java.security.Security;
+import javax.crypto.*;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -69,7 +71,7 @@ public class customerController {
     } // editcards
 
     @PostMapping("/editcards")
-    public String saveCard(@ModelAttribute CardInfo card, Principal principal) {
+    public String saveCard(@ModelAttribute CardInfo card, Principal principal) throws Exception {
         User user = userRepo.findByEmail(principal.getName());
         CardInfo editedCard = cardRepo.findById(card.getId()).orElseThrow(() -> new IllegalArgumentException("Invalid Card ID"));
         editedCard.setId(card.getId());
@@ -78,8 +80,14 @@ public class customerController {
         editedCard.setSecurityCode(card.getSecurityCode());
         editedCard.setUserId(user);
 
-        BCryptPasswordEncoder paymentEncoder = new BCryptPasswordEncoder(); // Encrypt card number
-        editedCard.setCardNumber(paymentEncoder.encode(card.getCardNumber()));
+//        BCryptPasswordEncoder paymentEncoder = new BCryptPasswordEncoder();
+//        editedCard.setCardNumber(paymentEncoder.encode(card.getCardNumber())); // Encrypt card number
+
+        KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+        keyGenerator.init(128);
+        SecretKey secretKey = keyGenerator.generateKey();
+        Encrypt encrypt = new Encrypt();
+        editedCard.setCardNumber(encrypt.encrypt(editedCard.getCardNumber(), secretKey));
 
         cardRepo.save(editedCard);
         return "redirect:/creditcards";
