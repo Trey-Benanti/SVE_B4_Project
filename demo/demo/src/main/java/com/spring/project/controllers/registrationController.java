@@ -1,5 +1,6 @@
 package com.spring.project.controllers;
 
+import com.spring.project.services.Encrypt;
 import com.spring.project.users.userinfo.CardInfo;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -16,7 +17,14 @@ import com.spring.project.users.*;
 import com.spring.project.services.UserRepository;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
+import java.security.Key;
+import java.security.KeyStore;
 import java.util.Random;
 
 @Controller
@@ -52,7 +60,7 @@ public class registrationController {
     @RequestParam("cna3") String cna3,
     @RequestParam("ex3") String ex3,
     @RequestParam("cv3") String cv3,
-        User user, Model model) throws MessagingException, UnsupportedEncodingException {
+        User user, Model model) throws Exception {
         // checking if email exists
         User existingAccount = userRepo.findByEmail(user.getEmail());
         if (existingAccount != null)
@@ -65,6 +73,7 @@ public class registrationController {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
 
+
         // Adds credit card info to paymentInfo list.
         CardInfo card1 = new CardInfo(user, cn1, cna1, ex1, cv1);
         CardInfo card2 = new CardInfo(user, cn2, cna2, ex2, cv2);
@@ -73,14 +82,47 @@ public class registrationController {
         user.getPaymentInfo().add(card2);
         user.getPaymentInfo().add(card3);
 
+        generateCode(user);
+        sendVerEmail(user);
+
+        userRepo.save(user);
+
+        File keystoreFile = new File("keystore.jceks");
+
         for(int i = 0; i < user.getPaymentInfo().size(); i++) { // encrypt card number if exists
             if(!user.getPaymentInfo().get(i).getCardNumber().equals("")) {
-                user.getPaymentInfo().get(i).setCardNumber(passwordEncoder.encode(user.getPaymentInfo().get(i).getCardNumber()));
+//                user.getPaymentInfo().get(i).setCardNumber(user.getPaymentInfo().get(i).getCardNumber());
+                System.out.println("ID: " + user.getPaymentInfo().get(i).getId().toString());
+
+                KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+                keyGenerator.init(128);
+                SecretKey secretKey = keyGenerator.generateKey();
+                KeyStore keyStore = KeyStore.getInstance("JCEKS");
+                char[] ksPassword = "password".toCharArray();
+
+                if(keystoreFile.exists()) {
+                    try(FileInputStream fis = new FileInputStream(keystoreFile)) {
+                        keyStore.load(fis, ksPassword);
+                    }
+                } else {
+                    keyStore.load(null, ksPassword);
+                } // else
+
+                KeyStore.SecretKeyEntry secretKeyEntry = new KeyStore.SecretKeyEntry(secretKey);
+                KeyStore.ProtectionParameter entryPassword = new KeyStore.PasswordProtection(ksPassword);
+                keyStore.setEntry(user.getPaymentInfo().get(i).getId().toString(), secretKeyEntry, entryPassword);
+
+                try(FileOutputStream fos = new FileOutputStream(keystoreFile)) {
+                    keyStore.store(fos, ksPassword);
+                }
+
+                Encrypt encrypt = new Encrypt();
+                user.getPaymentInfo().get(i).setCardNumber(encrypt.encrypt(user.getPaymentInfo().get(i).getCardNumber(), secretKey));
             }
         } // for
 
-        generateCode(user);
-        sendVerEmail(user);
+//        generateCode(user);
+//        sendVerEmail(user);
 
         userRepo.save(user);
     
