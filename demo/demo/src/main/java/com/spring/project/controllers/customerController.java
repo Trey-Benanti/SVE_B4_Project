@@ -108,7 +108,7 @@ public class customerController {
             Encrypt encryptor = new Encrypt(); // Decrypt card number
             String decCardNum = encryptor.decrypt(card.getCardNumber(), retrievedKey);
             card.setCardNumber(decCardNum);
-        }
+        } // if
 
         model.addAttribute("card", card);
         return "editcards";
@@ -147,7 +147,7 @@ public class customerController {
 
         try(FileOutputStream fos = new FileOutputStream(keystoreFile)) { // Store new key in keystore
             keyStore.store(fos, ksPassword);
-        }
+        } // try
 
         String toEnc = editedCard.getCardNumber(); // Encrypt card number
         Encrypt encrypt = new Encrypt();
@@ -155,7 +155,7 @@ public class customerController {
 
         cardRepo.save(editedCard);
         return "redirect:/creditcards";
-    }
+    } // saveCard
 
     @GetMapping("/orders")
     public String orders() {
