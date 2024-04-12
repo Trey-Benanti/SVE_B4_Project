@@ -9,11 +9,14 @@ import java.util.Base64;
  */
 public class Encrypt {
 
-    static Cipher cipher;
+    private Cipher cipher;
 
-    public static String encrypt(String toEncrypt, SecretKey secretKey) throws Exception {
+    public Encrypt() throws Exception {
+        this.cipher = Cipher.getInstance("AES");
+    }
+
+    public String encrypt(String toEncrypt, SecretKey secretKey) throws Exception {
         byte[] toEncryptByte = toEncrypt.getBytes();
-        cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
         byte[] encByte = cipher.doFinal(toEncryptByte);
         Base64.Encoder encoder = Base64.getEncoder();
@@ -21,7 +24,7 @@ public class Encrypt {
         return encString;
     } // encrypt
 
-    public static String decrypt(String toDecrypt, SecretKey secretKey) throws Exception {
+    public String decrypt(String toDecrypt, SecretKey secretKey) throws Exception {
         Base64.Decoder decoder = Base64.getDecoder();
         byte[] encByte = decoder.decode(toDecrypt);
         cipher.init(Cipher.DECRYPT_MODE, secretKey);
