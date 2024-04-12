@@ -85,22 +85,20 @@ public class registrationController {
         generateCode(user);
         sendVerEmail(user);
 
-        userRepo.save(user);
+        userRepo.save(user); // Save card info to get IDs.
 
         File keystoreFile = new File("keystore.jceks");
 
         for(int i = 0; i < user.getPaymentInfo().size(); i++) { // encrypt card number if exists
             if(!user.getPaymentInfo().get(i).getCardNumber().equals("")) {
-//                user.getPaymentInfo().get(i).setCardNumber(user.getPaymentInfo().get(i).getCardNumber());
-                System.out.println("ID: " + user.getPaymentInfo().get(i).getId().toString());
 
-                KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+                KeyGenerator keyGenerator = KeyGenerator.getInstance("AES"); // Generate secret key
                 keyGenerator.init(128);
                 SecretKey secretKey = keyGenerator.generateKey();
                 KeyStore keyStore = KeyStore.getInstance("JCEKS");
                 char[] ksPassword = "password".toCharArray();
 
-                if(keystoreFile.exists()) {
+                if(keystoreFile.exists()) { // Create key store if none exists
                     try(FileInputStream fis = new FileInputStream(keystoreFile)) {
                         keyStore.load(fis, ksPassword);
                     }
@@ -108,23 +106,20 @@ public class registrationController {
                     keyStore.load(null, ksPassword);
                 } // else
 
-                KeyStore.SecretKeyEntry secretKeyEntry = new KeyStore.SecretKeyEntry(secretKey);
+                KeyStore.SecretKeyEntry secretKeyEntry = new KeyStore.SecretKeyEntry(secretKey); // Set keystore entry params
                 KeyStore.ProtectionParameter entryPassword = new KeyStore.PasswordProtection(ksPassword);
                 keyStore.setEntry(user.getPaymentInfo().get(i).getId().toString(), secretKeyEntry, entryPassword);
 
                 try(FileOutputStream fos = new FileOutputStream(keystoreFile)) {
                     keyStore.store(fos, ksPassword);
-                }
+                } // try
 
-                Encrypt encrypt = new Encrypt();
+                Encrypt encrypt = new Encrypt(); // Encrypt card number
                 user.getPaymentInfo().get(i).setCardNumber(encrypt.encrypt(user.getPaymentInfo().get(i).getCardNumber(), secretKey));
-            }
+            } // if
         } // for
 
-//        generateCode(user);
-//        sendVerEmail(user);
-
-        userRepo.save(user);
+        userRepo.save(user); // Update the repo with encrypted card number. Requires IDs from first save.
     
         return "verification";
     }

@@ -63,19 +63,22 @@ public class customerController {
         User edited = userRepo.findByEmail(principal.getName());
         List<CardInfo> cards = edited.getPaymentInfo(); // Gets each list of card info
 
-        for(int i = 0; i < cards.size(); i++) {
+        for(int i = 0; i < cards.size(); i++) { // Decrypt each card number
             if(!cards.get(i).getCardNumber().equals("")) {
-                KeyStore secretKeyTarget = KeyStore.getInstance("JCEKS");
+                KeyStore secretKeyTarget = KeyStore.getInstance("JCEKS"); // Load keystore
                 char[] ksPassword = "password".toCharArray();
+
                 try (FileInputStream fis = new FileInputStream("keystore.jceks")) {
                     secretKeyTarget.load(fis, ksPassword);
-                }
-                KeyStore.ProtectionParameter protPassword = new KeyStore.PasswordProtection(ksPassword);
+                } // try
+
+                KeyStore.ProtectionParameter protPassword = new KeyStore.PasswordProtection(ksPassword); // Retrieve key from keystore
                 KeyStore.SecretKeyEntry tempKey = (KeyStore.SecretKeyEntry) secretKeyTarget.getEntry(cards.get(i).getId().toString(), protPassword);
                 SecretKey retrievedKey = new SecretKeySpec(tempKey.getSecretKey().getEncoded(), "AES");
-                Encrypt encryptor = new Encrypt();
+
+                Encrypt encryptor = new Encrypt(); // Decrypt card
                 String decCardNum = encryptor.decrypt(cards.get(i).getCardNumber(), retrievedKey);
-                cards.get(i).setCardNumber(decCardNum);
+                cards.get(i).setCardNumber(decCardNum); // Set model card to decrypted card number
             } // if
         } // for
 
@@ -87,17 +90,23 @@ public class customerController {
     public String editcards(@PathVariable Long id, Model model) throws Exception {
         CardInfo card = cardRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Card ID"));
 
-        KeyStore secretKeyTarget = KeyStore.getInstance("JCEKS");
-        char[] ksPassword = "password".toCharArray();
-        try(FileInputStream fis = new FileInputStream("keystore.jceks")) {
-            secretKeyTarget.load(fis, ksPassword);
+        if (!card.getCardNumber().equals("")) {
+
+            KeyStore secretKeyTarget = KeyStore.getInstance("JCEKS"); // Load keystore
+            char[] ksPassword = "password".toCharArray();
+
+            try (FileInputStream fis = new FileInputStream("keystore.jceks")) {
+                secretKeyTarget.load(fis, ksPassword);
+            } // try
+
+            KeyStore.ProtectionParameter protPassword = new KeyStore.PasswordProtection(ksPassword); // Retrieve key from keystore
+            KeyStore.SecretKeyEntry tempKey = (KeyStore.SecretKeyEntry) secretKeyTarget.getEntry(card.getId().toString(), protPassword);
+            SecretKey retrievedKey = new SecretKeySpec(tempKey.getSecretKey().getEncoded(), "AES");
+
+            Encrypt encryptor = new Encrypt(); // Decrypt card number
+            String decCardNum = encryptor.decrypt(card.getCardNumber(), retrievedKey);
+            card.setCardNumber(decCardNum);
         }
-        KeyStore.ProtectionParameter protPassword = new KeyStore.PasswordProtection(ksPassword);
-        KeyStore.SecretKeyEntry tempKey = (KeyStore.SecretKeyEntry) secretKeyTarget.getEntry(card.getId().toString(), protPassword);
-        SecretKey retrievedKey = new SecretKeySpec(tempKey.getSecretKey().getEncoded(), "AES");
-        Encrypt encryptor = new Encrypt();
-        String decCardNum = encryptor.decrypt(card.getCardNumber(), retrievedKey);
-        card.setCardNumber(decCardNum);
 
         model.addAttribute("card", card);
         return "editcards";
@@ -116,15 +125,13 @@ public class customerController {
 
         File keystoreFile = new File("keystore.jceks");
 
-
-        // TEST
-        KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+        KeyGenerator keyGenerator = KeyGenerator.getInstance("AES"); // Generate secret key
         keyGenerator.init(128);
         SecretKey secretKey = keyGenerator.generateKey();
         KeyStore keyStore = KeyStore.getInstance("JCEKS");
         char[] ksPassword = "password".toCharArray();
 
-        if(keystoreFile.exists()) {
+        if(keystoreFile.exists()) { // Create new keystore if one does not exist
             try(FileInputStream fis = new FileInputStream(keystoreFile)) {
                 keyStore.load(fis, ksPassword);
             }
@@ -132,18 +139,17 @@ public class customerController {
             keyStore.load(null, ksPassword);
         } // else
 
-        KeyStore.SecretKeyEntry secretKeyEntry = new KeyStore.SecretKeyEntry(secretKey);
+        KeyStore.SecretKeyEntry secretKeyEntry = new KeyStore.SecretKeyEntry(secretKey); // Set keystore entry params
         KeyStore.ProtectionParameter entryPassword = new KeyStore.PasswordProtection(ksPassword);
         keyStore.setEntry(card.getId().toString(), secretKeyEntry, entryPassword);
 
-        try(FileOutputStream fos = new FileOutputStream(keystoreFile)) {
+        try(FileOutputStream fos = new FileOutputStream(keystoreFile)) { // Store new key in keystore
             keyStore.store(fos, ksPassword);
         }
 
-        String toEnc = editedCard.getCardNumber();
+        String toEnc = editedCard.getCardNumber(); // Encrypt card number
         Encrypt encrypt = new Encrypt();
         editedCard.setCardNumber(encrypt.encrypt(toEnc, secretKey));
-        // TEST
 
         cardRepo.save(editedCard);
         return "redirect:/creditcards";
