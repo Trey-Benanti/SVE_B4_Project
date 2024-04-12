@@ -78,7 +78,9 @@ public class customerController {
 
                 Encrypt encryptor = new Encrypt(); // Decrypt card
                 String decCardNum = encryptor.decrypt(cards.get(i).getCardNumber(), retrievedKey);
-                cards.get(i).setCardNumber(decCardNum); // Set model card to decrypted card number
+                String cardLastFour = decCardNum.substring(decCardNum.length() - 4);
+                cardLastFour = "**** **** **** " + cardLastFour;
+                cards.get(i).setCardNumber(cardLastFour); // Set model card to decrypted card number
             } // if
         } // for
 
