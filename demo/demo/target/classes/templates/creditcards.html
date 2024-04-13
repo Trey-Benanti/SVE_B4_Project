@@ -38,7 +38,13 @@
             <h4 th:text="${card.getExpirationDate()}"></h4>
             <h4 th:text="${card.getSecurityCode()}"></h4>
             <h4 th:text="${card.getCardName()}"></h4>
-            <a th:href="@{'/editcards/' + ${card.getId()}}"><button>Edit</button></a>
+            <h4 id="billingAddrHdr">Billing Address</h4><br />
+            <div>
+                <h4 th:text="${card.getBillingAddrStreet()}"></h4>
+                <h4 th:text="${card.getBillingAddrState()}"></h4>
+                <h4 th:text="${card.getBillingAddrZip()}"></h4>
+                <a th:href="@{'/editcards/' + ${card.getId()}}"><button>Edit</button></a>
+            </div>
         </div>
 
     </div>

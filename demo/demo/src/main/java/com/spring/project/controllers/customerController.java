@@ -124,6 +124,9 @@ public class customerController {
         editedCard.setSecurityCode(card.getSecurityCode());
         editedCard.setUserId(user);
         editedCard.setCardNumber(card.getCardNumber());
+        editedCard.setBillingAddrStreet(card.getBillingAddrStreet());
+        editedCard.setBillingAddrState(card.getBillingAddrState());
+        editedCard.setBillingAddrZip(card.getBillingAddrZip());
 
         File keystoreFile = new File("keystore.jceks");
 
