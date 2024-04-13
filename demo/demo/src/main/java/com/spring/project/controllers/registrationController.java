@@ -60,6 +60,15 @@ public class registrationController {
     @RequestParam("cna3") String cna3,
     @RequestParam("ex3") String ex3,
     @RequestParam("cv3") String cv3,
+    @RequestParam("billingAddrStreet1") String billingAddrStreet1,
+    @RequestParam("billingAddrState1") String billingAddrState1,
+    @RequestParam("billingAddrZip1") String billingAddrZip1,
+    @RequestParam("billingAddrStreet2") String billingAddrStreet2,
+    @RequestParam("billingAddrState2") String billingAddrState2,
+    @RequestParam("billingAddrZip2") String billingAddrZip2,
+    @RequestParam("billingAddrStreet3") String billingAddrStreet3,
+    @RequestParam("billingAddrState3") String billingAddrState3,
+    @RequestParam("billingAddrZip3") String billingAddrZip3,
         User user, Model model) throws Exception {
         // checking if email exists
         User existingAccount = userRepo.findByEmail(user.getEmail());
@@ -75,9 +84,9 @@ public class registrationController {
 
 
         // Adds credit card info to paymentInfo list.
-        CardInfo card1 = new CardInfo(user, cn1, cna1, ex1, cv1);
-        CardInfo card2 = new CardInfo(user, cn2, cna2, ex2, cv2);
-        CardInfo card3 = new CardInfo(user, cn3, cna3, ex3, cv3);
+        CardInfo card1 = new CardInfo(user, cn1, cna1, ex1, cv1, billingAddrStreet1, billingAddrState1, billingAddrZip1);
+        CardInfo card2 = new CardInfo(user, cn2, cna2, ex2, cv2, billingAddrStreet2, billingAddrState2, billingAddrZip2);
+        CardInfo card3 = new CardInfo(user, cn3, cna3, ex3, cv3, billingAddrStreet3, billingAddrState3, billingAddrZip3);
         user.getPaymentInfo().add(card1);
         user.getPaymentInfo().add(card2);
         user.getPaymentInfo().add(card3);

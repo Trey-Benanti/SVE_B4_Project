@@ -28,12 +28,25 @@ public class CardInfo {
     @Column(name = "secCode", nullable = false)
     private String securityCode;
 
-    public CardInfo(User userId, String cardNum, String cardName, String expirationDate, String securityCode) {
+    @Column(name = "billingAddrStreet", nullable = false)
+    private String billingAddrStreet;
+
+    @Column(name = "billingAddrState", nullable = false)
+    private String billingAddrState;
+
+    @Column(name = "billingAddrZip", nullable = false)
+    private String billingAddrZip;
+
+    public CardInfo(User userId, String cardNum, String cardName, String expirationDate, String securityCode,
+                    String billingAddrStreet, String billingAddrState, String billingAddrZip) {
         this.userId = userId;
         this.cardNum = cardNum;
         this.cardName = cardName;
         this.expirationDate = expirationDate;
         this.securityCode = securityCode;
+        this.billingAddrStreet = billingAddrStreet;
+        this.billingAddrState = billingAddrState;
+        this.billingAddrZip = billingAddrZip;
     }
 
     public CardInfo() {}
@@ -65,6 +78,18 @@ public class CardInfo {
         this.securityCode = code;
     }
 
+    public void setBillingAddrStreet(String billingAddrStreet) {
+        this.billingAddrStreet = billingAddrStreet;
+    }
+
+    public void setBillingAddrState(String billingAddrState) {
+        this.billingAddrState = billingAddrState;
+    }
+
+    public void setBillingAddrZip(String billingAddrZip) {
+        this.billingAddrZip = billingAddrZip;
+    }
+
     // Getters
 
     public User getUserId() {
@@ -88,4 +113,15 @@ public class CardInfo {
         return this.securityCode;
     }
 
+    public String getBillingAddrState() {
+        return billingAddrState;
+    }
+
+    public String getBillingAddrStreet() {
+        return billingAddrStreet;
+    }
+
+    public String getBillingAddrZip() {
+        return billingAddrZip;
+    }
 }
