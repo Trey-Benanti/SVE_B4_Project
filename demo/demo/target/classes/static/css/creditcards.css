@@ -131,7 +131,16 @@ div.content {
     flex: 1;
     min-width: 16px;
     max-width: 500px;
+    margin-bottom: 10px;
 }
+
+#editCardLink {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-weight: normal;
+}
+
 @keyframes fillIn {
     0% {
         transform: translateY(100px);

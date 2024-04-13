@@ -35,16 +35,7 @@
         <h1 id="content-title">Credit Cards </h1>
         <div class="card" th:each="card: ${cards}">
             <h4 th:text="${card.getCardNumber()}"></h4>
-            <h4 th:text="${card.getExpirationDate()}"></h4>
-            <h4 th:text="${card.getSecurityCode()}"></h4>
-            <h4 th:text="${card.getCardName()}"></h4>
-            <h4 id="billingAddrHdr">Billing Address</h4><br />
-            <div>
-                <h4 th:text="${card.getBillingAddrStreet()}"></h4>
-                <h4 th:text="${card.getBillingAddrState()}"></h4>
-                <h4 th:text="${card.getBillingAddrZip()}"></h4>
-                <a th:href="@{'/editcards/' + ${card.getId()}}"><button>Edit</button></a>
-            </div>
+            <a th:href="@{'/editcards/' + ${card.getId()}}"><p id="editCardLink">Edit</p></a>
         </div>
 
     </div>
