@@ -48,10 +48,11 @@ body {
 
 .nav-link {
     margin-top: 8px;
+    text-decoration: none;
+    color: #cccccc;
 }
 
 .search-ctr {
-    margin-top: 8px;
     font-size: 18px;
 }
 
@@ -183,16 +184,4 @@ body {
 
 .copyright {
     margin-bottom: 0;
-}
-
-#ns-filter-ctr {
-    margin-top: 8px;
-}
-
-#cs-filter-ctr {
-    margin-top: 8px;
-}
-
-#date-filter-ctr {
-    margin-top: 8px;
 }
