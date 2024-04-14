@@ -11,7 +11,9 @@
 <body>
     <div id="nav-ctr">
         <nav class="top-nav">
-            <a class="nav-link">Book</a>
+            <div>
+                <a class="nav-link">Book</a>
+            </div>
             <div sec:authorize="!(isAuthenticated)">
                 <a class="nav-link" th:href="@{/login}">Login</a>
             </div>
@@ -19,7 +21,7 @@
                 <a class="nav-link" th:href="@{/signup}">Register</a>
             </div>
             <div sec:authorize="isAuthenticated"><a class="nav-link" th:href="@{/profile}">Profile</a></div>
-            <a class="nav-link">About</a>
+            <div><a class="nav-link">About</a></div>
             <div sec:authorize="hasRole('ROLE_ADMIN')">
                 <a class="nav-link" th:href="@{/admin/}">Admin</a>
             </div>
@@ -33,7 +35,7 @@
                 </form>
             </div>
             <div sec:authorize="isAuthenticated">
-            <p>
+            <p class="nav-link">
                 Welcome <b><span sec:authentication="principal.fullName"></span></b>
             </p>
             </div>
@@ -42,7 +44,7 @@
                     <input type="submit" value="Sign Out" />
                 </form>
             </div>
-            <div id="ns-filter-ctr">
+            <div id="ns-filter-ctr" >
                 <label id="now-showing-label" for="now_showing_check">Now Showing</label>
                 <input type="checkbox" id="now-showing-check" name="now-showing-check" />
             </div>
