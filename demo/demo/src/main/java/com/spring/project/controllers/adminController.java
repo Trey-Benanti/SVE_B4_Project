@@ -1,7 +1,12 @@
 package com.spring.project.controllers;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
+import com.spring.project.models.Show;
+import com.spring.project.models.Showroom;
+import com.spring.project.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.ui.Model;
@@ -12,12 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.spring.project.models.Movie;
 import com.spring.project.models.MovieDTO;
-import com.spring.project.services.MovieServices;
-import com.spring.project.services.MoviesRepository;
-import com.spring.project.services.UserRepository;
 import com.spring.project.users.*;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
 
 public class adminController {
 
@@ -29,7 +32,13 @@ public class adminController {
 
     @Autowired
     private MovieServices movieService; // Reference to movie services interface
-    
+
+    @Autowired
+    private ShowRepository showRepo;
+
+    @Autowired
+    private RoomRepository roomRepo;
+
     @GetMapping("/admin/")
     public String adminView(Model model) {
         List<Movie> movies = repo.findAll();
@@ -49,10 +58,36 @@ public class adminController {
         return "editmovies";
     } // editMovies
 
-    @GetMapping("/admin/addschedule")
-    public String addSchedule() {
+    @GetMapping("/admin/addschedule") // addschedule get
+    public String addSchedule(Model model) {
+        List<Show> shows = showRepo.findAll();
+        model.addAttribute("shows", shows);
         return "addschedule";
     } // addschedule
+
+    @PostMapping("/admin/addschedule") // addschedule post
+    public String addShowtime(
+            @RequestParam("title") String title,
+            @RequestParam("room") int room,
+            @RequestParam("period") int period,
+            @RequestParam("showDate") Date showDate,
+            BindingResult result
+    ) {
+        if (result.hasErrors()) {return "/admin/addschedule";}
+
+        Show show = new Show();
+        List<Movie> movieList = movieService.search(title);
+        Showroom showroom = roomRepo.findByNumber(room);
+
+        show.movie = movieList.get(0);
+        show.room = showroom;
+        show.period = period;
+        show.showDate = showDate;
+
+        showRepo.save(show);
+
+        return "redirect:/admin/";
+    }
 
     @GetMapping("/admin/manageusers")
     public String manageUsers(Model model) {

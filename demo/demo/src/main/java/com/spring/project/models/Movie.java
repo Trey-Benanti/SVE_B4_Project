@@ -2,6 +2,9 @@ package com.spring.project.models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="movies")
 public class Movie {
@@ -10,16 +13,42 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "movie_title")
     private String movieTitle;
+
+    @Column(name = "cast")
     private String cast;
+
+    @Column(name = "director")
     private String director;
+
+    @Column(name = "producer")
     private String producer;
+
+    @Column(name = "synop")
     private String synop;
+
+    @Column(name = "reviews")
     private String reviews;
+
+    @Column(name = "trailer_photo")
     private String trailerPhoto;
+
+    @Column(name = "trailer_video")
     private String trailerVideo;
+
+    @Column(name = "rating")
     private String rating;
+
+    @Column(name = "now_playing")
     private int nowPlaying;
+
+    @OneToMany(
+            mappedBy = "movie",
+            cascade = CascadeType.ALL
+    )
+    @Column(name = "showtimes")
+    private List<Show> showtimes = new ArrayList<>();
 
     public int getNowPlaying() {
         return nowPlaying;
