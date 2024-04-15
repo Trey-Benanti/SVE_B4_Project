@@ -26,7 +26,7 @@
         </div>
     </nav>
 </div>
-<h2 class="results-header">Results for "[[${keyword}]]"</h2>
+<h2 class="results-header">[[${keyword}]]</h2>
 <h1 class="now-showing-header">Now Showing</h1>
     <div class="movie-overview">
         <div class="movie-ctr" th:each="movie : ${searchResult}" th:if="${movie.nowPlaying.equals('Now Showing')}">
