@@ -19,13 +19,13 @@ public class Movie {
     private String trailerPhoto;
     private String trailerVideo;
     private String rating;
-    private int nowPlaying;
+    private String nowPlaying;
 
-    public int getNowPlaying() {
+    public String getNowPlaying() {
         return nowPlaying;
     }
 
-    public void setNowPlaying(int nowPlaying) {
+    public void setNowPlaying(String nowPlaying) {
         this.nowPlaying = nowPlaying;
     }
 

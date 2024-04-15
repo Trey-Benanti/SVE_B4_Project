@@ -57,7 +57,7 @@ public class adminController {
     @GetMapping("/admin/manageusers")
     public String manageUsers(Model model) {
         List<User> listUsers = userRepo.findAll();
-        model.addAttribute("listUsers", listUsers); 
+        model.addAttribute("listUsers", listUsers);
         return "manageusers";
     } // manageusers
 

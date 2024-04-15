@@ -31,14 +31,14 @@ public class MovieDTO {
     @NotEmpty(message = "Rating is required")
     private String rating;
 
-    @Min(0)
-    private int nowPlaying;
+    @NotEmpty
+    private String nowPlaying;
 
-    public int getNowPlaying() {
+    public String getNowPlaying() {
         return nowPlaying;
     }
 
-    public void setNowPlaying(int nowPlaying) {
+    public void setNowPlaying(String nowPlaying) {
         this.nowPlaying = nowPlaying;
     }
 
