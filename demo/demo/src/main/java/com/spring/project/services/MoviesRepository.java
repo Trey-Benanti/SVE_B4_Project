@@ -10,7 +10,7 @@ import java.util.List;
 public interface MoviesRepository extends JpaRepository<Movie, Integer> {
 
     @Query(value = "SELECT * FROM movies WHERE "
-    + "MATCH(movie_title, cast, director, producer) "
+    + "MATCH(movie_title, now_playing) "
     + "AGAINST (?1)",
     nativeQuery = true)
     public List<Movie> search(String keyword);

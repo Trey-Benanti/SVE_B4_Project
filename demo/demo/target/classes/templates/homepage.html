@@ -65,7 +65,7 @@
 
     <div class="movie-list-container">
         <div class="movie-overview">
-            <div th:each="movie : ${movies}" th:if="${movie.nowPlaying==1}" class="movie-ctr now-showing">
+            <div th:each="movie : ${movies}" th:if="${movie.nowPlaying.equals('Now Showing')}" class="movie-ctr now-showing">
                 <a href="#" class="movie-title" th:text="${movie.movieTitle}"></a>
                 <iframe width="530" height="365"
                         class="trailer-video"
@@ -94,7 +94,7 @@
     <h1 class="now-showing-header">Coming Soon</h1>
     <div class="movie-list-container">
     <div class="movie-overview">
-        <div class="movie-ctr box coming-soon" th:each="movie : ${movies}" th:if="${movie.nowPlaying==0}">
+        <div class="movie-ctr box coming-soon" th:each="movie : ${movies}" th:if="${movie.nowPlaying.equals('Coming Soon')}">
             <a class="movie-title" th:text="${movie.movieTitle}" />
             <iframe width="530" height="365"
                     class="trailer-video"
