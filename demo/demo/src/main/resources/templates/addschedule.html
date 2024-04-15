@@ -18,25 +18,35 @@
 </div>
 <div class="scheduling-card">
     <h1>Schedule New Showing</h1>
-    <div class="date-time-picker-ctr">
-        <label for="date-time-picker" id="date-time-picker-label">Show Time</label>
-        <input id="date-time-picker"
-               type="datetime-local"
-               name="date-time-picker"
-        />
-        <button id="date-time-picker-button">Add</button>
-    </div>
+    <form method="post">
+        <label>Movie Title</label>
+        <input type="text" name="title"/>
+        <label>Room Number</label>
+        <input type="number" name="room"/>
+        <label>Movie Length (minutes)</label>
+        <input type="number" name="period">
+        <label>Date and Time</label>
+        <input type="datetime-local" name="showDate">
+        <button type="submit">Submit</button>
+    </form>
     <div class="schedule-table-ctr">
         <table class="schedule-table">
             <tr>
-                <th class="show-times">Show Times</th>
+                <th class="show-id">Show ID</th>
+                <th class="movie-title">Movie Title</th>
+                <th class="room-name">Room Name</th>
+                <th class="period">Movie Length</th>
+                <th class="show-date">Show Date</th>
+                <th>Delete</th>
             </tr>
-            <div class="table-content-container">
+            <div class="table-content-container" th:each="show : ${shows}">
                 <tr>
-                    <td class="date">2024-06-01 12:00</td>
-                </tr>
-                <tr>
-                    <td class="date">2024-06-01 15:00</td>
+                    <td th:text="${show.id}" />
+                    <td th:text="${show.movie.movieTitle}" />
+                    <td th:text="${show.room.roomTitle}" />
+                    <td th:text="${show.period}" />
+                    <td th:text="${show.showDate}" />
+                    <td><button>Delete</button></td>
                 </tr>
             </div>
         </table>
