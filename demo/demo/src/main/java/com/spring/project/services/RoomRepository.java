@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoomRepository extends JpaRepository<Showroom, Integer> {
+public interface RoomRepository extends JpaRepository<Showroom, Long> {
 
-    @Query("SELECT u FROM Showroom u WHERE u.id = ?1")
-    public Showroom findByNumber(int id);
+    @Query(value = "SELECT r FROM Showroom r WHERE r.id = ?1")
+    public Showroom findByNumber(Long id);
 
 }

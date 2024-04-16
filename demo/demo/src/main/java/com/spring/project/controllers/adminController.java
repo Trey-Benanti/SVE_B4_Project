@@ -4,24 +4,23 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
-import com.spring.project.models.Show;
-import com.spring.project.models.Showroom;
+import com.spring.project.models.*;
 import com.spring.project.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.spring.project.models.Movie;
-import com.spring.project.models.MovieDTO;
 import com.spring.project.users.*;
 
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestParam;
 
+@Controller
 public class adminController {
 
     @Autowired
@@ -31,13 +30,13 @@ public class adminController {
     private UserRepository userRepo; // Reference to user repository interface
 
     @Autowired
+    private ShowRepository showRepo; // Reference to showtimes repository interface
+
+    @Autowired
+    private RoomRepository roomRepo; // Reference to showrooms repository interface
+
+    @Autowired
     private MovieServices movieService; // Reference to movie services interface
-
-    @Autowired
-    private ShowRepository showRepo;
-
-    @Autowired
-    private RoomRepository roomRepo;
 
     @GetMapping("/admin/")
     public String adminView(Model model) {
@@ -68,27 +67,33 @@ public class adminController {
     @PostMapping("/admin/addschedule") // addschedule post
     public String addShowtime(
             @RequestParam("title") String title,
-            @RequestParam("room") int room,
-            @RequestParam("period") int period,
-            @RequestParam("showDate") Date showDate,
-            BindingResult result
+            @RequestParam("room") Long room,
+            @RequestParam("showDate") String showDate,
+            @RequestParam("timeslot") String timeslot
     ) {
-        if (result.hasErrors()) {return "/admin/addschedule";}
 
         Show show = new Show();
         List<Movie> movieList = movieService.search(title);
         Showroom showroom = roomRepo.findByNumber(room);
 
-        show.movie = movieList.get(0);
-        show.room = showroom;
-        show.period = period;
+        show.movie_id = movieList.get(0);
+        show.room_id = showroom;
+        show.time_slot = timeslot;
         show.showDate = showDate;
+
+        // check if room is booked at this time
+        /*Show existing_show = showRepo.findByTimeSlot(show.room_id.id, show.showDate, show.time_slot);
+        if (existing_show != null) { // TODO: add error text
+            return "redirect:/admin/";
+        }*/
 
         showRepo.save(show);
 
+        show.movie_id.setNowPlaying("Now Showing");
+        repo.save(show.movie_id);
+
         return "redirect:/admin/";
     }
-
     @GetMapping("/admin/manageusers")
     public String manageUsers(Model model) {
         List<User> listUsers = userRepo.findAll();
@@ -127,95 +132,6 @@ public class adminController {
 
         return "redirect:/admin/"; // redirect home
     } // create
-
-        @GetMapping("/search")
-    public String search(@Param("keyword") String keyword, Model model) {
-        model.addAttribute("keyword", keyword);
-        model.addAttribute("pageTitle", "Search results for " + keyword);
-
-        List<Movie> searchResult = movieService.search(keyword); // Get results of full text search
-        model.addAttribute("searchResult", searchResult); // Pass search results to front end
-
-        return "searchresult";
-    } // search
-
-
-    @GetMapping("/scheduling")
-    public String scheduling(Model model) {
-        List<Movie> movies = repo.findAll();
-        model.addAttribute("movies", movies);
-        return "scheduling";
-    } // scheduling
-
-    @GetMapping("/manageusers")
-    public String manageUsers() {
-        return "manageusers";
-    } // manageusers
-
-    @GetMapping("/checkout")
-    public String checkout() {
-        return "checkout";
-    } // checkout
-
-    @GetMapping("/order-confirmation")
-    public String orderConfirmation() {
-        return "order-confirmation";
-    } // orderConfirmation
-
-    @GetMapping("/order-summary")
-    public String orderSummary() {
-        return "order-summary";
-    } // orderSummary
-
-    @GetMapping("/select-seats")
-    public String selectSeats() {
-        return "select-seats";
-    } // selectSeats
-
-    @GetMapping("/profile")
-    public String profile() {
-        return "profile";
-    } // profile
-
-    @GetMapping("/editprofile")
-    public String editprofile() {
-        return "editprofile";
-    } // editprofile
-    @GetMapping("/creditcards")
-    public String creditcards() {
-        return "creditcards";
-    } // creditcards
-
-    @GetMapping("/editcards")
-    public String editcards() {
-        return "editcards";
-    } // editcards
-
-    @GetMapping("/orders")
-    public String prders() {
-        return "orders";
-    } // orders
-    @GetMapping("/select-show")
-    public String selectShow() {
-        return "select-show";
-    } // selectShow
-
-    @GetMapping("/signin")
-    public String signin() {
-        return "signin";
-    } // signin
-
-    @GetMapping("/signup")
-    public String signup() {
-        return "signup";
-    } // signup
-
-    @GetMapping("/confirmation")
-    public String confirmation() {
-        return "confirmation";
-    } // confirmation
-
-
 
 
 

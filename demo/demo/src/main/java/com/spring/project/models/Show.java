@@ -14,15 +14,15 @@ public class Show {
 
     @ManyToOne
     @JoinColumn(name = "movie_id", nullable = false)
-    public Movie movie;
+    public Movie movie_id;
 
     @ManyToOne
     @JoinColumn(name = "room_id",nullable = false)
-    public Showroom room;
-
-    @Column(name = "period")
-    public int period;
+    public Showroom room_id;
 
     @Column(name = "show_date")
-    public Date showDate;
+    public String showDate;
+
+    @Column(name = "time_slot")
+    public String time_slot;
 }

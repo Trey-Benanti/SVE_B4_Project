@@ -23,10 +23,14 @@
         <input type="text" name="title"/>
         <label>Room Number</label>
         <input type="number" name="room"/>
-        <label>Movie Length (minutes)</label>
-        <input type="number" name="period">
         <label>Date and Time</label>
-        <input type="datetime-local" name="showDate">
+        <input type="date" name="showDate">
+        <select name="timeslot">
+            <option th:each="code : ${T(com.spring.project.models.TimeSlots).values()}"
+                    th:value="${code}"
+                    th:text="${code}">
+            </option>
+        </select>
         <button type="submit">Submit</button>
     </form>
     <div class="schedule-table-ctr">
@@ -35,17 +39,16 @@
                 <th class="show-id">Show ID</th>
                 <th class="movie-title">Movie Title</th>
                 <th class="room-name">Room Name</th>
-                <th class="period">Movie Length</th>
                 <th class="show-date">Show Date</th>
                 <th>Delete</th>
             </tr>
             <div class="table-content-container" th:each="show : ${shows}">
                 <tr>
                     <td th:text="${show.id}" />
-                    <td th:text="${show.movie.movieTitle}" />
-                    <td th:text="${show.room.roomTitle}" />
-                    <td th:text="${show.period}" />
+                    <td th:text="${show.movie_id.movieTitle}" />
+                    <td th:text="${show.room_id.roomTitle}" />
                     <td th:text="${show.showDate}" />
+                    <td th:text="${show.time_slot}" />
                     <td><button>Delete</button></td>
                 </tr>
             </div>
