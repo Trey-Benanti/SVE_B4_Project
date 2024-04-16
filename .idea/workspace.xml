@@ -4,36 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c58c1a30-6124-4166-b42d-e330698b43b8" name="Changes" comment="Updated Admin css">
-      <change afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/services/PromoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/services/PromotionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/createPromotionForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_18_24,_6_24 PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_18_24__6_24PM__Changes_.xml" beforeDir="false" />
+    <list default="true" id="c58c1a30-6124-4166-b42d-e330698b43b8" name="Changes" comment="Dump6, CRD Promos, select-show/homepage movie info">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/controllers/adminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/controllers/adminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/controllers/bookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/controllers/bookingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/controllers/homepageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/controllers/homepageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/models/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/models/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/models/Promotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/models/Promotion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/services/MovieServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/services/MovieServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/services/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/services/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/homepage.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/homepage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/homepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/promos.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/promos.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/select-show.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/select-show.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/controllers/adminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/controllers/adminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/controllers/bookingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/controllers/bookingController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/controllers/homepageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/controllers/homepageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/Movie.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/Movie.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/Promotion.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/Promotion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/services/MovieServices.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/services/MovieServices.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/services/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/services/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/static/css/homepage.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/static/css/homepage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/homepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/promos.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/promos.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/select-show.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/select-show.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +23,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="KubernetesApiProvider">{
@@ -81,7 +59,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.SeB4ProjectApplication.executor": "Run",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "juan-update",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -97,6 +75,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dumps" />
       <recent name="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/images" />
     </key>
   </component>
@@ -138,7 +117,7 @@
       <workItem from="1710953977040" duration="8860000" />
       <workItem from="1711034583881" duration="6913000" />
       <workItem from="1713211309573" duration="1749000" />
-      <workItem from="1713288240982" duration="2583000" />
+      <workItem from="1713288240982" duration="3525000" />
     </task>
     <task id="LOCAL-00002" summary="Updated Admin css">
       <option name="closed" value="true" />
@@ -148,7 +127,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711404418464</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Dump6, CRD Promos, select-show/homepage movie info">
+      <option name="closed" value="true" />
+      <created>1713291486349</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1713291486349</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,6 +158,7 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="Homepage design" />
     <MESSAGE value="Updated Admin css" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated Admin css" />
+    <MESSAGE value="Dump6, CRD Promos, select-show/homepage movie info" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dump6, CRD Promos, select-show/homepage movie info" />
   </component>
 </project>
