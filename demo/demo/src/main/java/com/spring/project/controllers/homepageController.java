@@ -13,12 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
-
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class homepageController {
@@ -66,6 +62,13 @@ public class homepageController {
         return "searchresult";
     } // search
 
+    @GetMapping("/selectshow/{id}")
+    public String selectshow(@PathVariable int id, Model model) {
+        Movie movie = repo.getReferenceById(id);
+        model.addAttribute("movie", movie);
+
+        return "selectshow";
+    }
 
 }
 
