@@ -9,170 +9,178 @@
     />
 </head>
 <body>
-    <div id="nav-ctr">
-        <nav class="top-nav">
-            <div>
-                <a class="nav-link">Book</a>
-            </div>
-            <div sec:authorize="!(isAuthenticated)">
-                <a class="nav-link" th:href="@{/login}">Login</a>
-            </div>
-            <div sec:authorize="!(isAuthenticated)">
-                <a class="nav-link" th:href="@{/signup}">Register</a>
-            </div>
-            <div sec:authorize="isAuthenticated"><a class="nav-link" th:href="@{/profile}">Profile</a></div>
-            <div><a class="nav-link">About</a></div>
-            <div sec:authorize="hasRole('ROLE_ADMIN')">
-                <a class="nav-link" th:href="@{/admin/}">Admin</a>
-            </div>
-            <div class="search-ctr">
-                <form id="search-form"
-                th:action="@{/search}"
-                      method="get">
-                    <label for="search-box" id="search-label">Search:</label>
-                    <input type="search" id="search-box" name="keyword"/>
-                    <button id="search-button" type="submit" value="Search">Go</button>
-                </form>
-            </div>
-            <div sec:authorize="isAuthenticated">
-            <p class="nav-link">
+<div id="nav-ctr">
+    <nav class="top-nav">
+        <div>
+            <a class="nav-link">Book</a>
+        </div>        <div sec:authorize="!(isAuthenticated)">
+            <a class="nav-link" th:href="@{/login}">Login</a>
+        </div>
+        <div sec:authorize="!(isAuthenticated)">
+            <a class="nav-link" th:href="@{/signup}">Register</a>
+        </div>
+        <div sec:authorize="isAuthenticated"><a class="nav-link" th:href="@{/profile}">Profile</a></div>
+        <a class="nav-link">About</a>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <a class="nav-link" th:href="@{/admin/}">Admin</a>
+        </div>
+        <div class="search-ctr">
+            <form id="search-form"
+                  th:action="@{/search}"
+                  method="get">
+                <label for="search-box" id="search-label">Search:</label>
+                <input type="search" id="search-box" name="keyword"/>
+                <button id="search-button" type="submit" value="Search">Go</button>
+            </form>
+        </div>
+        <div sec:authorize="isAuthenticated">
+            <p>
                 Welcome <b><span sec:authentication="principal.fullName"></span></b>
             </p>
+        </div>
+        <div sec:authorize="isAuthenticated">
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out" />
+            </form>
+        </div>
+        <div id="ns-filter-ctr">
+            <label id="now-showing-label" for="now_showing_check">Now Showing</label>
+            <input type="checkbox" id="now-showing-check" name="now-showing-check" />
+        </div>
+        <div id="cs-filter-ctr">
+            <label id="coming-soon-label" for="coming-soon-check">Coming Soon</label>
+            <input type="checkbox" id="coming-soon-check" name="coming-soon-check" />
+        </div>
+        <div id="date-filter-ctr">
+            <label id="date-filter-label" for="date-filter">Date</label>
+            <input type="date" id="date-filter" name="date-filter" />
+        </div>
+    </nav>
+</div>
+<div>
+    <img th:src="@{/css/images/Tidal_Waves_Home.webp}" alt="Tidal Waves Theaters" width="100%">
+</div>
+<h1 class="now-showing-header">Now Showing</h1>
+<div class="movie-list-container">
+    <div class="movie-overview">
+        <div th:each="movie : ${movies}" th:if="${movie.nowPlaying.equals('Now Showing')}" class="movie-ctr now-showing">
+            <div>
+                <a class="movie-title" th:text="${movie.movieTitle}"/>
+                <a class="rating-text" th:text="${movie.rating}" />
             </div>
-            <div sec:authorize="isAuthenticated">
-                <form th:action="@{/logout}" method="post">
-                    <input type="submit" value="Sign Out" />
-                </form>
+            <div class="category" th:text="${movie.category}"></div>
+            <iframe width="640" height="360"
+                    class="trailer-video"
+                    th:src="${movie.trailerVideo}"
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+            </iframe>
+            <div class="details-link-ctr">
+                <p class="details-link" th:text="${movie.synop}"></p>
             </div>
-            <div id="ns-filter-ctr" >
-                <label id="now-showing-label" for="now_showing_check">Now Showing</label>
-                <input type="checkbox" id="now-showing-check" name="now-showing-check" />
-            </div>
-            <div id="cs-filter-ctr">
-                <label id="coming-soon-label" for="coming-soon-check">Coming Soon</label>
-                <input type="checkbox" id="coming-soon-check" name="coming-soon-check" />
-            </div>
-            <div id="date-filter-ctr">
-                <label id="date-filter-label" for="date-filter">Date</label>
-                <input type="date" id="date-filter" name="date-filter" />
-            </div>
-        </nav>
-    </div>
-    <div>
-        <img th:src="@{/css/images/Tidal_Waves_Home.webp}" alt="Tidal Waves Theaters" width="100%">
-    </div>
-        <h1 class="now-showing-header">Now Showing</h1>
-
-    <div class="movie-list-container">
-        <div class="movie-overview">
-            <div th:each="movie : ${movies}" th:if="${movie.nowPlaying.equals('Now Showing')}" class="movie-ctr now-showing">
-                <a href="#" class="movie-title" th:text="${movie.movieTitle}"></a>
-                <iframe width="530" height="365"
-                        class="trailer-video"
-                        th:src="${movie.trailerVideo}"
-                        title="YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen>
-                </iframe>
-                <div class="rating-ctr">
-                    <p class="rating-text" th:text="${movie.rating}"></p>
-                </div>
-                <div class="details-link-ctr">
-                    <p class="details-link">Details</p>
-                </div>
-                <div class="book-tickets-btn-ctr">
-                    <button class="book-tickets-btn">
-                        <a th:href="@{/select-show}">
+            <div class="book-tickets-btn-ctr">
+                <button class="book-tickets-btn">
+                    <a th:href="@{/select-show/{id}(id=${movie.id})}">
                         Book
-                        </a>
-                    </button>
-                </div>
+                    </a>
+                </button>
             </div>
         </div>
     </div>
+</div>
+<h1 class="now-showing-header">&nbsp</h1> <!-- Style purposes -->
 
-    <h1 class="now-showing-header">Coming Soon</h1>
-    <div class="movie-list-container">
+<h1 class="now-showing-header">Coming Soon</h1>
+<div class="movie-list-container">
     <div class="movie-overview">
         <div class="movie-ctr box coming-soon" th:each="movie : ${movies}" th:if="${movie.nowPlaying.equals('Coming Soon')}">
-            <a class="movie-title" th:text="${movie.movieTitle}" />
-            <iframe width="530" height="365"
+            <div>
+                <a class="movie-title" th:text="${movie.movieTitle}"/>
+                <a class="rating-text" th:text="${movie.rating}" />
+            </div>
+            <div class="category" th:text="${movie.category}"></div>
+            <iframe width="640" height="360"
                     class="trailer-video"
                     th:src="${movie.trailerVideo}"
                     title="YouTube video player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
                         web-share" allowfullscreen>
             </iframe>
-            <div class="rating-ctr">
-                <p class="rating-text" th:text="${movie.rating}" />
-            </div>
+
             <div class="details-link-ctr">
-                <p class="details-link">Details</p>
-            </div>
-            <div class="book-tickets-btn-ctr">
-                <button class="book-tickets-btn">Book</button>
+                <p class="details-link" th:text="${movie.synop}"></p>
             </div>
         </div>
     </div>
-    </div>
+</div>
+</div>
 
-    <h1 class="now-showing-header">&nbsp</h1> <!-- Style purposes -->
+<h1 class="now-showing-header">&nbsp</h1> <!-- Style purposes -->
 
-    <footer class="site-footer">
-        <div class="footer-content">
-            <div class="footer-nav">
-                <a href="/">Home</a>
-                <a href="/about">About Us</a>
-                <a href="/contact">Contact</a>
-            </div>
-            <div class="social-media">
-
-            </div>
-            <div class="footer-contacts">
-                <a href="example:info@website.com">info@yourwebsite.com</a>
-                <a href="tel:+123456789">+1 (234) 567-890</a>
-            </div>
-            <div class="legal">
-                <a href="/privacy-policy">Privacy Policy</a>
-                <a href="/terms-of-use">Terms of Use</a>
-            </div>
-            <div class="newsletter-signup">
-                <!-- Newsletter signup form or link -->
-            </div>
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-nav">
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact</a>
         </div>
-        <p class="copyright">© 2024 TidalWavesTheaters. All rights reserved.</p>
-    </footer>
-    <div>
-        <img th:src="@{css/images/Tidal_Waves_Overview.webp}" alt="Tidal Waves Background" width="100%">
-    </div>
-    <script th:inline="javascript">
-        document.getElementById('now-showing-check').addEventListener('change', function() {
-            var nowShowingMovies = document.getElementsByClassName('now-showing');
-            var comingSoonMovies = document.getElementsByClassName('coming-soon');
-            for(var i = 0; i < nowShowingMovies.length; i++) {
-                if(this.checked) {
-                    nowShowingMovies[i].style.display = 'block';
-                    comingSoonMovies[i].style.display = 'none';
-                } else {
-                    nowShowingMovies[i].style.display = 'block';
-                    comingSoonMovies[i].style.display = 'block';
-                }
-            }
-        });
+        <div class="social-media">
 
-        document.getElementById('coming-soon-check').addEventListener('change', function() {
+        </div>
+        <div class="footer-contacts">
+            <a href="example:info@website.com">info@yourwebsite.com</a>
+            <a href="tel:+123456789">+1 (234) 567-890</a>
+        </div>
+        <div class="legal">
+            <a href="/privacy-policy">Privacy Policy</a>
+            <a href="/terms-of-use">Terms of Use</a>
+        </div>
+        <div class="newsletter-signup">
+            <!-- Newsletter signup form or link -->
+        </div>
+    </div>
+    <p class="copyright">© 2024 TidalWavesTheaters. All rights reserved.</p>
+</footer>
+<div>
+    <img th:src="@{css/images/Tidal_Waves_Overview.webp}" alt="Tidal Waves Background" width="100%">
+</div>
+<script th:inline="javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        function updateMovieDisplays() {
             var nowShowingMovies = document.getElementsByClassName('now-showing');
             var comingSoonMovies = document.getElementsByClassName('coming-soon');
-            for(var i = 0; i < comingSoonMovies.length; i++) {
-                if(this.checked) {
-                    comingSoonMovies[i].style.display = 'block';
-                    nowShowingMovies[i].style.display = 'none';
-                } else {
-                    comingSoonMovies[i].style.display = 'block';
-                    nowShowingMovies[i].style.display = 'block';
-                }
+            var nowShowingCheck = document.getElementById('now-showing-check').checked;
+            var comingSoonCheck = document.getElementById('coming-soon-check').checked;
+
+            // Simplified logic for showing/hiding movies
+            for (var i = 0; i < nowShowingMovies.length; i++) {
+                nowShowingMovies[i].style.display = nowShowingCheck ? 'flex' : 'none';
             }
-        });
-    </script>
+            for (var i = 0; i < comingSoonMovies.length; i++) {
+                comingSoonMovies[i].style.display = comingSoonCheck ? 'flex' : 'none';
+            }
+        }
+
+        // Attach change event listeners
+        document.getElementById('now-showing-check').addEventListener('change', updateMovieDisplays);
+        document.getElementById('coming-soon-check').addEventListener('change', updateMovieDisplays);
+
+
+        // Star rating based on review percentage
+        const reviewStarsContainer = document.getElementById('review-stars');
+        const reviewPercentage = 80; // Example percentage
+        const totalStars = 5;
+        const filledStars = Math.round((reviewPercentage / 100) * totalStars);
+
+        for (let i = 0; i < totalStars; i++) {
+            const starSpan = document.createElement('span');
+            starSpan.className = 'star';
+            starSpan.textContent = i < filledStars ? '★' : '☆';
+            reviewStarsContainer.appendChild(starSpan);
+        }
+    });
+</script>
+
 </body>
 </html>

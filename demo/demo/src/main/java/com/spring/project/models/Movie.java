@@ -20,6 +20,8 @@ public class Movie {
     private String trailerVideo;
     private String rating;
     private String nowPlaying;
+    private String category;
+
 
     public String getNowPlaying() {
         return nowPlaying;
@@ -107,5 +109,12 @@ public class Movie {
 
     public void setId(int id) {
         this.id = id;
+    }
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 } // Movie

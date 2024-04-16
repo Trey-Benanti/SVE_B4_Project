@@ -48,11 +48,10 @@ body {
 
 .nav-link {
     margin-top: 8px;
-    text-decoration: none;
-    color: #cccccc;
 }
 
 .search-ctr {
+    margin-top: 8px;
     font-size: 18px;
 }
 
@@ -72,19 +71,25 @@ body {
     padding-bottom: 5px;
     font-family: Didot, Arial, sans-serif;
 }
-.movie-title a {
-}
 
 .details-link-ctr {
-    text-align: right;
+    position: relative;
+    text-align: center;
+    height: 150px;
+    overflow-y: scroll;
+    width: 576px;
 }
 
 .details-link {
     font-weight: bold;
+    position: absolute;
+    top: 20%;
+    /*    transform: translate(-50%, -50%);*/
 }
 
 .book-tickets-btn-ctr {
     text-align: center;
+    bottom: 0;
 }
 
 .book-tickets-btn {
@@ -98,6 +103,7 @@ body {
     border-color: #000000;
     color: #000000;
     background-color: var(--sand-yellow);
+    bottom: 0;
 }
 
 .trailer-video {
@@ -126,7 +132,17 @@ body {
 
 .rating-text {
     font-weight: bold;
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    margin-top: 20px;
 }
+.header {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
 
 .movie-overview {
     display: flex;
@@ -134,9 +150,11 @@ body {
     padding: 10px;
     margin: 20px auto;
     overflow-x: auto;
+    height: 100%;
+    position: relative;
 }
 
-.movie-ctr {
+.movie-ctr, .now-showing, .coming-soon {
     min-height: 160px;
     overflow: hidden;
     display: flex;
@@ -147,23 +165,38 @@ body {
     border-radius: 5px;
     background-color: var(--cloudy-grey);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    transition: all .5s ease;
+    transition: all .7s ease;
     flex: 1;
-    min-width: 16px;
+    z-index: 1; /* Start with a normal stacking order */
+    min-width: 576px;
 }
 
 .movie-ctr:hover {
+    z-index: 999; /* Bring to the top on hover */
+    overflow: visible; /* Allow the iframe to overflow its container */
     flex: 1.4;
 }
 
 .movie-ctr > iframe {
-    transition: transform 0.5s ease;
+    transition: transform 1s ease;
     transform: scale(0.9);
     object-fit: cover;
 }
 
 .movie-ctr:hover > iframe {
-    transform: scale(1);
+    transform: scale(0.96);
+    overflow: visible !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Shadow effect */
+}
+
+/* When the parent container is hovered, make all children slightly translucent */
+.movie-overview:hover .movie-ctr {
+    opacity: 0.75; /* Adjust as necessary to get the desired level of translucency */
+}
+
+/* But, when a specific .movie-ctr is hovered, make it fully opaque */
+.movie-overview .movie-ctr:hover {
+    opacity: 1;
 }
 
 .site-footer {
@@ -184,4 +217,55 @@ body {
 
 .copyright {
     margin-bottom: 0;
+}
+
+#ns-filter-ctr {
+    margin-top: 8px;
+}
+
+#cs-filter-ctr {
+    margin-top: 8px;
+}
+
+#date-filter-ctr {
+    margin-top: 8px;
+}
+.more-info p {
+    margin: 5px 0;
+}
+.more-info {
+    display: none; /* Keep hidden until "See More" is clicked */
+    position: absolute; /* Position absolutely within .movie-ctr */
+    top: 100%; /* Adjust this value to position the popup right below the "See More" button */
+    left: 0;
+    width: 100%; /* Match the width of .movie-ctr, adjust as necessary */
+    background-color: white; /* Ensure it's readable, consider your design */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Provides a floating effect */
+    z-index: 10; /* Ensure it floats above other .movie-ctr elements */
+    border-radius: 4px; /* Stylistic choice, adjust as needed */
+    padding: 10px; /* Content padding */
+    transform: translateY(-100%); /* Adjust if you need to position it differently */
+    /* Additional styling as needed */
+}
+
+.movie-ctr:hover .more-info {
+    display: block; /* Show the "See More" section */
+    position: fixed; /* or 'absolute' depending on your layout needs */
+    top: 50%; /* Adjust these to control where the pop-up appears */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the pop-up */
+    z-index: 999; /* Ensure it's on top of everything else */
+    width: auto; /* or specific width */
+    max-height: 90%; /* Prevent it from being too tall */
+    overflow-y: auto; /* Allow internal scrolling if needed */
+    /* Add more styling as needed */
+}
+.see-more-btn {
+    cursor: pointer;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.star {
+    color: goldenrod;
 }

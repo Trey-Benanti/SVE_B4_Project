@@ -16,5 +16,8 @@ public class MovieServices {
     public List<Movie> search(String keyword) {
         return repo.search(keyword);
     } // search
+    public Movie findById(int id) {
+        return repo.findById(id).orElse(null); // Fetch movie by ID, handle null as needed
+    }
 
 } // MovieServices
