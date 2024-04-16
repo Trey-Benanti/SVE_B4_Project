@@ -65,7 +65,11 @@ public class homepageController {
     @GetMapping("/selectshow/{id}")
     public String selectshow(@PathVariable int id, Model model) {
         Movie movie = repo.getReferenceById(id);
+
+        List<Show> shows = showRepo.findByMovie(movie.getId());
+
         model.addAttribute("movie", movie);
+        model.addAttribute("shows", shows);
 
         return "selectshow";
     }

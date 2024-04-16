@@ -82,10 +82,10 @@ public class adminController {
         show.showDate = showDate;
 
         // check if room is booked at this time
-        /*Show existing_show = showRepo.findByTimeSlot(show.room_id.id, show.showDate, show.time_slot);
-        if (existing_show != null) { // TODO: add error text
+        List<Show> existing_show = showRepo.findByTimeSlot(show.room_id.id, show.showDate, show.time_slot);
+        if (existing_show.get(0) != null) { // TODO: add error text
             return "redirect:/admin/";
-        }*/
+        }
 
         showRepo.save(show);
 
