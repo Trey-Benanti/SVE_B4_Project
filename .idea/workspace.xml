@@ -9,19 +9,19 @@
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_13_24__3_39PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_13_24__3_39PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_18_24__6_15PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_18_24__6_15PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/addschedule.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/addschedule.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/adminView.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/adminView.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/create.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/create.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/editmovies.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/editmovies.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/manageMovies.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/manageMovies.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/promos.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/promos.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/scheduling.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/scheduling.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/addschedule.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/addschedule.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/adminView.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/adminView.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/editmovies.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/editmovies.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/manageMovies.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/manageMovies.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/promos.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/promos.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/confirmation.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/confirmation.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/creditcards.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/creditcards.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/editprofile.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/editprofile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/homepage.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/homepage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/orders.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/orders.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/signin.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/signin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/signup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/homepage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/static/css/signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/static/css/signup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/keystore.jceks" beforeDir="false" afterPath="$PROJECT_DIR$/keystore.jceks" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +128,7 @@
       <workItem from="1713211309573" duration="1749000" />
       <workItem from="1713288240982" duration="2583000" />
       <workItem from="1713663619919" duration="6786000" />
-      <workItem from="1713721249661" duration="5047000" />
+      <workItem from="1713721249661" duration="6435000" />
     </task>
     <task id="LOCAL-00002" summary="Updated Admin css">
       <option name="closed" value="true" />

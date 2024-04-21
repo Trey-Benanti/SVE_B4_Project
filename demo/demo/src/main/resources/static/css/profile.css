@@ -36,6 +36,7 @@ body {
 
 .nav-link {
     margin-top: 8px;
+    color: var(--turquoise-sea);
 }
 
 .search-ctr {
@@ -130,7 +131,7 @@ div.content {
 
 .reg-button {
     background-color: var(--golden-sun);
-    border: none;
+    border-radius: 5px;
     padding: 12px;
     margin-top: 10px;
 }
