@@ -135,7 +135,7 @@ textarea {
     width: fit-content;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-color: #BA0C2F;
+    background-color: var(--sand-yellow);
 }
 
 #form-submit-button {
