@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
     <title>Edit Movies</title>
@@ -14,6 +14,11 @@
         <a class="nav-link" th:href="@{/}">Home</a>
         <a class="nav-link" th:href="@{/admin/}">Admin Options</a>
         <a class="nav-link" th:href="@{/admin/managemovies}">Manage Movies</a>
+        <div sec:authorize="isAuthenticated">
+            <form th:action="@{/logout}" method="post">
+                <input class="logout-button" type="submit" value="Sign Out" />
+            </form>
+        </div>
     </nav>
 </div>
 <div class="page-ctr">

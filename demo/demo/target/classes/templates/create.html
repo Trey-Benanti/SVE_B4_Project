@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
     <title>Create New Movie</title>
@@ -14,10 +14,15 @@
         <a class="nav-link" th:href="@{/}">Home</a>
         <a class="nav-link" th:href="@{/admin/}">Admin Options</a>
         <a class="nav-link" th:href="@{/admin/managemovies}">Manage Movies</a>
+        <div sec:authorize="isAuthenticated">
+            <form th:action="@{/logout}" method="post">
+                <input class="logout-button" type="submit" value="Sign Out" />
+            </form>
+        </div>
     </nav>
 </div>
 <div id="create-form-ctr">
-    <h1>Create New Movie</h1><hr/>
+    <h1 class="headerheader">Create New Movie</h1><hr/>
     <form method="post" enctype="multipart/form-data" class="form">
         <div id="form-title">
             <p>
@@ -76,7 +81,7 @@
         <div id="form-category-ctr">
             <p>
                 <label id="form-category-label" for="form-category-input">Category</label>
-                <select id="form-category-input" th:field="*{movieDTO.nowPlaying}">
+                <select class="drop" id="form-category-input" th:field="*{movieDTO.nowPlaying}">
                     <option th:value="'Now Showing'">Now Showing</option>
                     <option th:value="'Coming Soon'">Coming Soon</option>
                 </select>

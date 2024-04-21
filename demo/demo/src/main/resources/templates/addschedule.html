@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" type="text/css"
@@ -14,10 +14,15 @@
         <a class="nav-link" th:href="@{/}">Home</a>
         <a class="nav-link" th:href="@{/admin/}">Admin Options</a>
         <a class="nav-link" th:href="@{/admin/managemovies}">Manage Movies</a>
+        <div sec:authorize="isAuthenticated">
+            <form th:action="@{/logout}" method="post">
+                <input class="logout-button" type="submit" value="Sign Out" />
+            </form>
+        </div>
     </nav>
 </div>
 <div class="scheduling-card">
-    <h1>Schedule New Showing</h1>
+    <h1 class="headerheader">Schedule New Showing</h1>
     <div class="date-time-picker-ctr">
         <label for="date-time-picker" id="date-time-picker-label">Show Time</label>
         <input id="date-time-picker"

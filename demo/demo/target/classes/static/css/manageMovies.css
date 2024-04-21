@@ -40,6 +40,7 @@ body {
 
 .nav-link {
     margin-top: 8px;
+    color: var(--turquoise-sea);
 }
 
 .page-ctr {
@@ -87,4 +88,14 @@ a.options:hover {
 a.options:hover:not(.active) {
     background-color: #a59c9f;
     color: white;
+}
+
+.logout-button {
+    margin-top: 8px;
+    border-radius: 5px;
+    background-color: var(--turquoise-sea);
+    color: #ffffff;
+}
+.logout-button:hover{
+    background-color: #a59c9f;
 }
