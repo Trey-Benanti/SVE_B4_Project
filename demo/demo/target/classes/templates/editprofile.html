@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,13 +14,14 @@
         <a class="nav-link">Book</a>
         <a class="nav-link" th:href="@{/}">Home</a>
         <a class="nav-link">About</a>
-        <div class="search-ctr">
-            <form id="search-form"
-                  th:action="@{/search}"
-                  method="get">
-                <label for="search-box" id="search-label">Search:</label>
-                <input type="search" id="search-box" name="keyword"/>
-                <button id="search-button" type="submit" value="Search">Go</button>
+        <div sec:authorize="isAuthenticated">
+            <p class="nav-link">
+                Welcome <b><span sec:authentication="principal.fullName"></span></b>
+            </p>
+        </div>
+        <div sec:authorize="isAuthenticated">
+            <form th:action="@{/logout}" method="post">
+                <input class="logout-button" type="submit" value="Sign Out" />
             </form>
         </div>
     </nav>
@@ -30,7 +31,6 @@
         <a class="active" th:href="@{/profile}">Profile</a>
         <a th:href="@{/creditcards}">Credit cards</a>
         <a th:href="@{/orders}">Orders</a>
-        <a th:href="@{/changepassword}">Change Password</a>
         <a th:href="@{/changepassword}">Change Password</a>
     </div>
 
@@ -51,7 +51,7 @@
             <br/>
             <br/>
             <label><strong>State:     </strong>
-                <select th:field="*{address.stateCode}">
+                <select class="drop" th:field="*{address.stateCode}">
                     <option th:each="code : ${T(com.spring.project.users.userinfo.StateCode).values()}"
                             th:value="${code}"
                             th:text="${code}">
@@ -66,7 +66,7 @@
             <label><strong>Subscribed to promotions  </strong><input type="checkbox" th:field="*{subscription}"id="agreeCheckbox" name="agreeCheckbox" ></label>
             <br/>
             <br/>
-            <input type="submit" value="editprofile"><a th:href="@{/editprofile}" ></a>
+            <input class="form-button" type="submit" value="editprofile"><a th:href="@{/editprofile}" ></a>
         </form>
     </div>
 </div>

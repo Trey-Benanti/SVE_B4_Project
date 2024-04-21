@@ -61,7 +61,8 @@ input[type="text"],
 input[type="address"],
 input[type="password"],
 input[type="firstname"],
-input[type="lastname"] {
+input[type="lastname"],
+input[type="number"] {
     width: 100%;
     padding-top: 12px;
     padding-bottom: 5px;
@@ -92,4 +93,15 @@ input[type="submit"]:hover {
 .removeCreditCardButton {
     padding: 2px;
     margin: 5px;
+}
+
+/* dropdown button */
+.drop{
+    width: 5em;
+    height: 2em;
+    line-height: 3;
+    overflow: hidden;
+    border-radius: .25em;
+    padding-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
 }

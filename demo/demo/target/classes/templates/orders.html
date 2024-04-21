@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,13 +14,14 @@
         <a class="nav-link">Book</a>
         <a class="nav-link" th:href="@{/}">Home</a>
         <a class="nav-link">About</a>
-        <div class="search-ctr">
-            <form id="search-form"
-                  th:action="@{/search}"
-                  method="get">
-                <label for="search-box" id="search-label">Search:</label>
-                <input type="search" id="search-box" name="keyword"/>
-                <button id="search-button" type="submit" value="Search">Go</button>
+        <div sec:authorize="isAuthenticated">
+            <p class="nav-link">
+                Welcome <b><span sec:authentication="principal.fullName"></span></b>
+            </p>
+        </div>
+        <div sec:authorize="isAuthenticated">
+            <form th:action="@{/logout}" method="post">
+                <input class="logout-button" type="submit" value="Sign Out" />
             </form>
         </div>
     </nav>

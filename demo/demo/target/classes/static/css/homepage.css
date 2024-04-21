@@ -30,7 +30,7 @@ body {
 
 .top-nav {
     display: flex;
-    height: 30px;
+    height: 40px;
     gap: 30px;
     color: #cccccc;
     overflow: hidden;
@@ -60,7 +60,7 @@ body {
 }
 
 #search-box {
-    width: 250px;
+    width: 200px;
     border-radius: 8px;
 }
 
@@ -122,10 +122,16 @@ body {
 
 #search-button {
     border-radius: 5px;
-    background-color: #BA0C2F;
+    background-color: var(--turquoise-sea);
     color: #ffffff;
 }
 
+.logout-button {
+    margin-top: 8px;
+    border-radius: 5px;
+    background-color: var(--turquoise-sea);
+    color: #ffffff;
+}
 .results-header {
     margin-left: 20px;
 }

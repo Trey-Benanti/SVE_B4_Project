@@ -40,7 +40,7 @@
         </div>
         <div sec:authorize="isAuthenticated">
             <form th:action="@{/logout}" method="post">
-                <input type="submit" value="Sign Out" />
+                <input class="logout-button" type="submit" value="Sign Out" />
             </form>
         </div>
         <div id="ns-filter-ctr">

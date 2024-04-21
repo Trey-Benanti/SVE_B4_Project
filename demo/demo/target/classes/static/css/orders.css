@@ -153,3 +153,9 @@ div.content {
         opacity: 1;
     }
 }
+.logout-button {
+    margin-top: 8px;
+    border-radius: 5px;
+    background-color: var(--turquoise-sea);
+    color: #ffffff;
+}
