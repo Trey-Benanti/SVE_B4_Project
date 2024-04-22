@@ -21,6 +21,17 @@ body {
 
 .nav-link {
     margin-top: 8px;
+    color: var(--turquoise-sea);
+}
+.logout-button {
+    margin-top: 8px;
+    border-radius: 5px;
+    background-color: var(--turquoise-sea);
+    color: #ffffff;
+    width:fit-content;
+}
+.logout-button:hover{
+    background-color: #a59c9f;
 }
 
 table, th, td {

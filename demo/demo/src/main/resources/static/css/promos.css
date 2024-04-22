@@ -37,37 +37,49 @@ body {
 
 .nav-link {
     margin-top: 8px;
+    color: var(--turquoise-sea);
 }
-
-
-
+.logout-button {
+    margin-top: 8px;
+    border-radius: 5px;
+    background-color: var(--turquoise-sea);
+    color: #ffffff;
+    width:fit-content;
+}
+.logout-button:hover{
+    background-color: #a59c9f;
+}
 table, th, td {
     border: 1px solid black;
     border-radius: 3px;
-    border-color: #170f11;
+    border-color: var(--burgundy-wine);
 }
 
 .promo-id {
     width: 100px;
+    color: var(--burgundy-wine);
 }
 
 .promo-code {
     width: 200px;
+    color: var(--burgundy-wine);
 }
 
 .promo-discount {
     width: 150px;
+    color: var(--burgundy-wine);
 }
 
 .promo-notes {
     width: 500px;
+    color: var(--burgundy-wine);
 }
 
 #promo-table-ctr {
     margin-top: 20px;
     display: flex;
     justify-content: center;
-
+    color: var(--burgundy-wine);
 }
 
 #promo-card {
@@ -81,21 +93,74 @@ table, th, td {
     width: fit-content;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-color: #BA0C2F;
+    background-color: var(--sand-yellow);
+    color: var(--burgundy-wine);
 }
 
 #promo-header {
     margin-bottom: 30px;
     text-align: center;
+    color: var(--burgundy-wine);
 }
 
 #promo-btn-ctr {
     margin-top: 10px;
     text-align: center;
+    color: var(--burgundy-wine);
 }
 
 .promo-btn {
-    width: 150px;
     height: 30px;
     border-radius: 5px;
+    background-color: var(--golden-sun);
+    color: #ffffff;
+    width:fit-content;
+}
+.promo-btn:hover{
+    background-color: var(--terra-cotta);
+}
+
+.dropbtn {
+    background-color: var(--golden-sun);
+    padding: 16px;
+    font-size: 16px;
+    border: 3px;
+    border-color: var(--burgundy-wine);
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color:var(--burgundy-wine);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background-color: var(--cloudy-grey);
+}
+
+.dropdown-content a:hover {
+    background-color: var(--turquoise-sea);
+    color:#ffffff;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: var(--terra-cotta);
 }

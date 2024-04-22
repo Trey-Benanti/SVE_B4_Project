@@ -38,6 +38,7 @@ body {
 
 .nav-link {
     margin-top: 8px;
+    color: var(--turquoise-sea);
 }
 
 .search-ctr {

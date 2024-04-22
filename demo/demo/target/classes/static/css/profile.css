@@ -36,6 +36,7 @@ body {
 
 .nav-link {
     margin-top: 8px;
+    color: var(--turquoise-sea);
 }
 
 .search-ctr {
@@ -51,7 +52,12 @@ body {
     width: 250px;
     border-radius: 8px;
 }
-
+.logout-button {
+    margin-top: 8px;
+    border-radius: 5px;
+    background-color: var(--turquoise-sea);
+    color: #ffffff;
+}
 /** home controller end **/
 
 /** side nav bar**/
@@ -121,4 +127,15 @@ div.content {
         transform: translate(0);
         opacity: 1;
     }
+}
+
+.reg-button {
+    background-color: var(--golden-sun);
+    border-radius: 5px;
+    padding: 12px;
+    margin-top: 10px;
+}
+
+.reg-button:hover {
+    background-color: var(--terra-cotta);
 }

@@ -9,11 +9,14 @@
           th:href="@{/css/signup.css}"  />
 </head>
 <body>
-  <div id="nav-ctr">
+<div id="nav-ctr">
     <nav class="top-nav">
-      <a class="nav-link"><a th:href="@{/}">Home</a></a>
+        <a class="nav-link">Book</a>
+        <a class="nav-link" th:href="@{/}">Home</a>
+        <a class="nav-link" th:href="@{/login}">Login</a>
+        <a class="nav-link">About</a>
     </nav>
-  </div>
+</div>
   <div class="page-ctr">
     <div>
       <h2>Customer Registration - Sign Up</h2>
@@ -79,7 +82,7 @@
       <div class="form-group row">
         <label class="col-4 col-form-label">State Code (Optional): </label>
         <div class="col-8">
-            <select th:field="*{address.stateCode}">
+            <select class="drop" th:field="*{address.stateCode}">
               <option th:each="code : ${T(com.spring.project.users.userinfo.StateCode).values()}"
                       th:value="${code}"
                       th:text="${code}">

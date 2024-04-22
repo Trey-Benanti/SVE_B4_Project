@@ -14,6 +14,14 @@ body {
     background: linear-gradient(to bottom, #170f11, #BA0C2F);
     padding-top: 12px;
 }
+.top-nav a:hover {
+    color: #a59c9f;
+}
+
+.nav-link {
+    margin-top: 8px;
+    color: var(--turquoise-sea);
+}
 
 .confirm-ctr {
     margin: auto;

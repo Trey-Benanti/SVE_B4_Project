@@ -38,10 +38,22 @@ body {
 
 .nav-link {
     margin-top: 8px;
+    color: var(--turquoise-sea);
 }
 
-
-
+.logout-button {
+    margin-top: 8px;
+    border-radius: 5px;
+    background-color: var(--turquoise-sea);
+    color: #ffffff;
+    width:fit-content;
+}
+.logout-button:hover{
+    background-color: #a59c9f;
+}
+.headerheader{
+    color: var(--burgundy-wine);
+}
 #form-title {
     margin-bottom: 15px;
 }
@@ -86,6 +98,7 @@ body {
 
 label {
     display: table-cell;
+    color: var(--burgundy-wine);
 }
 
 input {
@@ -93,14 +106,14 @@ input {
     width: 600px;
     border-width: 2px;
     border-radius: 5px;
-    border-color: black;
+    border-color: var(--burgundy-wine);
 }
 
 textarea {
     width: 600px;
     border-width: 2px;
     border-radius: 5px;
-    border-color: black;
+    border-color: var(--burgundy-wine);
 }
 
 #form-synop-input {
@@ -122,7 +135,7 @@ textarea {
     width: fit-content;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-color: #BA0C2F;
+    background-color: var(--sand-yellow);
 }
 
 #form-submit-button {
@@ -132,9 +145,29 @@ textarea {
     font-size: 16px;
     border-width: 2px;
     border-radius: 5px;
+    border-color: var(--burgundy-wine);
+    background-color: var(--golden-sun);
+    color: var(--burgundy-wine);
+    font-family: 'Montserrat', sans-serif, bold;
 }
 
+#form-submit-button:hover{
+    background-color: var(--terra-cotta);
+}
 #form-category-input {
     display: flex;
     flex-direction: row;
+}
+/* dropdown button */
+.drop{
+    width: 15em;
+    height: 2em;
+    line-height: 3;
+    overflow: hidden;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: var(--burgundy-wine);
+    padding-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--burgundy-wine);
 }

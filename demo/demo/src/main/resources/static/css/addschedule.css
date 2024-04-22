@@ -38,8 +38,18 @@ body {
 
 .nav-link {
     margin-top: 8px;
+    color: var(--turquoise-sea);
 }
-
+.logout-button {
+    margin-top: 8px;
+    border-radius: 5px;
+    background-color: var(--turquoise-sea);
+    color: #ffffff;
+    width:fit-content;
+}
+.logout-button:hover{
+    background-color: #a59c9f;
+}
 
 .scheduling-card {
     margin: auto;
@@ -52,10 +62,13 @@ body {
     width: fit-content;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-color: #BA0C2F;
+    background-color: var(--sand-yellow);
 }
-
-#date-time-picker-label {
+.headerheader{
+    color: var(--burgundy-wine);
+}
+#date-time-picker-label{
+    color: var(--burgundy-wine);
     font-weight: bold;
 }
 
@@ -92,7 +105,8 @@ table, th, td {
 }
 
 .show-times {
-    background-color: var(--stormy-sky);
+    background-color: var(--golden-sun);
+    color: var(--burgundy-wine);
     width: 500px;
 }
 
@@ -100,14 +114,26 @@ table, th, td {
     font-weight: bold;
     border-width: 2px;
     border-radius: 3px;
+    border-color: var(--burgundy-wine);
+    background-color: var(--golden-sun);
+    color: #ffffff;
+    width:fit-content;
+}
+#date-time-picker-button:hover{
+    background-color: var(--terra-cotta);
 }
 
 #date-time-picker {
     border-width: 2px;
     border-radius: 3px;
+    border-color: var(--burgundy-wine);
 }
 
 .date {
-    background-color: var(--burgundy-wine);
-    color: var(--sand-yellow);
+    background-color: var(--cloudy-grey);
+    color: var(--burgundy-wine);
+}
+
+#date-time-picker-button:hover{
+    background-color: var(--terra-cotta);
 }

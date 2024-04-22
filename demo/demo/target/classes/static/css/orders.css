@@ -37,6 +37,7 @@ body {
 
 .nav-link {
     margin-top: 8px;
+    color: var(--turquoise-sea);
 }
 
 .search-ctr {
@@ -152,4 +153,10 @@ div.content {
         transform: translate(0);
         opacity: 1;
     }
+}
+.logout-button {
+    margin-top: 8px;
+    border-radius: 5px;
+    background-color: var(--turquoise-sea);
+    color: #ffffff;
 }

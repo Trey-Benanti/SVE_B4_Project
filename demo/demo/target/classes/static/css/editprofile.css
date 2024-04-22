@@ -37,6 +37,7 @@ body {
 
 .nav-link {
     margin-top: 8px;
+    color: var(--turquoise-sea);
 }
 
 .search-ctr {
@@ -118,14 +119,14 @@ input[type="password"] {
     color: var(--stormy-sky);
 }
 
-input[type="submit"] {
+.form-button {
     background-color: var(--golden-sun);
-    border: none;
+    border-radius: 5px;
     padding: 12px;
     margin-top: 10px;
 }
 
-input[type="submit"]:hover {
+.form-button:hover {
     background-color: var(--terra-cotta);
 }
 
@@ -148,4 +149,21 @@ input[type="submit"]:hover {
         transform: translate(0);
         opacity: 1;
     }
+}
+
+/* dropdown button */
+.drop{
+    width: 5em;
+    height: 2em;
+    line-height: 3;
+    overflow: hidden;
+    border-radius: .25em;
+    padding-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+.logout-button {
+    margin-top: 8px;
+    border-radius: 5px;
+    background-color: var(--turquoise-sea);
+    color: #ffffff;
 }
