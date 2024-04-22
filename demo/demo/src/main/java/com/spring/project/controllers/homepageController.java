@@ -1,10 +1,11 @@
 package com.spring.project.controllers;
 
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 import com.spring.project.models.MovieDTO;
-import com.spring.project.services.MovieServices;
+import com.spring.project.services.*;
 import com.spring.project.services.UserRepository;
 import com.spring.project.users.User;
 import com.spring.project.users.userinfo.Role;
@@ -28,6 +29,12 @@ public class homepageController {
 
     @Autowired
     private UserRepository userRepo; // Reference to user repository interface
+
+    @Autowired
+    private ShowRepository showRepo; // Reference to showtimes repository interface
+
+    @Autowired
+    private RoomRepository roomRepo; // Reference to showrooms repository interface
 
     @Autowired
     private MovieServices movieService; // Reference to movie services interface

@@ -47,6 +47,7 @@ public class SecurityConfigurer   {
                 .defaultSuccessUrl("/")
                 .permitAll()
             )
+            .csrf().disable()
 
             .logout(logout -> logout.logoutSuccessUrl("/").permitAll()
         );

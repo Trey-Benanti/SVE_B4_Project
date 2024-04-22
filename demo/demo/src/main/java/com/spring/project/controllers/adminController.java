@@ -1,34 +1,24 @@
 package com.spring.project.controllers;
 
+import com.spring.project.models.*;
+import com.spring.project.services.*;
+import com.spring.project.users.User;
+import jakarta.mail.MessagingException;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
-import jakarta.mail.MessagingException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-
-import com.spring.project.models.Movie;
-import com.spring.project.models.MovieDTO;
-import com.spring.project.services.MovieServices;
-import com.spring.project.services.MoviesRepository;
-import com.spring.project.services.UserRepository;
-import com.spring.project.services.PromoRepository;
-import com.spring.project.services.PromotionService;
-import org.springframework.stereotype.Controller;
-
-import com.spring.project.models.Promotion;
-import com.spring.project.users.*;
-
-import jakarta.validation.Valid;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class adminController {
@@ -40,13 +30,19 @@ public class adminController {
     private UserRepository userRepo; // Reference to user repository interface
 
     @Autowired
+    private ShowRepository showRepo; // Reference to showtimes repository interface
+
+    @Autowired
+    private RoomRepository roomRepo; // Reference to showrooms repository interface
+
+    @Autowired
     private MovieServices movieService; // Reference to movie services interface
 
     @Autowired
     private PromoRepository promoRepository;
     @Autowired
     private PromotionService promotionService;
-    
+
     @GetMapping("/admin/")
     public String adminView(Model model) {
         List<Movie> movies = repo.findAll();
@@ -56,7 +52,7 @@ public class adminController {
 
     @GetMapping("/admin/managemovies")
     public String manageMovies() {
-        return "manageMovies";
+        return "managemovies";
     } // manageMovies
 
     @GetMapping("/admin/editmovies")
@@ -66,11 +62,43 @@ public class adminController {
         return "editmovies";
     } // editMovies
 
-    @GetMapping("/admin/addschedule")
-    public String addSchedule() {
+    @GetMapping("/admin/addschedule") // addschedule get
+    public String addSchedule(Model model) {
+        List<Show> shows = showRepo.findAll();
+        model.addAttribute("shows", shows);
         return "addschedule";
     } // addschedule
 
+    @PostMapping("/admin/addschedule") // addschedule post
+    public String addShowtime(
+            @RequestParam("title") String title,
+            @RequestParam("room") Long room,
+            @RequestParam("showDate") String showDate,
+            @RequestParam("timeslot") String timeslot
+    ) {
+
+        Show show = new Show();
+        List<Movie> movieList = movieService.search(title);
+        Showroom showroom = roomRepo.findByNumber(room);
+
+        show.movie_id = movieList.get(0);
+        show.room_id = showroom;
+        show.time_slot = timeslot;
+        show.showDate = showDate;
+
+        // check if room is booked at this time
+        List<Show> existing_show = showRepo.findByTimeSlot(show.room_id.id, show.showDate, show.time_slot);
+        if (existing_show.size() > 0) { // TODO: add error text
+            return "redirect:/admin/addschedule";
+        }
+
+        showRepo.save(show);
+
+        show.movie_id.setNowPlaying("Now Showing");
+        repo.save(show.movie_id);
+
+        return "redirect:/admin/";
+    }
     @GetMapping("/admin/manageusers")
     public String manageUsers(Model model) {
         List<User> listUsers = userRepo.findAll();
@@ -110,33 +138,8 @@ public class adminController {
         return "redirect:/admin/"; // redirect home
     } // create
 
-        @GetMapping("/search")
-    public String search(@Param("keyword") String keyword, Model model) {
-        model.addAttribute("keyword", keyword);
-        model.addAttribute("pageTitle", "Search results for " + keyword);
-
-        List<Movie> searchResult = movieService.search(keyword); // Get results of full text search
-        model.addAttribute("searchResult", searchResult); // Pass search results to front end
-
-        return "searchresult";
-    } // search
 
 
-    @GetMapping("/scheduling")
-    public String scheduling(Model model) {
-        List<Movie> movies = repo.findAll();
-        model.addAttribute("movies", movies);
-        return "scheduling";
-    } // scheduling
-
-    @GetMapping("/manageusers")
-    public String manageUsers() {
-        return "manageusers";
-    } // manageusers
-
-
-
-    // Promotions
     @GetMapping("/admin/promos")
     public String promos(Model model) {
         List<Promotion> promotions = promoRepository.findAll();
