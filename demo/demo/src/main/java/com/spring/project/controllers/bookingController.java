@@ -24,6 +24,10 @@ public class bookingController {
     public String selectShow() {
         return "select-show";
     } // selectShow
+    @GetMapping("/select-seats")
+    public String selectSeats() {
+        return "select-seats";
+    } // selectSeats
 
     @GetMapping("/order-confirmation")
     public String orderConfirmation() {
@@ -37,7 +41,7 @@ public class bookingController {
 
     @GetMapping("/select-show/{id}")
     public String selectShow(@PathVariable("id") int movieId, Model model) {
-        Movie movie = movieServices.findById(movieId); // Assuming such a method exists in MovieServices
+        Movie movie = movieServices.findById(movieId);
         model.addAttribute("movie", movie);
         return "select-show";
     }
