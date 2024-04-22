@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Create New Promotion</h1>
+
+<form th:action="@{/admin/promos/create}" th:object="${promotion}" method="post">
+    <div>
+        <label for="promoCode">Promo Code</label>
+        <input type="text" id="promoCode" th:field="*{promoCode}" required>
+    </div>
+    <div>
+        <label for="percentage">Discount Percentage</label>
+        <input type="number" id="percentage" th:field="*{percentage}" required>
+    </div>
+    <div>
+        <label for="startDate">Start Date</label>
+        <input type="date" id="startDate" th:field="*{startDate}" required>
+    </div>
+    <div>
+        <label for="endDate">End Date</label>
+        <input type="date" id="endDate" th:field="*{endDate}" required>
+    </div>
+    <button type="submit">Create Promotion</button>
+</form>
+</body>
+</html>
