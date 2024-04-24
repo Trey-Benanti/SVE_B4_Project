@@ -112,6 +112,12 @@
             <div class="details-link-ctr">
                 <p class="details-link" th:text="${movie.synop}"></p>
             </div>
+            <div class="book-tickets-btn-ctr">
+                <button class="book-tickets-btn">
+                    <a th:href="@{/select-show/{id}(id=${movie.id})}">
+                        Book
+                    </a>
+                </button>
         </div>
     </div>
 </div>
