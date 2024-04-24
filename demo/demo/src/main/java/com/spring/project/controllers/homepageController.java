@@ -52,5 +52,21 @@ public class homepageController {
         return "homepage";
     } // homepage
 
+    @GetMapping("/search")
+    public String search(@Param("keyword") String keyword, Model model) {
+        List<Movie> searchResult = movieService.search(keyword);
+
+        if(searchResult.isEmpty()) {
+            keyword = "No results matching " + keyword;
+        } else {
+            keyword = "Results for " + keyword;
+        } // else
+
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("pageTitle", keyword);
+        model.addAttribute("searchResult", searchResult); // Pass search results to front end
+        return "searchresult";
+    } // search
+
 }
 
