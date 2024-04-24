@@ -27,55 +27,55 @@
         <div id="form-title">
             <p>
             <label id="form-title-label" for="form-title-input">Movie Title</label>
-                <input id="form-title-input" th:field="${movieDTO.movieTitle}" />
+                <input id="form-title-input" th:field="${movieDTO.movieTitle}" required />
             </p>
         </div>
         <div id="form-cast">
             <p>
             <label id="form-cast-label" for="form-cast-input">Cast</label>
-            <textarea id="form-cast-input" th:field="${movieDTO.cast}"></textarea>
+            <textarea id="form-cast-input" th:field="${movieDTO.cast}" required></textarea>
             </p>
         </div>
         <div id="form-director">
             <p>
             <label id="form-director-label" for="form-director-input">Director</label>
-            <input id="form-director-input" th:field="${movieDTO.director}"/>
+            <input id="form-director-input" th:field="${movieDTO.director}" required/>
             </p>
         </div>
         <div id="form-producer">
             <p>
             <label id="form-producer-label" for="form-producer-input">Producer</label>
-            <input id="form-producer-input" th:field="${movieDTO.producer}"/>
+            <input id="form-producer-input" th:field="${movieDTO.producer}" required/>
             </p>
         </div>
         <div id="form-rating">
             <p>
             <label id="form-rating-label" for="form-rating-input">Rating</label>
-            <input id="form-rating-input" th:field="${movieDTO.rating}"/>
+            <input id="form-rating-input" th:field="${movieDTO.rating}" required/>
             </p>
         </div>
         <div id="form-reviews">
             <p>
             <label id="form-reviews-label" for="form-reviews-input">Review Score</label>
-            <input id="form-reviews-input" th:field="${movieDTO.reviews}"/>
+            <input id="form-reviews-input" th:field="${movieDTO.reviews}" required/>
             </p>
         </div>
         <div id="form-synop">
             <p>
             <label id="form-synop-label" for="form-synop-input">Synopsis</label>
-            <textarea id="form-synop-input" th:field="${movieDTO.synop}"></textarea>
+            <textarea id="form-synop-input" th:field="${movieDTO.synop}" required></textarea>
             </p>
         </div>
         <div id="form-trailer-photo">
             <p>
             <label id="form-trailer-photo-label" for="form-trailer-photo-input">Trailer Photo Link</label>
-            <input id="form-trailer-photo-input" th:field="${movieDTO.trailerPhoto}"/>
+            <input id="form-trailer-photo-input" th:field="${movieDTO.trailerPhoto}" required/>
             </p>
         </div>
         <div id="form-trailer-video">
             <p>
             <label id="form-trailer-video-label" for="form-trailer-video-input">Trailer Embedded Link</label>
-            <input id="form-trailer-video-input" th:field="${movieDTO.trailerVideo}"/>
+            <input id="form-trailer-video-input" th:field="${movieDTO.trailerVideo}" required/>
             </p>
         </div>
         <div id="form-category-ctr">
