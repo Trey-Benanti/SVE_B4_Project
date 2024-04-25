@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Seats</title>
+    <link rel="stylesheet" type="text/css"
+          href="/css/UserTopNav.css"
+          th:href="@{/css/UserTopNav.css}"  />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
         :root {
@@ -24,48 +27,6 @@
             background-color: #f4f4f4;
             text-align: center;
             background-color: var(--sand-yellow);
-        }
-
-        .top-nav {
-            display: flex;
-            height: 30px;
-            gap: 30px;
-            color: #cccccc;
-            overflow: hidden;
-            padding-left: 20px;
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-            padding-bottom: 10px;
-            font-size: 18px;
-            padding-top: 12px;
-            background: linear-gradient(to bottom, var(--sand-yellow), var(--burgundy-wine));
-        }
-
-        .top-nav a:hover {
-            color: #a59c9f;
-        }
-
-        .nav-link {
-            margin-top: 8px;
-        }
-
-        .search-ctr {
-            margin-top: 8px;
-            font-size: 18px;
-        }
-
-        #search-label {
-            margin-right: 8px;
-        }
-
-        #search-box {
-            width: 250px;
-            border-radius: 8px;
-        }
-
-        #search-button {
-            border-radius: 5px;
-            background-color: #BA0C2F;
-            color: #ffffff;
         }
 
         .container {
@@ -282,8 +243,8 @@
 <body>
 <div id="nav-ctr">
     <nav class="top-nav">
-        <a class="nav-link">Book</a>
-        <a class="nav-link" th:href="@{/signin}">Login</a>
+        <a class="nav-link" th:href="@{/}">Home</a>
+        <a class="nav-link" th:href="@{/login}">Login</a>
         <a class="nav-link">About</a>
         <div class="search-ctr">
             <form id="search-form"
@@ -292,6 +253,16 @@
                 <label for="search-box" id="search-label">Search:</label>
                 <input type="search" id="search-box" name="keyword"/>
                 <button id="search-button" type="submit" value="Search">Go</button>
+            </form>
+        </div>
+        <div sec:authorize="isAuthenticated">
+            <p class="nav-link">
+                Welcome <b><span sec:authentication="principal.fullName"></span></b>
+            </p>
+        </div>
+        <div sec:authorize="isAuthenticated">
+            <form th:action="@{/logout}" method="post">
+                <input class="logout-button" type="submit" value="Sign Out" />
             </form>
         </div>
     </nav>

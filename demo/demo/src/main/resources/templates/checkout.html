@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Checkout</title>
+    <link rel="stylesheet" type="text/css"
+          href="/css/UserTopNav.css"
+          th:href="@{/css/UserTopNav.css}"  />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 <style>
     body {
@@ -51,7 +54,21 @@
 </style>
 </head>
 <body>
-
+<div id="nav-ctr">
+    <nav class="top-nav">
+        <a class="nav-link" th:href="@{/}">Home</a>
+        <a class="nav-link">About</a>
+        <div class="search-ctr">
+            <form id="search-form"
+                  th:action="@{/search}"
+                  method="get">
+                <label for="search-box" id="search-label">Search:</label>
+                <input type="search" id="search-box" name="keyword"/>
+                <button id="search-button" type="submit" value="Search">Go</button>
+            </form>
+        </div>
+    </nav>
+</div>
 <div class="container">
     <div class="checkout">
         <div class="header">

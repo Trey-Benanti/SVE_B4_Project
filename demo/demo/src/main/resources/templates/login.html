@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" type="text/css"
+          href="/css/UserTopNav.css"
+          th:href="@{/css/UserTopNav.css}"  />
+    <link rel="stylesheet" type="text/css"
           href="/css/signin.css"
           th:href="@{/css/signin.css}"  />
 </head>
 <body>
 <div id="nav-ctr">
     <nav class="top-nav">
-        <a class="nav-link">Book</a>
         <a class="nav-link" th:href="@{/}">Home</a>
         <a class="nav-link" th:href="@{/signup}">Register</a>
         <a class="nav-link">About</a>

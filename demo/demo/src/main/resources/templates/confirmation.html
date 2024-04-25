@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Confirm Account</title>
     <link rel="stylesheet" type="text/css"
+          href="/css/UserTopNav.css"
+          th:href="@{/css/UserTopNav.css}"  />
+    <link rel="stylesheet" type="text/css"
           href="/css/confirmation.css"
           th:href="@{/css/confirmation.css}"
     />
@@ -12,7 +15,7 @@
 <body>
 <div id="nav-ctr">
     <nav class="top-nav">
-        <a class="nav-link">Home</a>
+        <a class="nav-link" th:href="@{/}">Home</a>
     </nav>
 </div>
 <div class="confirm-ctr">

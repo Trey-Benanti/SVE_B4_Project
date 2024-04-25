@@ -16,45 +16,6 @@ body {
     overflow: auto;
     border: 1px solid #fff;
 }
-/** home controller **/
-.top-nav {
-    display: flex;
-    height: 30px;
-    gap: 30px;
-    color: #cccccc;
-    overflow: hidden;
-    padding-left: 20px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    padding-bottom: 10px;
-    font-size: 18px;
-    padding-top: 12px;
-    background: linear-gradient(to bottom, var(--sand-yellow), var(--burgundy-wine));
-}
-
-.top-nav a:hover {
-    color: #a59c9f;
-}
-
-.nav-link {
-    margin-top: 8px;
-    color: var(--turquoise-sea);
-}
-
-.search-ctr {
-    margin-top: 8px;
-    font-size: 18px;
-}
-
-#search-label {
-    margin-right: 8px;
-}
-
-#search-box {
-    width: 250px;
-    border-radius: 8px;
-}
-
-/** home controller end **/
 
 /** side nav bar**/
 div.profilenav {

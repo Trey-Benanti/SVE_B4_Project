@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
     <title>Search Results</title>
+    <link rel="stylesheet" type="text/css"
+          href="/css/UserTopNav.css"
+          th:href="@{/css/UserTopNav.css}"  />
     <link rel="stylesheet"
           href="/css/homepage.css"
           th:href="@{/css/homepage.css}"
@@ -12,9 +15,19 @@
 <div id="nav-ctr">
     <nav class="top-nav">
         <a class="nav-link" th:href="@{/}">Home</a>
-        <a class="nav-link">Book</a>
-        <a class="nav-link">Login</a>
-        <a class="nav-link">About</a>
+        <div class="nav-link" sec:authorize="!(isAuthenticated)">
+            <a class="nav-link" th:href="@{/login}">Login</a>
+        </div>
+        <div class="nav-link" sec:authorize="!(isAuthenticated)">
+            <a class="nav-link" th:href="@{/signup}">Register</a>
+        </div>
+        <div class="nav-link" sec:authorize="isAuthenticated">
+            <a class="nav-link" th:href="@{/profile}">Profile</a>
+        </div>
+        <div class="nav-link"><a>About</a></div>
+        <div class="nav-link" sec:authorize="hasRole('ROLE_ADMIN')">
+            <a class="nav-link" th:href="@{/admin/}">Admin</a>
+        </div>
         <div class="search-ctr">
             <form id="search-form"
                   th:action="@{/search}"
@@ -23,6 +36,28 @@
                 <input type="search" id="search-box" name="keyword"/>
                 <button id="search-button" type="submit" value="Search">Go</button>
             </form>
+        </div>
+        <div sec:authorize="isAuthenticated">
+            <p class="nav-link">
+                Welcome <b><span sec:authentication="principal.fullName"></span></b>
+            </p>
+        </div>
+        <div sec:authorize="isAuthenticated">
+            <form th:action="@{/logout}" method="post">
+                <input class="logout-button" type="submit" value="Sign Out" />
+            </form>
+        </div>
+        <div id="ns-filter-ctr">
+            <label id="now-showing-label" for="now_showing_check">Now Showing</label>
+            <input type="checkbox" id="now-showing-check" name="now-showing-check" />
+        </div>
+        <div id="cs-filter-ctr">
+            <label id="coming-soon-label" for="coming-soon-check">Coming Soon</label>
+            <input type="checkbox" id="coming-soon-check" name="coming-soon-check" />
+        </div>
+        <div id="date-filter-ctr">
+            <label id="date-filter-label" for="date-filter">Date</label>
+            <input type="date" id="date-filter" name="date-filter" />
         </div>
     </nav>
 </div>

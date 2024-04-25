@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <link rel="stylesheet" type="text/css"
+          href="/css/UserTopNav.css"
+          th:href="@{/css/UserTopNav.css}"  />
+    <link rel="stylesheet" type="text/css"
           href="/css/profile.css"
           th:href="@{/css/editprofile.css}" />
 </head>
 <body>
 <div id="nav-ctr">
     <nav class="top-nav">
-        <a class="nav-link">Book</a>
         <a class="nav-link" th:href="@{/}">Home</a>
         <a class="nav-link">About</a>
         <div sec:authorize="isAuthenticated">
@@ -35,9 +37,10 @@
     </div>
 
     <div class="content">
-        <h1>Profile </h1>
-        <h4>Email: </h4>
+        <h1>Edit Profile </h1>
+
         <form th:action="@{/make_edits}" th:object="${user}"method="post">
+            <h4>Email: <span th:text="*{email}"></span></h4>
             <label><strong>First Name:</strong><input id="firstname" type="text" th:field="*{firstName}" name="firstname" placeholder="FirstName" required></label>
             <br/>
             <br/>
@@ -66,7 +69,7 @@
             <label><strong>Subscribed to promotions  </strong><input type="checkbox" th:field="*{subscription}"id="agreeCheckbox" name="agreeCheckbox" ></label>
             <br/>
             <br/>
-            <input class="form-button" type="submit" value="editprofile"><a th:href="@{/editprofile}" ></a>
+            <input class="form-button" type="submit" value="editprofile"><a th:href="@{/profile}" ></a>
         </form>
     </div>
 </div>
