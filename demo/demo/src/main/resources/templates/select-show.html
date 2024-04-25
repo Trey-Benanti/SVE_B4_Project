@@ -140,18 +140,25 @@
             <!--<p th:text="${#dates.format(movie.releaseDate, 'MM/dd/yyyy')}">2/14/2024</p> -->
             <p th:text="${movie.synop}">Movie synopsis...</p>
         </div>
-        <div class="theater-dropdown">
-            <select aria-label="Select Theater">
-                <option value="1">Theater 13</option>
-                <option value="2">Theater 14</option>
-            </select>
-        </div>
         <div class="showtimes">
             <h3>Showtimes</h3>
-            <div class="showtime-buttons">
-                <a th:each="showtime : ${showtimes}" th:href="@{/select-seats}">
-                    <button th:text="${showtime}">3:00 PM</button>
-                </a>
+            <div class="schedule-table-ctr">
+                <table class="schedule-table">
+                    <tr>
+                        <th class="room-name">Room Name</th>
+                        <th class="show-date">Show Date</th>
+                        <th class="show-date">Show Time</th>
+                        <th>Select</th>
+                    </tr>
+                    <div class="table-content-container" th:each="show : ${shows}">
+                        <tr>
+                            <td th:text="${show.room_id.roomTitle}" />
+                            <td th:text="${show.showDate}" />
+                            <td th:text="${show.time_slot}" />
+                            <td><button>Select</button></td>
+                        </tr>
+                    </div>
+                </table>
             </div>
         </div>
     </div>

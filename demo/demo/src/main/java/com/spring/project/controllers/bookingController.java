@@ -2,7 +2,9 @@ package com.spring.project.controllers;
 
 import java.util.List;
 
+import com.spring.project.models.Show;
 import com.spring.project.services.MovieServices;
+import com.spring.project.services.ShowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class bookingController {
     @Autowired
     private MovieServices movieServices; // Use MovieServices to fetch movie details
+
+    @Autowired
+    private ShowRepository showRepo;
 
     @Autowired
     private MoviesRepository repo; // Reference to movie repository interface
@@ -40,10 +45,15 @@ public class bookingController {
     } // orderSummary
 
     @GetMapping("/select-show/{id}")
-    public String selectShow(@PathVariable("id") int movieId, Model model) {
-        Movie movie = movieServices.findById(movieId);
+    public String selectShow(@PathVariable("id") int id, Model model) {
+        Movie movie = repo.getReferenceById(id);
+
+        List<Show> shows = showRepo.findByMovie(movie.getId());
+
         model.addAttribute("movie", movie);
-        return "select-show";
+        model.addAttribute("shows", shows);
+
+        return "selectshow";
     }
     @GetMapping("/checkout")
     public String checkout() {
