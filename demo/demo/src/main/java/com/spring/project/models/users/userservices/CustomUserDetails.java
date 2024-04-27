@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.spring.project.users.User;
+import com.spring.project.models.users.User;
  
 public class CustomUserDetails implements UserDetails {
     String rolePrefix = "ROLE_";

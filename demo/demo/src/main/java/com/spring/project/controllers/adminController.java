@@ -1,6 +1,5 @@
 package com.spring.project.controllers;
 
-import com.spring.project.models.*;
 import com.spring.project.models.movies.Movie;
 import com.spring.project.models.movies.movieinfo.MovieDTO;
 import com.spring.project.models.movies.movieservices.MovieServices;
@@ -14,7 +13,6 @@ import com.spring.project.models.shows.showservices.RoomRepository;
 import com.spring.project.models.shows.showservices.ShowRepository;
 import com.spring.project.models.users.User;
 import com.spring.project.models.users.userservices.UserRepository;
-import com.spring.project.services.*;
 
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;

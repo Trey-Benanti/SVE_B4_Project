@@ -3,10 +3,9 @@ package com.spring.project.models.users;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import com.spring.project.users.userinfo.*;
+import com.spring.project.models.users.userinfo.*;
 
 @Entity
 @Table(name = "users")

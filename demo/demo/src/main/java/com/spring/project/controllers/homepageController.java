@@ -1,29 +1,19 @@
 package com.spring.project.controllers;
 
 import java.security.Principal;
-import java.util.Date;
 import java.util.List;
 
 import com.spring.project.models.movies.Movie;
-import com.spring.project.models.movies.movieinfo.MovieDTO;
 import com.spring.project.models.movies.movieservices.MovieServices;
 import com.spring.project.models.movies.movieservices.MoviesRepository;
-import com.spring.project.models.shows.showservices.RoomRepository;
-import com.spring.project.models.shows.showservices.ShowRepository;
-import com.spring.project.models.users.User;
 import com.spring.project.models.users.userinfo.Role;
 import com.spring.project.models.users.userservices.UserRepository;
-import com.spring.project.services.*;
 
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class homepageController {
@@ -32,12 +22,6 @@ public class homepageController {
 
     @Autowired
     private UserRepository userRepo; // Reference to user repository interface
-
-    @Autowired
-    private ShowRepository showRepo; // Reference to showtimes repository interface
-
-    @Autowired
-    private RoomRepository roomRepo; // Reference to showrooms repository interface
 
     @Autowired
     private MovieServices movieService; // Reference to movie services interface

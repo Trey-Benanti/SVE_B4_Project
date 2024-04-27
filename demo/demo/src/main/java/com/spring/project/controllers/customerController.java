@@ -3,11 +3,10 @@ package com.spring.project.controllers;
 import com.spring.project.models.users.User;
 import com.spring.project.models.users.userinfo.CardInfo;
 import com.spring.project.models.users.userservices.CardInfoRepository;
-import com.spring.project.models.users.userservices.UserRepository;
+import com.spring.project.models.users.userservices.*;
 import com.spring.project.services.Encrypt;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +18,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.security.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class customerController {

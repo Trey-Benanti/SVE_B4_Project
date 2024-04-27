@@ -1,6 +1,6 @@
 package com.spring.project.models.users.userinfo;
 
-import com.spring.project.users.User;
+import com.spring.project.models.users.*;
 
 import jakarta.persistence.*;
 

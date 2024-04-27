@@ -2,7 +2,7 @@ package com.spring.project.models.promos.promotionservices;
 
 import com.spring.project.models.promos.Promotion;
 import com.spring.project.models.users.userservices.UserRepository;
-import com.spring.project.users.User;
+import com.spring.project.models.users.User;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;

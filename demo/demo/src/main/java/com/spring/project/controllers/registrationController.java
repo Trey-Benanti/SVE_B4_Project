@@ -1,6 +1,6 @@
 package com.spring.project.controllers;
 
-import com.spring.project.models.users.*;
+import com.spring.project.models.users.User;
 import com.spring.project.models.users.userinfo.CardInfo;
 import com.spring.project.models.users.userservices.UserRepository;
 import com.spring.project.services.Encrypt;
@@ -23,7 +23,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
-import java.security.Key;
 import java.security.KeyStore;
 import java.util.Random;
 
