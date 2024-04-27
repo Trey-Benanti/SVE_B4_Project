@@ -4,11 +4,17 @@ import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
-import com.spring.project.models.MovieDTO;
+import com.spring.project.models.movies.Movie;
+import com.spring.project.models.movies.movieinfo.MovieDTO;
+import com.spring.project.models.movies.movieservices.MovieServices;
+import com.spring.project.models.movies.movieservices.MoviesRepository;
+import com.spring.project.models.shows.showservices.RoomRepository;
+import com.spring.project.models.shows.showservices.ShowRepository;
+import com.spring.project.models.users.User;
+import com.spring.project.models.users.userinfo.Role;
+import com.spring.project.models.users.userservices.UserRepository;
 import com.spring.project.services.*;
-import com.spring.project.services.UserRepository;
-import com.spring.project.users.User;
-import com.spring.project.users.userinfo.Role;
+
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -16,9 +22,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
-
-import com.spring.project.models.Movie;
-import com.spring.project.services.MoviesRepository;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 

@@ -1,10 +1,11 @@
 package com.spring.project.controllers;
 
-import com.spring.project.services.CardInfoRepository;
+import com.spring.project.models.users.User;
+import com.spring.project.models.users.userinfo.CardInfo;
+import com.spring.project.models.users.userservices.CardInfoRepository;
+import com.spring.project.models.users.userservices.UserRepository;
 import com.spring.project.services.Encrypt;
-import com.spring.project.services.UserRepository;
-import com.spring.project.users.User;
-import com.spring.project.users.userinfo.CardInfo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

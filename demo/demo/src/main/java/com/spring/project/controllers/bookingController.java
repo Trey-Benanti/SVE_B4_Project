@@ -2,16 +2,16 @@ package com.spring.project.controllers;
 
 import java.util.List;
 
-import com.spring.project.models.Show;
-import com.spring.project.services.MovieServices;
-import com.spring.project.services.ShowRepository;
+import com.spring.project.models.movies.Movie;
+import com.spring.project.models.movies.movieservices.MovieServices;
+import com.spring.project.models.movies.movieservices.MoviesRepository;
+import com.spring.project.models.shows.Show;
+import com.spring.project.models.shows.showservices.ShowRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import com.spring.project.models.Movie;
-import com.spring.project.services.MoviesRepository;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller

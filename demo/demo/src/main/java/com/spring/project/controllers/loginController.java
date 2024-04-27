@@ -1,7 +1,8 @@
 package com.spring.project.controllers;
 
-import com.spring.project.services.UserRepository;
-import com.spring.project.users.User;
+import com.spring.project.models.users.User;
+import com.spring.project.models.users.userservices.UserRepository;
+
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;

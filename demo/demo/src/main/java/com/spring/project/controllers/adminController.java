@@ -1,8 +1,21 @@
 package com.spring.project.controllers;
 
 import com.spring.project.models.*;
+import com.spring.project.models.movies.Movie;
+import com.spring.project.models.movies.movieinfo.MovieDTO;
+import com.spring.project.models.movies.movieservices.MovieServices;
+import com.spring.project.models.movies.movieservices.MoviesRepository;
+import com.spring.project.models.promos.Promotion;
+import com.spring.project.models.promos.promotionservices.PromoRepository;
+import com.spring.project.models.promos.promotionservices.PromotionService;
+import com.spring.project.models.shows.Show;
+import com.spring.project.models.shows.showinfo.Showroom;
+import com.spring.project.models.shows.showservices.RoomRepository;
+import com.spring.project.models.shows.showservices.ShowRepository;
+import com.spring.project.models.users.User;
+import com.spring.project.models.users.userservices.UserRepository;
 import com.spring.project.services.*;
-import com.spring.project.users.User;
+
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
