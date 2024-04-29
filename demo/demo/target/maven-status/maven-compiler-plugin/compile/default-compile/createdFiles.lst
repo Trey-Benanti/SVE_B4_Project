@@ -17,6 +17,7 @@ com\spring\project\models\Booking.class
 com\spring\project\models\users\userservices\UserRepository.class
 com\spring\project\controllers\adminController.class
 com\spring\project\models\TicketType.class
+com\spring\project\services\EncryptFacade.class
 com\spring\project\models\users\userservices\AddressRepository.class
 com\spring\project\controllers\registrationController.class
 com\spring\project\models\shows\showinfo\Showroom.class
@@ -27,7 +28,6 @@ com\spring\project\models\users\userservices\CustomUserDetailsService.class
 com\spring\project\models\movies\movieservices\MoviesRepository.class
 com\spring\project\models\movies\movieinfo\MovieDTO.class
 com\spring\project\models\users\userinfo\Address.class
-com\spring\project\services\Encrypt.class
 com\spring\project\models\movies\movieinfo\Rating.class
 com\spring\project\models\users\userservices\CardInfoRepository.class
 com\spring\project\models\users\userinfo\CardInfo.class

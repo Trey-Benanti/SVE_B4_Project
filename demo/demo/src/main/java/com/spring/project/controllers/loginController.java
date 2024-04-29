@@ -2,13 +2,13 @@ package com.spring.project.controllers;
 
 import com.spring.project.models.users.User;
 import com.spring.project.models.users.userservices.UserRepository;
+import com.spring.project.services.EncryptFacade;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +27,9 @@ public class loginController {
 
     @Autowired
     private JavaMailSender mailSender;
+
+    private EncryptFacade encrypt = EncryptFacade.getInstance();
+
     @GetMapping("/login")
     public String login(Principal principal) {
         if (principal != null)
@@ -58,8 +61,6 @@ public class loginController {
             return "forgotpassword";
         }
 
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
@@ -70,7 +71,7 @@ public class loginController {
         helper.setSubject("Temp Password");
         helper.setText("Your new temporary password is " + tempPw);
 
-        user.setPassword(passwordEncoder.encode(tempPw));
+        encrypt.encryptPassword(user, tempPw);
         userRepo.save(user);
 
         mailSender.send(message);

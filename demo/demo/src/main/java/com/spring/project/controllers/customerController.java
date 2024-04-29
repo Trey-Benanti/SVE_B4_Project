@@ -2,21 +2,14 @@ package com.spring.project.controllers;
 
 import com.spring.project.models.users.User;
 import com.spring.project.models.users.userinfo.CardInfo;
-import com.spring.project.models.users.userservices.CardInfoRepository;
 import com.spring.project.models.users.userservices.*;
-import com.spring.project.services.Encrypt;
+import com.spring.project.services.EncryptFacade;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.crypto.*;
-import javax.crypto.spec.SecretKeySpec;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.security.*;
 import java.util.List;
 
@@ -28,6 +21,8 @@ public class customerController {
 
     @Autowired
     private CardInfoRepository cardRepo;
+
+    private EncryptFacade encrypt = EncryptFacade.getInstance();
 
     @GetMapping("/profile")
     public String profile(Model model, Principal principal) {
@@ -63,19 +58,8 @@ public class customerController {
 
         for(int i = 0; i < cards.size(); i++) { // Decrypt each card number
             if(!cards.get(i).getCardNumber().equals("")) {
-                KeyStore secretKeyTarget = KeyStore.getInstance("JCEKS"); // Load keystore
-                char[] ksPassword = "password".toCharArray();
 
-                try (FileInputStream fis = new FileInputStream("keystore.jceks")) {
-                    secretKeyTarget.load(fis, ksPassword);
-                } // try
-
-                KeyStore.ProtectionParameter protPassword = new KeyStore.PasswordProtection(ksPassword); // Retrieve key from keystore
-                KeyStore.SecretKeyEntry tempKey = (KeyStore.SecretKeyEntry) secretKeyTarget.getEntry(cards.get(i).getId().toString(), protPassword);
-                SecretKey retrievedKey = new SecretKeySpec(tempKey.getSecretKey().getEncoded(), "AES");
-
-                Encrypt encryptor = new Encrypt(); // Decrypt card
-                String decCardNum = encryptor.decrypt(cards.get(i).getCardNumber(), retrievedKey);
+                String decCardNum = encrypt.decryptCard(cards.get(i));
                 String cardLastFour = decCardNum.substring(decCardNum.length() - 4);
                 cardLastFour = "**** **** **** " + cardLastFour;
                 cards.get(i).setCardNumber(cardLastFour); // Set model card to decrypted card number
@@ -92,19 +76,7 @@ public class customerController {
 
         if (!card.getCardNumber().equals("")) {
 
-            KeyStore secretKeyTarget = KeyStore.getInstance("JCEKS"); // Load keystore
-            char[] ksPassword = "password".toCharArray();
-
-            try (FileInputStream fis = new FileInputStream("keystore.jceks")) {
-                secretKeyTarget.load(fis, ksPassword);
-            } // try
-
-            KeyStore.ProtectionParameter protPassword = new KeyStore.PasswordProtection(ksPassword); // Retrieve key from keystore
-            KeyStore.SecretKeyEntry tempKey = (KeyStore.SecretKeyEntry) secretKeyTarget.getEntry(card.getId().toString(), protPassword);
-            SecretKey retrievedKey = new SecretKeySpec(tempKey.getSecretKey().getEncoded(), "AES");
-
-            Encrypt encryptor = new Encrypt(); // Decrypt card number
-            String decCardNum = encryptor.decrypt(card.getCardNumber(), retrievedKey);
+            String decCardNum = encrypt.decryptCard(card);
             card.setCardNumber(decCardNum);
         } // if
 
@@ -115,6 +87,15 @@ public class customerController {
     @PostMapping("/editcards")
     public String saveCard(@ModelAttribute CardInfo card, Principal principal) throws Exception {
         User user = userRepo.findByEmail(principal.getName());
+        int i = 0;
+        boolean found = false;
+        while (!found) {
+            if (user.getPaymentInfo().get(i).getId() == card.getId()) {
+                found = true;
+            } else {
+                i++;
+            }
+        }
         CardInfo editedCard = cardRepo.findById(card.getId()).orElseThrow(() -> new IllegalArgumentException("Invalid Card ID"));
         editedCard.setId(card.getId());
         editedCard.setCardName(card.getCardName());
@@ -126,33 +107,8 @@ public class customerController {
         editedCard.setBillingAddrState(card.getBillingAddrState());
         editedCard.setBillingAddrZip(card.getBillingAddrZip());
 
-        File keystoreFile = new File("keystore.jceks");
-
-        KeyGenerator keyGenerator = KeyGenerator.getInstance("AES"); // Generate secret key
-        keyGenerator.init(128);
-        SecretKey secretKey = keyGenerator.generateKey();
-        KeyStore keyStore = KeyStore.getInstance("JCEKS");
-        char[] ksPassword = "password".toCharArray();
-
-        if(keystoreFile.exists()) { // Create new keystore if one does not exist
-            try(FileInputStream fis = new FileInputStream(keystoreFile)) {
-                keyStore.load(fis, ksPassword);
-            }
-        } else {
-            keyStore.load(null, ksPassword);
-        } // else
-
-        KeyStore.SecretKeyEntry secretKeyEntry = new KeyStore.SecretKeyEntry(secretKey); // Set keystore entry params
-        KeyStore.ProtectionParameter entryPassword = new KeyStore.PasswordProtection(ksPassword);
-        keyStore.setEntry(card.getId().toString(), secretKeyEntry, entryPassword);
-
-        try(FileOutputStream fos = new FileOutputStream(keystoreFile)) { // Store new key in keystore
-            keyStore.store(fos, ksPassword);
-        } // try
-
         String toEnc = editedCard.getCardNumber(); // Encrypt card number
-        Encrypt encrypt = new Encrypt();
-        editedCard.setCardNumber(encrypt.encrypt(toEnc, secretKey));
+        editedCard.setCardNumber(encrypt.encryptCard(user, toEnc, i));
 
         cardRepo.save(editedCard);
         return "redirect:/creditcards";
@@ -191,11 +147,10 @@ public class customerController {
                            Model model,
                            Principal principal) {
 
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         User user = userRepo.findByEmail(principal.getName());
 
         System.out.println(user.getPassword());
-        if (!passwordEncoder.matches(currPass, user.getPassword())) {
+        if (!encrypt.compareToPassword(user, currPass)) {
             model.addAttribute("wrong_pass", "Incorrect Password");
             return "changepassword";
         }
@@ -205,8 +160,7 @@ public class customerController {
             return "changepassword";
         }
 
-        String encodedPassword = passwordEncoder.encode(newPass);
-        user.setPassword(encodedPassword);
+        encrypt.encryptPassword(user, newPass);
 
         userRepo.save(user);
 

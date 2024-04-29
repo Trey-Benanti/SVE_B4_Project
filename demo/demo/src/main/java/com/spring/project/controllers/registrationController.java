@@ -3,27 +3,20 @@ package com.spring.project.controllers;
 import com.spring.project.models.users.User;
 import com.spring.project.models.users.userinfo.CardInfo;
 import com.spring.project.models.users.userservices.UserRepository;
-import com.spring.project.services.Encrypt;
+import com.spring.project.services.EncryptFacade;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
-import java.security.KeyStore;
 import java.util.Random;
 
 @Controller
@@ -34,6 +27,8 @@ public class registrationController {
 
     @Autowired
     private JavaMailSender mailSender;
+
+    private EncryptFacade encrypt = EncryptFacade.getInstance();
 
     @GetMapping("/confirm")
     public String confirm() { 
@@ -77,10 +72,7 @@ public class registrationController {
             return "signup";
         }
 
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
-
+        encrypt.encryptPassword(user, user.getPassword());
 
         // Adds credit card info to paymentInfo list.
         CardInfo card1 = new CardInfo(user, cn1, cna1, ex1, cv1, billingAddrStreet1, billingAddrState1, billingAddrZip1);
@@ -95,35 +87,11 @@ public class registrationController {
 
         userRepo.save(user); // Save card info to get IDs.
 
-        File keystoreFile = new File("keystore.jceks");
-
         for(int i = 0; i < user.getPaymentInfo().size(); i++) { // encrypt card number if exists
             if(!user.getPaymentInfo().get(i).getCardNumber().equals("")) {
 
-                KeyGenerator keyGenerator = KeyGenerator.getInstance("AES"); // Generate secret key
-                keyGenerator.init(128);
-                SecretKey secretKey = keyGenerator.generateKey();
-                KeyStore keyStore = KeyStore.getInstance("JCEKS");
-                char[] ksPassword = "password".toCharArray();
-
-                if(keystoreFile.exists()) { // Create key store if none exists
-                    try(FileInputStream fis = new FileInputStream(keystoreFile)) {
-                        keyStore.load(fis, ksPassword);
-                    }
-                } else {
-                    keyStore.load(null, ksPassword);
-                } // else
-
-                KeyStore.SecretKeyEntry secretKeyEntry = new KeyStore.SecretKeyEntry(secretKey); // Set keystore entry params
-                KeyStore.ProtectionParameter entryPassword = new KeyStore.PasswordProtection(ksPassword);
-                keyStore.setEntry(user.getPaymentInfo().get(i).getId().toString(), secretKeyEntry, entryPassword);
-
-                try(FileOutputStream fos = new FileOutputStream(keystoreFile)) {
-                    keyStore.store(fos, ksPassword);
-                } // try
-
-                Encrypt encrypt = new Encrypt(); // Encrypt card number
-                user.getPaymentInfo().get(i).setCardNumber(encrypt.encrypt(user.getPaymentInfo().get(i).getCardNumber(), secretKey));
+                user.getPaymentInfo().get(i).setCardNumber(
+                    encrypt.encryptCard(user, user.getPaymentInfo().get(i).getCardNumber(), i));
             } // if
         } // for
 
