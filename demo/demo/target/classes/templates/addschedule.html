@@ -25,7 +25,12 @@
     <h1>Schedule New Showing</h1>
     <form method="post">
         <label>Movie Title</label>
-        <input type="text" name="title"/>
+        <select class="drop" name="Movies">
+            <option th:each="movie : ${listMovies}"
+                    th:value="${movie.movieTitle}"
+                    th:text="${movie.movieTitle}">
+            </option>
+        </select>
         <label>Room Number</label>
         <input type="number" name="room"/>
         <label>Date and Time</label>

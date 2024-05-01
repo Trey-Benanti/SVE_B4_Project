@@ -81,6 +81,8 @@ public class adminController {
     public String addSchedule(Model model) {
         List<Show> shows = showRepo.findAll();
         model.addAttribute("shows", shows);
+        List<Movie> listMovies = repo.findAll();
+        model.addAttribute("listMovies", listMovies);
         return "addschedule";
     } // addschedule
 
