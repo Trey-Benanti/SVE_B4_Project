@@ -12,6 +12,7 @@ import com.spring.project.models.shows.showinfo.Showroom;
 import com.spring.project.models.shows.showservices.RoomRepository;
 import com.spring.project.models.shows.showservices.ShowRepository;
 import com.spring.project.models.users.User;
+import com.spring.project.models.users.userinfo.Role;
 import com.spring.project.models.users.userservices.UserRepository;
 
 import jakarta.mail.MessagingException;
@@ -26,10 +27,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.UnsupportedEncodingException;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
 
 @Controller
 public class adminController {
@@ -243,4 +246,24 @@ public class adminController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
     } // Promotions
+
+    @PostMapping("/admin/alterUserRole")
+    public String promoteUserToAdmin(@RequestParam("userId") Long userId, Principal principal) {
+        User currentUser = userRepo.findByEmail(principal.getName());
+        User user = userRepo.retrieveUserByID(userId);
+        if (user != currentUser) {
+            if (user.getRole() == Role.ROLE_ADMIN) {
+                user.setRole(Role.ROLE_CUSTOMER);
+            } else if (user.getRole() == Role.ROLE_CUSTOMER) {
+                user.setRole(Role.ROLE_ADMIN);
+            } // if
+        } // if
+        
+        userRepo.save(user);
+
+        return "redirect:/admin/manageusers";
+    }
+    
+
+
 } // homepageController

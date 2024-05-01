@@ -16,6 +16,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT u FROM User u WHERE u.verCode = ?1")
     public User findByVerCode(String verCode);
+
+    @Query("SELECT u FROM User u WHERE u.id = ?1")
+    public User retrieveUserByID(long userId);
+
     @Query
     List<User> findBySubscription(boolean isSubscribed);
 
