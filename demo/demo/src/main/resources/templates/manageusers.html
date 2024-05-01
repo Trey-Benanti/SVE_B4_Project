@@ -26,6 +26,15 @@
                 </div>
             </form>
         </div>
+        <div>
+            <p> Input a users ID to change their suspension status (active->suspended and suspended->active) </p>
+            <form th:action="@{/admin/alterUserStatus}" method="post">
+                <input type="number" name="userId" value="userId"/>
+                <div>
+                    <button type="submit" class="btn btn-primary">Alter Status</button>
+                </div>
+            </form>
+        </div>
         
     </div>
      
@@ -38,6 +47,7 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>User Type</th>
+                    <th>User Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,7 +56,8 @@
                     <td th:text="${user.email}">E-mail</td>
                     <td th:text="${user.firstName}">First Name</td>
                     <td th:text="${user.lastName}">Last Name</td>
-                    <td th:text="${user.role}">Last Name</td>
+                    <td th:text="${user.role}">Role</td>
+                    <td th:text="${user.status}">Status</td>
                 </tr>
             </tbody>
         </table>

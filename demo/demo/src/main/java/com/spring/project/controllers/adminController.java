@@ -13,6 +13,7 @@ import com.spring.project.models.shows.showservices.RoomRepository;
 import com.spring.project.models.shows.showservices.ShowRepository;
 import com.spring.project.models.users.User;
 import com.spring.project.models.users.userinfo.Role;
+import com.spring.project.models.users.userinfo.UserStatus;
 import com.spring.project.models.users.userservices.UserRepository;
 
 import jakarta.mail.MessagingException;
@@ -248,7 +249,7 @@ public class adminController {
     } // Promotions
 
     @PostMapping("/admin/alterUserRole")
-    public String promoteUserToAdmin(@RequestParam("userId") Long userId, Principal principal) {
+    public String alterUserRole(@RequestParam("userId") Long userId, Principal principal) {
         User currentUser = userRepo.findByEmail(principal.getName());
         User user = userRepo.retrieveUserByID(userId);
         if (user != currentUser) {
@@ -256,6 +257,23 @@ public class adminController {
                 user.setRole(Role.ROLE_CUSTOMER);
             } else if (user.getRole() == Role.ROLE_CUSTOMER) {
                 user.setRole(Role.ROLE_ADMIN);
+            } // if
+        } // if
+        
+        userRepo.save(user);
+
+        return "redirect:/admin/manageusers";
+    }
+
+    @PostMapping("/admin/alterUserStatus")
+    public String alterUserStatus(@RequestParam("userId") Long userId, Principal principal) {
+        User currentUser = userRepo.findByEmail(principal.getName());
+        User user = userRepo.retrieveUserByID(userId);
+        if (user != currentUser) {
+            if (user.getStatus() == UserStatus.STATUS_ACTIVE) {
+                user.setStatus(UserStatus.STATUS_SUSPENDED);
+            } else if (user.getStatus() == UserStatus.STATUS_SUSPENDED) {
+                user.setStatus(UserStatus.STATUS_ACTIVE);
             } // if
         } // if
         

@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.spring.project.models.users.User;
+import com.spring.project.models.users.userinfo.UserStatus;
  
 public class CustomUserDetails implements UserDetails {
     String rolePrefix = "ROLE_";
@@ -42,6 +43,9 @@ public class CustomUserDetails implements UserDetails {
  
     @Override
     public boolean isAccountNonLocked() {
+        if (user.getStatus() == UserStatus.STATUS_SUSPENDED) {
+            return false;
+        } // if
         return true;
     }
  

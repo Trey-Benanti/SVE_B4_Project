@@ -49,7 +49,9 @@ public class User {
     private List<CardInfo> paymentInfo = new ArrayList<>();
    // public List<CardInfo> paymentInfo = new ArrayList<CardInfo>(Arrays.asList(new CardInfo(), new CardInfo(), new CardInfo()));
 
-
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_status", nullable = false)
+    private UserStatus status = UserStatus.STATUS_ACTIVE;
 
     // Setters
 
@@ -87,6 +89,10 @@ public class User {
 
     public void setVerCode(String code) {
         this.verCode = code;
+    }
+
+    public void setStatus(UserStatus ustatus) {
+        this.status = ustatus;
     }
 
     // Getters
@@ -130,4 +136,9 @@ public class User {
     public List<CardInfo> getPaymentInfo() {
         return paymentInfo;
     }
+
+    public UserStatus getStatus() {
+        return this.status;
+    }
+    
 }

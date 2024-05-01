@@ -22,6 +22,7 @@ com\spring\project\models\users\userservices\AddressRepository.class
 com\spring\project\controllers\registrationController.class
 com\spring\project\models\shows\showinfo\Showroom.class
 com\spring\project\models\TimeSlots.class
+com\spring\project\models\users\userinfo\UserStatus.class
 com\spring\project\controllers\loginController.class
 com\spring\project\models\movies\Movie.class
 com\spring\project\models\users\userservices\CustomUserDetailsService.class
