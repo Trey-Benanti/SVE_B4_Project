@@ -1,6 +1,7 @@
 package com.spring.project.services;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.KeyStore;
@@ -109,8 +110,10 @@ public final class EncryptFacade {
     } // decrypt
 
     private void loadKeyStore(){
-        try {
-            this.keyStore.load(null, ksPassword);
+        try { // DON'T CHANGE THIS OMG >:(
+            try(FileInputStream fis = new FileInputStream(keystoreFile)) {
+                this.keyStore.load(fis, ksPassword);
+            }
         } catch (IOException f) {
             System.out.println(f);
         } catch (NoSuchAlgorithmException e) {
