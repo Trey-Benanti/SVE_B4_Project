@@ -12,6 +12,7 @@
     />
 </head>
 <body>
+
 <div id="nav-ctr">
     <nav class="top-nav">
         <a class="nav-link" th:href="@{/}">Home</a>
@@ -64,10 +65,12 @@
 <div>
     <img th:src="@{/css/images/Tidal_Waves_Home.webp}" alt="Tidal Waves Theaters" width="100%">
 </div>
+<div id="overlay" class="overlay" onclick="closeModal();"></div>
+
 <h1 class="now-showing-header">Now Showing</h1>
 <div class="movie-list-container">
     <div class="movie-overview">
-        <div th:each="movie : ${movies}" th:if="${movie.nowPlaying.equals('Now Showing')}" class="movie-ctr now-showing">
+        <div th:each="movie, iterStat : ${movies}" th:if="${movie.nowPlaying.equals('Now Showing')}" class="movie-ctr now-showing">
             <div>
                 <a class="movie-title" th:text="${movie.movieTitle}"/>
                 <a class="rating-text" th:text="${movie.rating}" />
@@ -80,25 +83,48 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen>
             </iframe>
-            <div class="details-link-ctr">
-                <p class="details-link" th:text="${movie.synop}"></p>
-            </div>
+
             <div class="book-tickets-btn-ctr">
                 <button class="book-tickets-btn">
                     <a th:href="@{/select-show/{id}(id=${movie.id})}">
                         Book
                     </a>
                 </button>
+                <button class="see-more-btn" th:data-modal-target="'#modal' + ${iterStat.index}">See Details</button>
+                <div th:attr="id='modal' + ${iterStat.index}" class="modal">
+                    <div class="modal-header">
+                        <div class="title" th:text="${movie.movieTitle}"></div>
+                        <button th:data-close-button="'#modal' + ${iterStat.index}" class="close-button">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="trailer-info-bar">
+                        <img class="modal-image" th:src="${movie.trailerPhoto}" alt="Movie Preview" />
+                            <div class="information-down-header">
+                            <div class="information-down">
+                        <p><strong>Cast</strong> <span th:text="${movie.cast}">[Cast]</span></p>
+                        <p><strong>Director</strong> <span th:text="${movie.director}">[Director]</span></p>
+                        <p><strong>Producer</strong> <span th:text="${movie.producer}">[Producer]</span></p>
+                            </div>
+                                <p class="reviews-bar">
+                                    <strong>Reviews: </strong>
+                                <div class="Stars" th:style="'--rating: ' + ${movie.reviews} + ';' + '--percent: calc(' + ${movie.reviews} + ' / 5 * 100%)'" aria-label="Rating of this product is [[${movie.reviews}]] out of 5.">
+                                </div>
+                            </div>
+                        </div>
+                        <p><strong>Synopsis:</strong> <span th:text="${movie.synop}">[Synopsis]</span></p>
+
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
     </div>
-</div>
 <h1 class="now-showing-header">&nbsp</h1> <!-- Style purposes -->
 
 <h1 class="now-showing-header">Coming Soon</h1>
 <div class="movie-list-container">
     <div class="movie-overview">
-        <div class="movie-ctr box coming-soon" th:each="movie : ${movies}" th:if="${movie.nowPlaying.equals('Coming Soon')}">
+        <div class="movie-ctr box coming-soon" th:each="movie, iterStat : ${movies}" th:if="${movie.nowPlaying.equals('Coming Soon')}">
             <div>
                 <a class="movie-title" th:text="${movie.movieTitle}"/>
                 <a class="rating-text" th:text="${movie.rating}" />
@@ -111,20 +137,37 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
                         web-share" allowfullscreen>
             </iframe>
-
-            <div class="details-link-ctr">
-                <p class="details-link" th:text="${movie.synop}"></p>
+            <!-- Details and See Details -->
+            <p></p><p></p>
+            <button class="see-more-btn" th:data-modal-target="'#modal' + ${iterStat.index}">See Details</button>
+            <div th:attr="id='modal' + ${iterStat.index}" class="modal">
+            <div class="modal-header">
+                <div class="title" th:text="${movie.movieTitle}"></div>
+                <button th:data-close-button="'#modal' + ${iterStat.index}" class="close-button">&times;</button>
             </div>
-            <div class="book-tickets-btn-ctr">
-                <button class="book-tickets-btn">
-                    <a th:href="@{/select-show/{id}(id=${movie.id})}">
-                        Book
-                    </a>
-                </button>
+                <div class="modal-body">
+                    <div class="trailer-info-bar">
+                        <img class="modal-image" th:src="${movie.trailerPhoto}" alt="Movie Preview" />
+                        <div class="information-down-header">
+                            <div class="information-down">
+                                <p><strong>Cast</strong> <span th:text="${movie.cast}">[Cast]</span></p>
+                                <p><strong>Director</strong> <span th:text="${movie.director}">[Director]</span></p>
+                                <p><strong>Producer</strong> <span th:text="${movie.producer}">[Producer]</span></p>
+                            </div>
+                            <p class="reviews-bar">
+                                <strong>Reviews: </strong>
+                            <div class="Stars" th:style="'--rating: ' + ${movie.reviews} + ';' + '--percent: calc(' + ${movie.reviews} + ' / 5 * 100%)'" aria-label="Rating of this product is [[${movie.reviews}]] out of 5.">
+                            </div>
+                        </div>
+                    </div>
+                    <p><strong>Synopsis:</strong> <span th:text="${movie.synop}">[Synopsis]</span></p>
+
+                </div>
+            </div>
         </div>
-    </div>
 </div>
 </div>
+
 
 <h1 class="now-showing-header">&nbsp</h1> <!-- Style purposes -->
 
@@ -147,7 +190,6 @@
             <a href="/terms-of-use">Terms of Use</a>
         </div>
         <div class="newsletter-signup">
-            <!-- Newsletter signup form or link -->
         </div>
     </div>
     <p class="copyright">© 2024 TidalWavesTheaters. All rights reserved.</p>
@@ -155,42 +197,66 @@
 <div>
     <img th:src="@{css/images/Tidal_Waves_Overview.webp}" alt="Tidal Waves Background" width="100%">
 </div>
-<script th:inline="javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-        function updateMovieDisplays() {
-            var nowShowingMovies = document.getElementsByClassName('now-showing');
-            var comingSoonMovies = document.getElementsByClassName('coming-soon');
-            var nowShowingCheck = document.getElementById('now-showing-check').checked;
-            var comingSoonCheck = document.getElementById('coming-soon-check').checked;
+    <script th:inline="javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            // Function to update visibility of movies based on filters
+            function updateMovieDisplays() {
+                var nowShowingMovies = document.getElementsByClassName('now-showing');
+                var comingSoonMovies = document.getElementsByClassName('coming-soon');
+                var nowShowingCheck = document.getElementById('now-showing-check').checked;
+                var comingSoonCheck = document.getElementById('coming-soon-check').checked;
 
-            // Simplified logic for showing/hiding movies
-            for (var i = 0; i < nowShowingMovies.length; i++) {
-                nowShowingMovies[i].style.display = nowShowingCheck ? 'flex' : 'none';
+                for (var i = 0; i < nowShowingMovies.length; i++) {
+                    nowShowingMovies[i].style.display = nowShowingCheck ? 'flex' : 'none';
+                }
+                for (var i = 0; i < comingSoonMovies.length; i++) {
+                    comingSoonMovies[i].style.display = comingSoonCheck ? 'flex' : 'none';
+                }
             }
-            for (var i = 0; i < comingSoonMovies.length; i++) {
-                comingSoonMovies[i].style.display = comingSoonCheck ? 'flex' : 'none';
+
+            // Attach event listeners for filters
+            document.getElementById('now-showing-check').addEventListener('change', updateMovieDisplays);
+            document.getElementById('coming-soon-check').addEventListener('change', updateMovieDisplays);
+
+            const overlay = document.getElementById('overlay');
+
+            overlay.addEventListener('click', () => {
+                const modals = document.querySelectorAll('.modal.active');
+                modals.forEach(modal => {
+                    closeModal(modal);
+                });
+            });
+            // Code inspired by github:WebDevSimplified
+            // Functions to handle opening and closing of modals
+            const openModalButtons = document.querySelectorAll('[data-modal-target]');
+            const closeModalButtons = document.querySelectorAll('[data-close-button]');
+
+            openModalButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const modal = document.querySelector(button.getAttribute('data-modal-target'));
+                    openModal(modal);
+                });
+            });
+
+            closeModalButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const modal = document.querySelector(button.getAttribute('data-close-button'));
+                    closeModal(modal);
+                });
+            });
+
+            function openModal(modal) {
+                if (modal == null) return;
+                modal.classList.add('active');
+                overlay.classList.add('active');
             }
-        }
 
-        // Attach change event listeners
-        document.getElementById('now-showing-check').addEventListener('change', updateMovieDisplays);
-        document.getElementById('coming-soon-check').addEventListener('change', updateMovieDisplays);
-
-
-        // Star rating based on review percentage
-        const reviewStarsContainer = document.getElementById('review-stars');
-        const reviewPercentage = 80; // Example percentage
-        const totalStars = 5;
-        const filledStars = Math.round((reviewPercentage / 100) * totalStars);
-
-        for (let i = 0; i < totalStars; i++) {
-            const starSpan = document.createElement('span');
-            starSpan.className = 'star';
-            starSpan.textContent = i < filledStars ? '★' : '☆';
-            reviewStarsContainer.appendChild(starSpan);
-        }
-    });
-</script>
-
+            function closeModal(modal) {
+                if (modal == null) return;
+                modal.classList.remove('active');
+                overlay.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>

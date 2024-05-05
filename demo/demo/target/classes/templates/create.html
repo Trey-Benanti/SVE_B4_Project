@@ -30,6 +30,12 @@
                 <input id="form-title-input" th:field="${movieDTO.movieTitle}" required />
             </p>
         </div>
+        <div id="category">
+            <p>
+                <label id="category" for="category">Category</label>
+                <input id="category" th:field="${movieDTO.category}" required />
+            </p>
+        </div>
         <div id="form-cast">
             <p>
             <label id="form-cast-label" for="form-cast-input">Cast</label>
@@ -85,6 +91,24 @@
                     <option th:value="'Now Showing'">Now Showing</option>
                     <option th:value="'Coming Soon'">Coming Soon</option>
                 </select>
+            </p>
+        </div>
+        <div id="child-ticket">
+            <p>
+                <label id="child-ticket" for="child-ticket">Child Ticket Price</label>
+                <input id="child-ticket" th:field="${movieDTO.childTicket}" required/>
+            </p>
+        </div>
+        <div id="adult-ticket">
+            <p>
+                <label id="adult-ticket" for="adult-ticket">Adult Ticket Price</label>
+                <input id="adult-ticket" th:field="${movieDTO.adultTicket}" required/>
+            </p>
+        </div>
+        <div id="senior-ticket">
+            <p>
+                <label id="senior-ticket" for="senior-ticket">Senior Ticket Price</label>
+                <input id="senior-ticket" th:field="${movieDTO.seniorTicket}" required/>
             </p>
         </div>
         <button type="submit" id="form-submit-button">Create</button>

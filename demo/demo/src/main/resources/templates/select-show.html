@@ -95,9 +95,9 @@
             cursor: not-allowed;
         }
 
+        .trailer-video {
 
-        /* carousel/horizontal */
-        /* dropdown button */
+        }
     </style>
 </head>
 
@@ -130,14 +130,13 @@
 </div>
 <div class="container">
     <div class="sidebar movie-preview">
-        <img alt="Movie Preview" />
+        <img th:src="${movie.trailerPhoto}" alt="Movie Preview" />
     </div>
     <div class="main-content">
         <div class="movie-details">
             <h2 th:text="${movie.movieTitle}">Movie Title</h2>
             <p th:text="${movie.rating}">PG-13</p>
             <p>1 hr 47 min</p>
-            <!--<p th:text="${#dates.format(movie.releaseDate, 'MM/dd/yyyy')}">2/14/2024</p> -->
             <p th:text="${movie.synop}">Movie synopsis...</p>
         </div>
         <div class="showtimes">
@@ -170,7 +169,7 @@
         <p th:text="'Director: ' + ${movie.director}">Director: Director Name</p>
         <p th:text="'Producer: ' + ${movie.producer}">Producer: Producer Name</p>
         <p th:text="'Synopsis: ' + ${movie.synop}">Synopsis: Movie synopsis...</p>
-        <p>Trailer: <a th:href="@{${movie.trailerVideo}}">Watch Trailer</a></p>
+        <p>Trailer: <a class="trailer-video" th:href="@{${movie.trailerVideo}}">Watch Trailer</a></p>
         <p th:text="'MPAA-US Rating: ' + ${movie.rating}">MPAA-US Rating: PG-13</p>
     </div>
 </div>

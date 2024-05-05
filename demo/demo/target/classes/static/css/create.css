@@ -57,7 +57,18 @@ body {
 #form-title {
     margin-bottom: 15px;
 }
-
+#category {
+    margin-bottom: 15px;
+}
+#child-ticket {
+    margin-bottom: 15px;
+}
+#adult-ticket {
+    margin-bottom: 15px;
+}
+#senior-ticket {
+    margin-bottom: 15px;
+}
 #form-cast {
     margin-bottom: 15px;
 }

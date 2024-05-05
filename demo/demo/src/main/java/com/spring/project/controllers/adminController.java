@@ -66,9 +66,11 @@ public class adminController {
     } // adminView
 
     @GetMapping("/admin/managemovies")
-    public String manageMovies() {
+    public String manageMovies(Model model) {
+        List<Movie> movies = repo.findAll();
+        model.addAttribute("movies", movies);
         return "managemovies";
-    } // manageMovies
+    }
 
     @GetMapping("/admin/editmovies")
     public String editMovies(Model model) {
@@ -76,6 +78,27 @@ public class adminController {
         model.addAttribute("movies", movies);
         return "editmovies";
     } // editMovies
+    @GetMapping("/admin/editmovie/{id}")
+    public String showEditMovieForm(@PathVariable("id") int id, Model model) {
+        Movie movie = movieService.findById(id);
+        if (movie != null) {
+            model.addAttribute("movie", movie);
+            return "editmovieform";
+        }
+        return "redirect:/admin/managemovies"; // Redirect if movie not found
+    }
+    // Controller method to handle the update
+    @PostMapping("/admin/updateMovie/{id}")
+    public String updateMovie(@PathVariable("id") Integer id, @Valid @ModelAttribute("movie") Movie movie, BindingResult result, RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            return "editmovie";
+        }
+        movie.setId(id);
+        repo.save(movie);
+        redirectAttributes.addFlashAttribute("success", "Movie updated successfully!");
+        return "redirect:/admin/editmovies";
+    }
+
 
     @GetMapping("/admin/addschedule") // addschedule get
     public String addSchedule(Model model) {
@@ -149,6 +172,10 @@ public class adminController {
         movie.setTrailerPhoto(movie.getTrailerPhoto());
         movie.setTrailerVideo(movieDTO.getTrailerVideo());
         movie.setNowPlaying(movieDTO.getNowPlaying());
+        movie.setCategory(movieDTO.getCategory());
+        movie.setAdultTicket(movieDTO.getAdultTicket());
+        movie.setChildTicket(movieDTO.getChildTicket());
+        movie.setSeniorTicket(movieDTO.getSeniorTicket());
 
         repo.save(movie);
 
@@ -161,7 +188,7 @@ public class adminController {
     public String promos(Model model) {
         List<Promotion> promotions = promoRepository.findAll();
         model.addAttribute("promotions", promotions);
-        return "promos"; // Ensure this matches the name of your Thymeleaf template
+        return "promos";
     }
 
     @GetMapping("/admin/promos/delete/{promotionId}")
@@ -196,7 +223,7 @@ public class adminController {
     @GetMapping("/admin/promos/new")
     public String showCreatePromotionForm(Model model) {
         model.addAttribute("promotion", new Promotion()); // Add a blank promotion object to the model
-        return "createPromotionForm"; // Name of the Thymeleaf template for the create promotion form
+        return "createPromotionForm";
     }
 
     // Method to process the form submission

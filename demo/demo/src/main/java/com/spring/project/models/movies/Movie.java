@@ -21,6 +21,9 @@ public class Movie {
     private String rating;
     private String nowPlaying;
     private String category;
+    private String childTicket;
+    private String adultTicket;
+    private String seniorTicket;
 
 
     public String getNowPlaying() {
@@ -117,4 +120,12 @@ public class Movie {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public String getChildTicket() {return childTicket;}
+    public void setChildTicket(String childTicket) { this.childTicket = childTicket; }
+    public String getAdultTicket() {return adultTicket;}
+    public void setAdultTicket(String adultTicket) { this.adultTicket = adultTicket; }
+    public String getSeniorTicket() {return seniorTicket;}
+    public void setSeniorTicket(String seniorTicket) { this.seniorTicket = seniorTicket; }
+
 } // Movie

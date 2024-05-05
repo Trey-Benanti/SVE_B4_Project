@@ -59,15 +59,32 @@ body {
 .book-tickets-btn {
     width: 130px;
     height: 50px;
-    border-radius: 5px;
+    margin-bottom: 10px;
     font-size: 24px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     font-weight: bold;
-    border-width: 2px;
+    color: var(--sand-yellow);
     border-color: #000000;
-    color: #000000;
-    background-color: var(--sand-yellow);
-    bottom: 0;
+    background-color: var(--burgundy-wine);
+    background-image: none;
+    border: 1px solid var(--cloudy-grey);
+    border-radius: 4px;
+    box-shadow: var(--burgundy-wine) 4px 4px 0 0,#000 4px 4px 0 1px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 20px;
+    overflow: visible;
+    text-transform: none;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.book-tickets-btn a, .book-tickets-btn a:visited, .book-tickets-btn a:hover, .book-tickets-btn a:active, .book-tickets-btn a:focus {
+    color: var(--sand-yellow); /* Ensuring text color consistency */
+    text-decoration: none;     /* Optionally removing underline from links */
 }
 
 .trailer-video {
@@ -188,42 +205,185 @@ body {
 #date-filter-ctr {
     margin-top: 8px;
 }
-.more-info p {
-    margin: 5px 0;
-}
-.more-info {
-    display: none; /* Keep hidden until "See More" is clicked */
-    position: absolute; /* Position absolutely within .movie-ctr */
-    top: 100%; /* Adjust this value to position the popup right below the "See More" button */
-    left: 0;
-    width: 100%; /* Match the width of .movie-ctr, adjust as necessary */
-    background-color: white; /* Ensure it's readable, consider your design */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Provides a floating effect */
-    z-index: 10; /* Ensure it floats above other .movie-ctr elements */
-    border-radius: 4px; /* Stylistic choice, adjust as needed */
-    padding: 10px; /* Content padding */
-    transform: translateY(-100%); /* Adjust if you need to position it differently */
-    /* Additional styling as needed */
-}
 
-.movie-ctr:hover .more-info {
-    display: block; /* Show the "See More" section */
-    position: fixed; /* or 'absolute' depending on your layout needs */
-    top: 50%; /* Adjust these to control where the pop-up appears */
-    left: 50%;
-    transform: translate(-50%, -50%); /* Center the pop-up */
-    z-index: 999; /* Ensure it's on top of everything else */
-    width: auto; /* or specific width */
-    max-height: 90%; /* Prevent it from being too tall */
-    overflow-y: auto; /* Allow internal scrolling if needed */
-    /* Add more styling as needed */
-}
-.see-more-btn {
-    cursor: pointer;
-    padding: 10px;
-    margin: 10px 0;
-}
+
+
 
 .star {
     color: goldenrod;
 }
+:root {
+    --star-size: 24px; /* Adjust size of stars */
+    --star-color: #ccc; /* Color of empty stars */
+    --star-background: #fc0; /* Color of filled stars */
+}
+
+.Stars {
+    display: inline-block;
+    font-size: var(--star-size);
+    font-family: 'Times New Roman', Times, serif; /* Ensures ★ appears correctly */
+    line-height: 1;
+    margin-right: 34px;
+}
+
+.Stars::before {
+    content: '★★★★★';
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 100;
+    width: 500px;
+    height: 450px;
+    max-width: 100%;
+    overflow-y: scroll;
+    background:rgba(59,91,114, .95);
+
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-header {
+    overflow-x: auto;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+.modal-header .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-header .close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-body {
+    overflow-wrap: break-word;
+    padding: 10px 15px;
+}
+.modal-image {
+    width: 40%;
+}
+.trailer-info-bar {
+display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    gap:10px;
+}
+.information-down{
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    min-height: 200px;
+    max-width: 150px
+}
+.information-down-header{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    gap: 8px;
+}
+
+.reviews-bar{
+    margin: 0;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+}
+#overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: none;
+}
+
+#overlay.active {
+    pointer-events: all;
+}
+
+.see-more-btn{
+    width:100px;
+    text-align: center;
+    height: 50px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    background-color: var(--burgundy-wine);
+    background-image: none;
+    border: 1px solid var(--cloudy-grey);
+    border-radius: 4px;
+    box-shadow: var(--burgundy-wine) 4px 4px 0 0,#000 4px 4px 0 1px;
+    box-sizing: border-box;
+    color: var(--sand-yellow);
+    cursor: pointer;
+    display: inline-block;
+    font-family: ITCAvantGardeStd-Bk,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    overflow: visible;
+    text-transform: none;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.see-more-btn:focus {
+    text-decoration: none;
+}
+
+.see-more-btn:hover {
+    text-decoration: none;
+}
+
+.see-more-btn:active {
+    box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+    outline: 0;
+}
+
+.see-more-btn:not([disabled]):active {
+    box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+    transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+    .see-more-btn {
+    }
+}
+

@@ -53,7 +53,7 @@ public class bookingController {
         model.addAttribute("movie", movie);
         model.addAttribute("shows", shows);
 
-        return "selectshow";
+        return "select-show";
     }
     @GetMapping("/checkout")
     public String checkout() {

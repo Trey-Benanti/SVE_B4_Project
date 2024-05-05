@@ -29,6 +29,7 @@
             <tr>
                 <th class="movie-id">Movie ID</th>
                 <th class="schedule-movie-title">Movie Title</th>
+                <th class="category">Category</th>
                 <th class="cast">Cast</th>
                 <th class="director">Director</th>
                 <th class="producer">Producer</th>
@@ -38,24 +39,34 @@
                 <th class="trailer-video">Trailer Video</th>
                 <th class="synop">Synopsis</th>
                 <th class="now-playing">Now Showing</th>
+                <th class="child-ticket">Child Ticket</th>
+                <th class="adult-ticket">Adult Ticket</th>
+                <th class="senior-ticket">Senior Ticket</th>
                 <th>Edit</th>
             </tr>
-            <div class="table-content-ctr" th:each="movie : ${movies}">
-                <tr>
-                    <td th:text="${movie.id}" />
-                    <td th:text="${movie.movieTitle}" />
-                    <td th:text="${movie.cast}" />
-                    <td th:text="${movie.director}" />
-                    <td th:text="${movie.producer}" />
-                    <td th:text="${movie.rating}" />
-                    <td class="reviews-content" th:text="${movie.reviews}" />
-                    <td class="photo-content" th:text="${movie.trailerPhoto}" />
-                    <td class="video-content" th:text="${movie.trailerVideo}" />
-                    <td class="synopsis" th:text="${movie.synop}" />
-                    <td th:text="${movie.nowPlaying}" />
-                    <td><button class="edit-dates-button">Edit</button></td>
-                </tr>
-            </div>
+            <div class="table-content-ctr"
+            <tbody th:each="movie : ${movies}">
+            <tr>
+                <td th:text="${movie.id}"></td>
+                <td th:text="${movie.movieTitle}"></td>
+                <td th:text="${movie.category}"></td>
+                <td th:text="${movie.cast}"></td>
+                <td th:text="${movie.director}"></td>
+                <td th:text="${movie.producer}"></td>
+                <td th:text="${movie.rating}"></td>
+                <td th:text="${movie.reviews}"></td>
+                <td class="photo-content">
+                    <img th:src="${movie.trailerPhoto}" alt="Trailer Photo" width="100%"/>
+                </td>
+                <td class="video-content" th:text="${movie.trailerVideo}"></td>
+                <td class="synopsis" th:text="${movie.synop}"></td>
+                <td th:text="${movie.nowPlaying}"></td>
+                <td th:text="${movie.childTicket}"></td>
+                <td th:text="${movie.adultTicket}"></td>
+                <td th:text="${movie.seniorTicket}"></td>
+                <td><button class="edit-dates-button"><a th:href="@{/admin/editmovie/{id}(id=${movie.id})}" >Edit</a></button></td>
+            </tr>
+            </tbody>
         </table>
     </div>
 </div>

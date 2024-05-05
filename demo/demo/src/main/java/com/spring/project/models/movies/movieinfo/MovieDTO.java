@@ -6,7 +6,8 @@ public class MovieDTO {
 
     @NotEmpty(message = "Movie title is required")
     private String movieTitle;
-
+    @NotEmpty(message = "Category is required")
+    private String category;
     @NotEmpty(message = "Cast is required")
     private String cast;
 
@@ -30,6 +31,12 @@ public class MovieDTO {
 
     @NotEmpty(message = "Rating is required")
     private String rating;
+    @NotEmpty(message = "C.T Price is required")
+    private String childTicket;
+    @NotEmpty(message = "A.T price is required")
+    private String adultTicket;
+    @NotEmpty(message = "S.T price is required")
+    private String seniorTicket;
 
     @NotEmpty
     private String nowPlaying;
@@ -40,6 +47,34 @@ public class MovieDTO {
 
     public void setNowPlaying(String nowPlaying) {
         this.nowPlaying = nowPlaying;
+    }
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+    public String getChildTicket() {
+        return childTicket;
+    }
+
+    public void setChildTicket(String childTicket) {
+        this.childTicket = childTicket;
+    }
+    public String getAdultTicket() {
+        return adultTicket;
+    }
+
+    public void setAdultTicket(String adultTicket) {
+        this.adultTicket = adultTicket;
+    }
+    public String getSeniorTicket() {
+        return seniorTicket;
+    }
+
+    public void setSeniorTicket(String seniorTicket) {
+        this.seniorTicket = seniorTicket;
     }
 
     public String getMovieTitle() {
