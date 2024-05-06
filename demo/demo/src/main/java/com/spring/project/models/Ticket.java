@@ -16,7 +16,7 @@ public class Ticket {
     @JoinColumn(name = "booking_id", nullable = false)
     private Booking booking;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "seat_id", nullable = false)
     private Seat seat_id;
 

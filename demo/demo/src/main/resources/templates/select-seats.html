@@ -248,7 +248,6 @@
     <nav class="top-nav">
         <a class="nav-link" th:href="@{/}">Home</a>
         <a class="nav-link" th:href="@{/login}">Login</a>
-        <a class="nav-link">About</a>
         <div class="search-ctr">
             <form id="search-form"
                   th:action="@{/search}"
@@ -301,24 +300,21 @@
                     <option>Child</option>
                 </select>
                 <button type="submit">Add Ticket</button>
-                <button>
-                    <a th:href="@{/checkout}">Checkout</a>
-                </button>
             </form>
         </div>
     </div>
-    <div class="ticket-header">Tickets:
-    <ul class="list">
-        <li th:each="ticket : ${tickets}">
-            <span th:text="${ticket.getSeatId().getSeatLabel()} + ' - $' + ${ticket.price}"></span>
-            <p th:if="${ticket.price == movie.getAdultTicket()}" th:text="'Adult'"></p>
-            <p th:if="${ticket.price == movie.getChildTicket()}" th:text="'Child'"></p>
-            <p th:if="${ticket.price == movie.getSeniorTicket()}" th:text="'Senior'"></p>
-            <p th:text="${ticket.ticketCategory}"></p>
-        </li>
-    </ul>
+    <h2>Tickets:</h2>
+    <div th:each="ticket, ticketIndex : ${tickets}">
+        <span th:text="${ticket.getSeatId().getSeatLabel()}"></span>
     </div>
-
+    <form th:action="@{/delete-ticket/}" method="post">
+        <button type="submit">Delete</button>
+    </form>
+</div>
+<div>
+    <button>
+        <a th:href="@{/checkout}">Checkout</a>
+    </button>
 </div>
 
 <footer class="img-footer">

@@ -96,6 +96,7 @@ public class bookingController {
             Show show = showRepo.findById(id).get(0);
             booking.setShow(show);
             booking.setUser(userRepo.findByEmail(principal.getName()));
+            booking.setConfirmed(0);
             session.setAttribute("booking", booking);
             bookingRepo.save(booking);
         }
@@ -153,6 +154,16 @@ public class bookingController {
         redirectAttributes.addAttribute("id", id);
         return "redirect:/select-seats/{id}";
 
+    }
+
+    @PostMapping("/delete-ticket/")
+    public String deleteTicket(HttpSession session, RedirectAttributes redirectAttributes) {
+        Booking booking = (Booking) session.getAttribute("booking");
+        List<Ticket> tickets = ticketRepo.findByBookingId(booking.getId());
+        ticketRepo.delete(tickets.get(tickets.size() - 1));
+
+        redirectAttributes.addAttribute("id", booking.getShow().id);
+        return "redirect:/select-seats/{id}";
     }
 
     public String drawSeats(Show show, Booking booking) {
