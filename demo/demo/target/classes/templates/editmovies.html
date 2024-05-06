@@ -22,7 +22,7 @@
     </nav>
 </div>
 <div class="page-ctr">
-    <h1 id="promo-header">Edit Movies</h1><hr/>
+    <h1 id="promo-header">View Movies</h1><hr/>
 
     <div id="schedule-table-ctr">
         <table id="schedule-table">
@@ -34,7 +34,7 @@
                 <th class="director">Director</th>
                 <th class="producer">Producer</th>
                 <th class="rating">Rating</th>
-                <th class="reviews">Reviews Link</th>
+                <th class="reviews">Reviews</th>
                 <th class="trailer-photo">Trailer Photo</th>
                 <th class="trailer-video">Trailer Video</th>
                 <th class="synop">Synopsis</th>
@@ -64,7 +64,6 @@
                 <td th:text="${movie.childTicket}"></td>
                 <td th:text="${movie.adultTicket}"></td>
                 <td th:text="${movie.seniorTicket}"></td>
-                <td><button class="edit-dates-button"><a th:href="@{/admin/editmovie/{id}(id=${movie.id})}" >Edit</a></button></td>
             </tr>
             </tbody>
         </table>
