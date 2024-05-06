@@ -22,6 +22,18 @@ public class Ticket {
 
     @Column(name = "price")
     private String price;
+    @Column(name = "category")
+    private String category;  // Child, Adult, Senior
+
+    public String getTicketCategory() {
+        return category;
+    }
+
+    public void setTicketCategory(String category) {
+        this.category = category;
+    }
+
+
 
     public Booking getBooking() {
         return booking;
@@ -46,4 +58,6 @@ public class Ticket {
     public void setPrice(String price) {
         this.price = price;
     }
+
+
 }

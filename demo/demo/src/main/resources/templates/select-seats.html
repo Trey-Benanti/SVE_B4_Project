@@ -235,6 +235,12 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        .ticket-header {
+            overflow-x: scroll;
+            max-height: 600px;
+            width: 200px;
+        }
     </style>
 </head>
 <body>
@@ -295,16 +301,24 @@
                     <option>Child</option>
                 </select>
                 <button type="submit">Add Ticket</button>
+                <button>
+                    <a th:href="@{/checkout}">Checkout</a>
+                </button>
             </form>
         </div>
     </div>
-    <h2>Tickets:</h2>
-    <div th:each="ticket :${tickets}">
-        <div th:text="${ticket.getSeatId().getSeatLabel()}"></div>
+    <div class="ticket-header">Tickets:
+    <ul class="list">
+        <li th:each="ticket : ${tickets}">
+            <span th:text="${ticket.getSeatId().getSeatLabel()} + ' - $' + ${ticket.price}"></span>
+            <p th:if="${ticket.price == movie.getAdultTicket()}" th:text="'Adult'"></p>
+            <p th:if="${ticket.price == movie.getChildTicket()}" th:text="'Child'"></p>
+            <p th:if="${ticket.price == movie.getSeniorTicket()}" th:text="'Senior'"></p>
+            <p th:text="${ticket.ticketCategory}"></p>
+        </li>
+    </ul>
     </div>
-    <button>
-        <a th:href="@{/checkout}">Checkout</a>
-    </button>
+
 </div>
 
 <footer class="img-footer">
