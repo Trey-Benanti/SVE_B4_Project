@@ -25,7 +25,6 @@
         <div class="nav-link" sec:authorize="isAuthenticated">
             <a class="nav-link" th:href="@{/profile}">Profile</a>
         </div>
-        <div class="nav-link"><a>About</a></div>
         <div class="nav-link" sec:authorize="hasRole('ROLE_ADMIN')">
             <a class="nav-link" th:href="@{/admin/}">Admin</a>
         </div>

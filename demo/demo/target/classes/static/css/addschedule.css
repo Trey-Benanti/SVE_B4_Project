@@ -137,3 +137,14 @@ table, th, td {
 #date-time-picker-button:hover{
     background-color: var(--terra-cotta);
 }
+
+button {
+    margin-top: 8px;
+    border-radius: 5px;
+    background-color: var(--golden-sun);
+    color: #ffffff;
+    width:fit-content;
+}
+button:hover{
+    background-color: var(--terra-cotta);
+}

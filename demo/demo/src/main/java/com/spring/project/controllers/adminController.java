@@ -134,6 +134,7 @@ public class adminController {
         // check if room is booked at this time
         List<Show> existing_show = showRepo.findByTimeSlot(show.room_id.id, show.showDate, show.time_slot);
         if (existing_show.size() > 0) { // TODO: add error text
+            
             return "redirect:/admin/addschedule";
         }
 
@@ -161,7 +162,7 @@ public class adminController {
         show.movie_id.setNowPlaying("Now Showing");
         repo.save(show.movie_id);
 
-        return "redirect:/admin/";
+        return "redirect:/admin/addschedule";
     }
     @GetMapping("/admin/manageusers")
     public String manageUsers(Model model) {

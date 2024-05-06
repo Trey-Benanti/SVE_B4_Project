@@ -4,19 +4,24 @@
     <meta charset="UTF-8" />
     <title>Manage Users</title>
     <link rel="stylesheet" type="text/css"
-          href="/css/manageusers.css"
-          th:href="@{/css/manageusers.css}" />
+          href="/css/promos.css"
+          th:href="@{/css/promos.css}" />
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div id="nav-ctr">
-        <nav class="top-nav">
-            <a class="nav-link"><a th:href="@{/admin}">Home</a></a>
-        </nav>
-    </div>
+    <nav class="top-nav">
+        <a class="nav-link"th:href="@{/}">Home</a>
+        <a class="nav-link" th:href="@{/admin/}">Admin Options</a>
+        <div sec:authorize="isAuthenticated">
+            <form th:action="@{/logout}" method="post">
+                <input class="logout-button" type="submit" value="Sign Out" />
+            </form>
+        </div>
+    </nav>
+    <div id="promo-card">
     <div>
-        <h1>List of Users</h1>
+        <h1 id="headerheader">List of Users</h1>
         <div>
             <p> Input a users ID to change their role (admin->customer and customer->admin) </p>
             <form th:action="@{/admin/alterUserRole}" method="post">
@@ -37,7 +42,8 @@
         </div>
         
     </div>
-     
+     <br>
+     <br>
     <div>
         <table class="table table-striped table-bordered">
             <thead class="thead-dark">
@@ -62,5 +68,6 @@
             </tbody>
         </table>
     </div>
+</div>
 </body>
 </html>
