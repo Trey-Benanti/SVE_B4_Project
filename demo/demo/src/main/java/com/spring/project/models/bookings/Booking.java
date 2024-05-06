@@ -31,6 +31,9 @@ public class Booking {
     @Column(name = "totalCost")
     private double totalCost;
 
+    @Column(name = "confirmed")
+    private int confirmed;
+
     public Show getShow() {
         return show;
     }
@@ -51,4 +54,11 @@ public class Booking {
         return id;
     }
 
+    public int getConfirmed() {
+        return confirmed;
+    }
+
+    public void setConfirmed(int confirmed) {
+        this.confirmed = confirmed;
+    }
 } // Booking
