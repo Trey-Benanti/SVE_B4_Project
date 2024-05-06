@@ -110,18 +110,18 @@
             <!-- Form for entering payment details -->
             <form id="payment-form">
                 <select class="select-card">
-                    <option>Card 1</option>
-                    <option>Card 2</option>
-                    <option>Add new card</option>
+                    <option th:each="card : ${cards}" th:value="${card.cardNumber}" th:text="${card.cardNumber}"></option>
                 </select>
                 <button type="submit">Confirm</button>
+                <button id="add-new-card-btn" type="button">Add New Card</button>
                 <button type="button" onclick="cancelPayment()">Cancel</button>
             </form>
         </div>
-        <form id="new-card-form">
+        <form id="new-card-form" style="display: none">
             <div class="form-group">
                 <label for="ccn">Card Number:</label>
-                <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" name="cardNumber" required>
+                <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number"
+                       maxlength="19" placeholder="xxxx xxxx xxxx xxxx" name="cardNumber" required>
             </div>
             <div class="form-group">
                 <label for="expiryDate">Expiry Date:</label>
@@ -182,6 +182,12 @@
         // Redirect to the homepage or previous page
         // This function will be implemented later
     }
+</script>
+
+<script>
+    document.getElementById('add-new-card-btn').addEventListener('click', function() {
+        document.getElementById('new-card-form').style.display = 'block';
+    });
 </script>
 
 </body>
