@@ -86,12 +86,16 @@
             <h2>Payment Information</h2>
             <!-- Form for entering payment details -->
             <form id="payment-form">
-                <label for="card-number">Card Number</label>
-                <input type="text" id="card-number" name="card-number" required>
-                <button type="submit">Confirm Payment</button>
+                <select class="select-card">
+                    <option>Card 1</option>
+                    <option>Card 2</option>
+                </select>
+                <button type="submit">Confirm</button>
                 <button type="button" onclick="cancelPayment()">Cancel</button>
+                <button type="button" class="add-card-button">Add new payment method</button>
             </form>
         </div>
+
     </div>
 
     <div class="sidebar">

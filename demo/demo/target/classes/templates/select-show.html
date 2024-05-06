@@ -130,7 +130,7 @@
 </div>
 <div class="container">
     <div class="sidebar movie-preview">
-        <img alt="Movie Preview" />
+        <img th:src="${movie.trailerPhoto}" alt="Movie Preview!" />
     </div>
     <div class="main-content">
         <div class="movie-details">
@@ -148,14 +148,15 @@
                         <th class="room-name">Room Name</th>
                         <th class="show-date">Show Date</th>
                         <th class="show-date">Show Time</th>
-                        <th>Select</th>
                     </tr>
                     <div class="table-content-container" th:each="show : ${shows}">
                         <tr>
                             <td th:text="${show.room_id.roomTitle}" />
                             <td th:text="${show.showDate}" />
                             <td th:text="${show.time_slot}" />
-                            <td><button>Select</button></td>
+                            <td><button>
+                                <a th:href="@{/select-seats/{id}(id=${show.id})}">Select</a>
+                            </button></td>
                         </tr>
                     </div>
                 </table>

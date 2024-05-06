@@ -5,38 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c58c1a30-6124-4166-b42d-e330698b43b8" name="Changes" comment="push">
-      <change afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/editmovieform.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dumps/DumpOcho20240505.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/207c76ae-37d0-4009-9674-ec9f841fa3dc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/207c76ae-37d0-4009-9674-ec9f841fa3dc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/controllers/adminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/controllers/adminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/controllers/bookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/controllers/bookingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/models/movies/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/models/movies/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/models/movies/movieinfo/MovieDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/models/movies/movieinfo/MovieDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/create.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/create.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/editmovies.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/editmovies.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/homepage.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/static/css/homepage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/createPromotionForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/createPromotionForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/editmovies.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/editmovies.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/homepage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/select-seats.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/select-seats.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/select-show.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/select-show.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/selectshow.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/selectshow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/controllers/adminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/controllers/adminController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/controllers/bookingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/controllers/bookingController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/movies/Movie.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/movies/Movie.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/movies/movieinfo/MovieDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/movies/movieinfo/MovieDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/Ticket.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/Ticket.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/bookings/Booking.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/bookings/Booking.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/shows/showservices/ShowRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/shows/showservices/ShowRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/services/EncryptFacade.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/services/EncryptFacade.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/static/css/create.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/static/css/create.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/static/css/editmovies.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/static/css/editmovies.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/static/css/homepage.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/static/css/homepage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/createPromotionForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/createPromotionForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/editmovies.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/editmovies.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/homepage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/addschedule.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/addschedule.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/checkout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/select-seats.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/select-seats.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/select-show.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/select-show.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/selectshow.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/selectshow.html" afterDir="false" />
     </list>
@@ -152,6 +134,7 @@
       <workItem from="1714503646558" duration="1880000" />
       <workItem from="1714669928536" duration="19013000" />
       <workItem from="1714919623368" duration="14744000" />
+      <workItem from="1715012333673" duration="3297000" />
     </task>
     <task id="LOCAL-00002" summary="Updated Admin css">
       <option name="closed" value="true" />

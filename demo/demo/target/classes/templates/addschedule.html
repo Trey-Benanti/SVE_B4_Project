@@ -25,7 +25,7 @@
     <h1>Schedule New Showing</h1>
     <form method="post">
         <label>Movie Title</label>
-        <select class="drop" name="Movies">
+        <select class="drop" name="title">
             <option th:each="movie : ${listMovies}"
                     th:value="${movie.movieTitle}"
                     th:text="${movie.movieTitle}">

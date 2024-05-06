@@ -82,8 +82,8 @@ table, th, td {
 }
 
 .synopsis {
-height: 100px;
-    width: 200px;
+height: 122px;
+    width: 98%;
     float: left;
     overflow: scroll;
 }
