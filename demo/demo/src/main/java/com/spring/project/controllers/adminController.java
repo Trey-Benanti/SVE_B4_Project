@@ -119,7 +119,8 @@ public class adminController {
             @RequestParam("title") String title,
             @RequestParam("room") Long room,
             @RequestParam("showDate") String showDate,
-            @RequestParam("timeslot") String timeslot
+            @RequestParam("timeslot") String timeslot,
+            Model model
     ) {
 
         Show show = new Show();
@@ -133,9 +134,13 @@ public class adminController {
 
         // check if room is booked at this time
         List<Show> existing_show = showRepo.findByTimeSlot(show.room_id.id, show.showDate, show.time_slot);
-        if (existing_show.size() > 0) { // TODO: add error text
-            
-            return "redirect:/admin/addschedule";
+        if (existing_show.size() > 0) {
+            List<Show> shows = showRepo.findAll();
+            model.addAttribute("shows", shows);
+            List<Movie> listMovies = repo.findAll();
+            model.addAttribute("listMovies", listMovies);
+            model.addAttribute("BAD_SCHEDULE", "Error: Conflict with existing scheduling");
+            return "addschedule";
         }
 
         showRepo.save(show);
