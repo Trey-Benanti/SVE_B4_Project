@@ -95,9 +95,9 @@
             cursor: not-allowed;
         }
 
-        .trailer-video {
 
-        }
+        /* carousel/horizontal */
+        /* dropdown button */
     </style>
 </head>
 
@@ -130,13 +130,14 @@
 </div>
 <div class="container">
     <div class="sidebar movie-preview">
-        <img th:src="${movie.trailerPhoto}" alt="Movie Preview" />
+        <img alt="Movie Preview!" />
     </div>
     <div class="main-content">
         <div class="movie-details">
             <h2 th:text="${movie.movieTitle}">Movie Title</h2>
             <p th:text="${movie.rating}">PG-13</p>
             <p>1 hr 47 min</p>
+            <!--<p th:text="${#dates.format(movie.releaseDate, 'MM/dd/yyyy')}">2/14/2024</p> -->
             <p th:text="${movie.synop}">Movie synopsis...</p>
         </div>
         <div class="showtimes">
@@ -147,14 +148,15 @@
                         <th class="room-name">Room Name</th>
                         <th class="show-date">Show Date</th>
                         <th class="show-date">Show Time</th>
-                        <th>Select</th>
                     </tr>
                     <div class="table-content-container" th:each="show : ${shows}">
                         <tr>
                             <td th:text="${show.room_id.roomTitle}" />
                             <td th:text="${show.showDate}" />
                             <td th:text="${show.time_slot}" />
-                            <td><button>Select</button></td>
+                            <td><button>
+                                <a th:href="@{/select-seats/{id}(id=${show.id})}">Select</a>
+                            </button></td>
                         </tr>
                     </div>
                 </table>
@@ -169,7 +171,7 @@
         <p th:text="'Director: ' + ${movie.director}">Director: Director Name</p>
         <p th:text="'Producer: ' + ${movie.producer}">Producer: Producer Name</p>
         <p th:text="'Synopsis: ' + ${movie.synop}">Synopsis: Movie synopsis...</p>
-        <p>Trailer: <a class="trailer-video" th:href="@{${movie.trailerVideo}}">Watch Trailer</a></p>
+        <p>Trailer: <a th:href="@{${movie.trailerVideo}}">Watch Trailer</a></p>
         <p th:text="'MPAA-US Rating: ' + ${movie.rating}">MPAA-US Rating: PG-13</p>
     </div>
 </div>

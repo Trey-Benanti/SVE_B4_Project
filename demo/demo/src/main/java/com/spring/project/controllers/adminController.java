@@ -8,8 +8,10 @@ import com.spring.project.models.promos.Promotion;
 import com.spring.project.models.promos.promotionservices.PromoRepository;
 import com.spring.project.models.promos.promotionservices.PromotionService;
 import com.spring.project.models.shows.Show;
+import com.spring.project.models.shows.showinfo.Seat;
 import com.spring.project.models.shows.showinfo.Showroom;
 import com.spring.project.models.shows.showservices.RoomRepository;
+import com.spring.project.models.shows.showservices.SeatRepository;
 import com.spring.project.models.shows.showservices.ShowRepository;
 import com.spring.project.models.users.User;
 import com.spring.project.models.users.userinfo.Role;
@@ -57,6 +59,9 @@ public class adminController {
     private PromoRepository promoRepository;
     @Autowired
     private PromotionService promotionService;
+
+    @Autowired
+    private SeatRepository seatRepository;
 
     @GetMapping("/admin/")
     public String adminView(Model model) {
@@ -133,6 +138,14 @@ public class adminController {
         }
 
         showRepo.save(show);
+
+        for (int i = 0; i < show.room_id.numSeats; i++) {
+            Seat seat = new Seat();
+            seat.setShowId(show);
+            seat.setSeatNum(i);
+            seat.setSeatStatus(0);
+            seatRepository.save(seat);
+        }
 
         show.movie_id.setNowPlaying("Now Showing");
         repo.save(show.movie_id);

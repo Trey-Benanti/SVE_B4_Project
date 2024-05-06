@@ -8,11 +8,14 @@ import com.spring.project.models.movies.movieservices.MoviesRepository;
 import com.spring.project.models.shows.Show;
 import com.spring.project.models.shows.showservices.ShowRepository;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class bookingController {
@@ -55,6 +58,19 @@ public class bookingController {
 
         return "select-show";
     }
+
+    @GetMapping("/select-seats/{id}")
+    public String selectSeats(@PathVariable("id") int id, Model model) {
+
+        List<Show> showList = showRepo.findById(id);
+        Show show = showList.get(0);
+        Movie movie = show.movie_id;
+
+        model.addAttribute("movie", movie);
+
+        return "select-seats";
+    }
+
     @GetMapping("/checkout")
     public String checkout() {
         return "checkout";

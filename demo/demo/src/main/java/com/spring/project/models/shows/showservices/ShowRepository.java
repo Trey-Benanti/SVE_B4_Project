@@ -21,4 +21,7 @@ public interface ShowRepository extends JpaRepository<Show, Integer> {
     @Query(value = "SELECT * FROM showtimes WHERE movie_id = (?1)", nativeQuery = true)
     public List<Show> findByMovie(int movie_id);
 
+    @Query(value = "SELECT * FROM showtimes WHERE id=(?1)", nativeQuery = true)
+    public List<Show> findById(int id);
+
 }
