@@ -81,8 +81,16 @@ public class bookingController {
     } // orderSummary
 
     @GetMapping("/select-show/{id}")
-    public String selectShow(@PathVariable("id") int id, Model model, Principal principal) {
-
+    public String selectShow(@PathVariable("id") int id, Model model, Principal principal, HttpSession session) {
+        List<Booking> unconfirmed = bookingRepo.findUnconfirmedBookings();
+        for(int i = 0; i < unconfirmed.size(); i++) {
+            List<Ticket> unconTickets = ticketRepo.findByBookingId(unconfirmed.get(i).getId());
+            for (int j = 0; j < unconTickets.size(); j++) {
+                ticketRepo.delete(unconTickets.get(j));
+            }
+            bookingRepo.delete(unconfirmed.get(i));
+        }
+        Booking booking = (Booking) session.getAttribute("booking");
         
         Movie movie = repo.getReferenceById(id);
 
