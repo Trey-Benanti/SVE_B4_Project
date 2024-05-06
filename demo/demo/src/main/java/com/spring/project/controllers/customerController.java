@@ -1,10 +1,15 @@
 package com.spring.project.controllers;
 
+import com.spring.project.models.Ticket;
+import com.spring.project.models.TicketRepository;
+import com.spring.project.models.bookings.Booking;
+import com.spring.project.models.bookings.bookingservices.BookingRepository;
 import com.spring.project.models.users.User;
 import com.spring.project.models.users.userinfo.CardInfo;
 import com.spring.project.models.users.userservices.*;
 import com.spring.project.services.EncryptFacade;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,14 +27,30 @@ public class customerController {
     @Autowired
     private CardInfoRepository cardRepo;
 
+    @Autowired
+    private BookingRepository bookingRepo;
+
+    @Autowired
+    private TicketRepository ticketRepo;
+
     private EncryptFacade encrypt = EncryptFacade.getInstance();
 
     @GetMapping("/profile")
-    public String profile(Model model, Principal principal) {
+    public String profile(Model model, Principal principal, HttpSession session) {
         if (principal == null)
         {
             return "homepage";
         }
+
+        List<Booking> unconfirmed = bookingRepo.findUnconfirmedBookings();
+        for(int i = 0; i < unconfirmed.size(); i++) {
+            List<Ticket> unconTickets = ticketRepo.findByBookingId(unconfirmed.get(i).getId());
+            for (int j = 0; j < unconTickets.size(); j++) {
+                ticketRepo.delete(unconTickets.get(j));
+            }
+            bookingRepo.delete(unconfirmed.get(i));
+        }
+        Booking booking = (Booking) session.getAttribute("booking");
 
         model.addAttribute("user", userRepo.findByEmail(principal.getName()));
         return "profile";
@@ -115,7 +136,17 @@ public class customerController {
     } // saveCard
 
     @GetMapping("/orders")
-    public String orders() {
+    public String orders(HttpSession session) {
+        List<Booking> unconfirmed = bookingRepo.findUnconfirmedBookings();
+        for(int i = 0; i < unconfirmed.size(); i++) {
+            List<Ticket> unconTickets = ticketRepo.findByBookingId(unconfirmed.get(i).getId());
+            for (int j = 0; j < unconTickets.size(); j++) {
+                ticketRepo.delete(unconTickets.get(j));
+            }
+            bookingRepo.delete(unconfirmed.get(i));
+        }
+        Booking booking = (Booking) session.getAttribute("booking");
+
         return "orders";
     } // orders
 

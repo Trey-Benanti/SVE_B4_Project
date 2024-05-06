@@ -51,7 +51,18 @@ public class bookingController {
     private BookingRepository bookingRepo;
 
     @GetMapping("/select-show")
-    public String selectShow() {
+    public String selectShow(HttpSession session) {
+
+        List<Booking> unconfirmed = bookingRepo.findUnconfirmedBookings();
+        for(int i = 0; i < unconfirmed.size(); i++) {
+            List<Ticket> unconTickets = ticketRepo.findByBookingId(unconfirmed.get(i).getId());
+            for (int j = 0; j < unconTickets.size(); j++) {
+                ticketRepo.delete(unconTickets.get(j));
+            }
+            bookingRepo.delete(unconfirmed.get(i));
+        }
+        Booking booking = (Booking) session.getAttribute("booking");
+
         return "select-show";
     } // selectShow
     @GetMapping("/select-seats")
