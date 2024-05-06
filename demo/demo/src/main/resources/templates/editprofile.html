@@ -54,7 +54,7 @@
             <br/>
             <label><strong>State:     </strong>
                 <select class="drop" th:field="*{address.stateCode}">
-                    <option th:each="code : ${T(com.spring.project.users.userinfo.StateCode).values()}"
+                    <option th:each="code : ${T(com.spring.project.models.users.userinfo.StateCode).values()}"
                             th:value="${code}"
                             th:text="${code}">
                     </option>
