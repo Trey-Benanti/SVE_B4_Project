@@ -70,7 +70,9 @@ public class bookingController {
     } // orderSummary
 
     @GetMapping("/select-show/{id}")
-    public String selectShow(@PathVariable("id") int id, Model model) {
+    public String selectShow(@PathVariable("id") int id, Model model, Principal principal) {
+
+        
         Movie movie = repo.getReferenceById(id);
 
         List<Show> shows = showRepo.findByMovie(movie.getId());
@@ -82,10 +84,14 @@ public class bookingController {
     }
 
     @GetMapping("/select-seats/{id}")
-    public String selectSeats(@PathVariable("id") int id,
-                              Model model,
-                              HttpSession session,
-                              Principal principal) {
+    public String selectSeats(@PathVariable("id") int id, 
+    Model model, 
+    HttpSession session, 
+    Principal principal) {
+        
+        if (principal == null) {
+            return "redirect:/login";
+        }
 
         // Check if booking already exists in session
         Booking booking = (Booking) session.getAttribute("booking");
