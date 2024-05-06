@@ -21,6 +21,9 @@ public class Seat {
     @Column(name = "seat_num")
     private int seat_num;
 
+    @Column(name = "seat_label")
+    private String seat_label;
+
 
     public int getId() {
         return id;
@@ -48,5 +51,13 @@ public class Seat {
 
     public void setSeatNum(int seat_num) {
         this.seat_num = seat_num;
+    }
+
+    public String getSeatLabel() {
+        return seat_label;
+    }
+
+    public void setSeatLabel(String seat_label) {
+        this.seat_label = seat_label;
     }
 }

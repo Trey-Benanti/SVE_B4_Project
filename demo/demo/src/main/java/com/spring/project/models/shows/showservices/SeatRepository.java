@@ -14,4 +14,7 @@ public interface SeatRepository extends JpaRepository<Seat, Integer> {
 
     @Query(value = "SELECT * FROM seats WHERE show_id = (?1)", nativeQuery = true)
     public List<Seat> seatsInShow(int show_id);
+
+    @Query(value = "SELECT * FROM seats WHERE id = (?1)", nativeQuery = true)
+    public List<Seat> getSeatById(int id);
 }

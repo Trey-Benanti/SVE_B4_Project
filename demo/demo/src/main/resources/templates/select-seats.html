@@ -275,38 +275,37 @@
         <div class="choose-seats">
             Select your seats
         </div>
+        <div id="seatsGrid" th:utext="${seatsGrid}"></div>
         <div class="seating-chart" id="seating-chart">
         </div>
-        <div class="sidebar" id="sidebar" style="display: none;">
-            <h3>Selected Seat</h3>
-            <div class="selected-seat" id="selected-seat"></div>
-            <div id="age-range-dropdown" style="display: none;">
-                <label for="age-range">Select Age Range:</label>
-                <select id="age-range">
-                    <option value="child">Child (Under 12)</option>
-                    <option value="adult">Adult (12+)</option>
-                    <option value="senior">Senior (65+)</option>
+        <div class="sidebar" id="sidebar">
+            <form method="post">
+                <label>Select Seat</label>
+                <select class="drop" name="seat_pick">
+                    <option th:each="seat : ${free_seats}"
+                            th:value="${seat.getId()}"
+                            th:text="${seat.getSeatLabel()}">
+                    </option>
                 </select>
-                <<button id="add-to-cart-btn"></button>
-                <button id="add-random-ticket-btn">Add to Cart</button>
-            </div>
+                <label>Select Age Range</label>
+                <select class="drop" name="age_range">
+                    <option>Adult</option>
+                    <option>Senior</option>
+                    <option>Child</option>
+                </select>
+                <button type="submit">Add Ticket</button>
+            </form>
         </div>
     </div>
-</div>
-<div id="seatsGrid" th:utext="${seatsGrid}"></div>
-<div id="order-summary">
-    <h2>Order Summary</h2>
-    <ul id="ticket-list">
-        <!-- Ticket details will be dynamically added here -->
-    </ul>
-    <p class="order-total">Total: $<span id="order-total">0.00</span></p>
-    <button id="update-order-btn">Update Order</button>
-    <button id="checkout-btn">
-        <a th:href="@{/order-confirmation}">
-            Checkout
-        </a>
+    <h2>Tickets:</h2>
+    <div th:each="ticket :${tickets}">
+        <div th:text="${ticket.getSeatId().getSeatLabel()}"></div>
+    </div>
+    <button>
+        <a th:href="@{/checkout}">Checkout</a>
     </button>
 </div>
+
 <footer class="img-footer">
     <img th:src="@{/css/images/Waves_Sand.png}" alt="Tidal Waves Theaters" width="100%">
 </footer>

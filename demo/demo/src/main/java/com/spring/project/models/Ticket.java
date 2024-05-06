@@ -9,18 +9,41 @@ import jakarta.persistence.*;
 public class Ticket {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
     @ManyToOne
     @JoinColumn(name = "booking_id", nullable = false)
-    private Booking booking_id;
+    private Booking booking;
 
     @OneToOne
     @JoinColumn(name = "seat_id", nullable = false)
     private Seat seat_id;
 
     @Column(name = "price")
-    private int price;
+    private String price;
 
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
+    }
+
+    public Seat getSeatId() {
+        return seat_id;
+    }
+
+    public void setSeatId(Seat seat_id) {
+        this.seat_id = seat_id;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
 }

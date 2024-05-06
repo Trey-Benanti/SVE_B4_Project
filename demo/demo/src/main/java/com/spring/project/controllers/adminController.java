@@ -139,12 +139,23 @@ public class adminController {
 
         showRepo.save(show);
 
+        char row = 'A';
         for (int i = 0; i < show.room_id.numSeats; i++) {
             Seat seat = new Seat();
             seat.setShowId(show);
             seat.setSeatNum(i);
             seat.setSeatStatus(0);
+
+            StringBuilder label = new StringBuilder();
+            label.append(row);
+            label.append((i % 7) + 1);
+            seat.setSeatLabel(label.toString());
+
             seatRepository.save(seat);
+
+            if ((i + 1) % 7 == 0) {
+                row++;
+            }
         }
 
         show.movie_id.setNowPlaying("Now Showing");
