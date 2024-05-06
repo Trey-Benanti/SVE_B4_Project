@@ -9,4 +9,9 @@ import java.util.List;
 
 public interface SeatRepository extends JpaRepository<Seat, Integer> {
 
+    @Query(value = "SELECT * FROM seats WHERE show_id = :show AND seat_status = 0", nativeQuery = true)
+    public List<Seat> findFreeShowSeats(@Param("show") int show_id);
+
+    @Query(value = "SELECT * FROM seats WHERE show_id = (?1)", nativeQuery = true)
+    public List<Seat> seatsInShow(int show_id);
 }

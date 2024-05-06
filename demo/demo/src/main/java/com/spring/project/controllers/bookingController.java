@@ -6,6 +6,8 @@ import com.spring.project.models.movies.Movie;
 import com.spring.project.models.movies.movieservices.MovieServices;
 import com.spring.project.models.movies.movieservices.MoviesRepository;
 import com.spring.project.models.shows.Show;
+import com.spring.project.models.shows.showinfo.Seat;
+import com.spring.project.models.shows.showservices.SeatRepository;
 import com.spring.project.models.shows.showservices.ShowRepository;
 
 import jakarta.validation.Valid;
@@ -27,6 +29,9 @@ public class bookingController {
 
     @Autowired
     private MoviesRepository repo; // Reference to movie repository interface
+
+    @Autowired
+    private SeatRepository seatRepo;
 
     @GetMapping("/select-show")
     public String selectShow() {
@@ -68,7 +73,33 @@ public class bookingController {
 
         model.addAttribute("movie", movie);
 
+        String seatsGrid = drawSeats(show);
+        model.addAttribute("seatsGrid", seatsGrid);
+
         return "select-seats";
+    }
+    public String drawSeats(Show show) {
+        List<Seat> seats = seatRepo.seatsInShow(show.id);
+
+        StringBuilder result = new StringBuilder();
+        char row = 'A';
+
+        int count = 0;
+        for (int i = 0; i < (seats.size() + 6) / 7; i++) {
+            result.append("<div style='display: flex;'>");
+            for (int j = 0; j < 7 && count < seats.size(); j++) {
+                result.append("<div style='width: 50px; height: 50px; background-color: ");
+                result.append(seats.get(count).getSeatStatus() == 1 ? "red" : "white");
+                result.append("; display: flex; justify-content: center; align-items: center;'>");
+                result.append(row).append(j + 1); // Label format: rowLetter + columnNumber
+                result.append("</div>");
+                count++;
+            }
+            result.append("</div>");
+            row++;
+        }
+
+        return result.toString();
     }
 
     @GetMapping("/checkout")
