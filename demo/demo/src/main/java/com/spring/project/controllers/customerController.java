@@ -195,7 +195,7 @@ public class customerController {
 
         userRepo.save(user);
 
-        return "homepage";
+        return "redirect:/homepage";
     }
 
 
