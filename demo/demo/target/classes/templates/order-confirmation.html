@@ -126,8 +126,9 @@
         <p><strong th:text="${movie.movieTitle}"></strong></p>
         <p><strong th:text="${movie.rating}"></strong></p>
         <p><strong th:text="${show.room_id.roomTitle}"></strong></p>
-        <p><strong th:text="${show.showDate}">Showtime:</strong></p>
+        <p><strong th:text="${show.showDate}"></strong></p>
         <p><strong th:text="${show.time_slot}"></strong></p>
+        <p><strong th:text="'$' + ${total}"></strong></p>
         <hr>
         <h3>Your Seats</h3>
         <p th:each="seat : ${seats}" th:text="${seat.seatLabel}"></p>

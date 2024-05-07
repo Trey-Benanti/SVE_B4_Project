@@ -1,5 +1,6 @@
 package com.spring.project.controllers;
 
+import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -23,11 +24,15 @@ import com.spring.project.models.users.User;
 import com.spring.project.models.users.userinfo.CardInfo;
 import com.spring.project.models.users.userservices.UserRepository;
 import com.spring.project.services.EncryptFacade;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
@@ -61,6 +66,9 @@ public class bookingController {
 
     @Autowired
     private PromoRepository promoRepo;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     @GetMapping("/select-show")
     public String selectShow(HttpSession session) {
@@ -321,7 +329,7 @@ public class bookingController {
 
         for(int i = 0; i < tickets.size(); i++) { // Add all seats from booking to seats
             seats.addAll(seatRepo.getSeatById(tickets.get(i).getSeatId().getId()));
-            seats.get(i).setSeatStatus(1);
+            seats.get(i).setSeatStatus(1); // Set seat as reserved
             seatRepo.save(seats.get(i));
         } // for
 
@@ -329,9 +337,12 @@ public class bookingController {
         Movie movie = movieServices.findById(show.movie_id.getId());
         String totalCost = String.format("%.2f", booking.getTotalCost());
 
-        booking.setConfirmed(1);
+        booking.setConfirmed(1); // Set booking as confirmed
         bookingRepo.save(booking);
 
+        User user = userRepo.findByEmail(principal.getName());
+
+        sendConfirmEmail(user, seats, show, totalCost, movie);
 
         model.addAttribute("seats", seats);
         model.addAttribute("tickets", tickets);
@@ -340,7 +351,38 @@ public class bookingController {
         model.addAttribute("total", totalCost);
         model.addAttribute("booking", booking);
         return "order-confirmation";
-    }
+    } // orderConfirmation
+
+    private void sendConfirmEmail(User user, List<Seat> seatList, Show show,
+                                  String totalCost, Movie movie) throws MessagingException, UnsupportedEncodingException {
+
+        StringBuilder seatsBuilder = new StringBuilder(); // Construct seats string
+        for(int i = 0; i < seatList.size(); i++) {
+            seatsBuilder.append(seatList.get(i).getSeatLabel()).append(" ");
+        } // for
+        String seats = seatsBuilder.toString();
+
+        // Send order confirmation email
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setFrom("tidalwavetheaters@gmail.com", "Tidal Wave Theaters");
+        helper.setTo(user.getEmail());
+        helper.setSubject("Order Confirmation");
+
+        String content = "<h1>Thank you for your order</h1>"
+                + "<h3>Details</h3>"
+                + "<p>" + "Seats: " + seats + "</p>"
+                + "<p>" + movie.getMovieTitle() + "</p>"
+                + "<p>" + "Rated " + movie.getRating() + "</p>"
+                + "<p>" + show.room_id.roomTitle + "</p>"
+                + "<p>" + show.showDate + "</p>"
+                + "<p>" + show.time_slot + "</p>"
+                + "<p>" + "Total Cost: $" + totalCost + "</p>";
+
+        helper.setText(content, true);
+        mailSender.send(message);
+    } // sendConfirmEmail
 
     private String calculateTotal(List<Ticket> ticketList) {
         double total = 0.0;
