@@ -116,7 +116,7 @@ public class bookingController {
         Booking booking = (Booking) session.getAttribute("booking");
 
         // If booking doesn't exist, create a new one
-        if (booking == null) {
+        if (booking == null || ticketRepo.findByBookingId(booking.getId()).size() == 0) {
             booking = new Booking();
             Show show = showRepo.findById(id).get(0);
             booking.setShow(show);
