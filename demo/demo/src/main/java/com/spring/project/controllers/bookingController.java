@@ -82,10 +82,6 @@ public class bookingController {
         return "select-seats";
     } // selectSeats
 
-    @GetMapping("/order-confirmation")
-    public String orderConfirmation() {
-        return "order-confirmation";
-    } // orderConfirmation
 
     @GetMapping("/order-summary")
     public String orderSummary() {
@@ -314,6 +310,37 @@ public class bookingController {
 
         return "redirect:/checkout";
     } // applyPromo
+
+    @GetMapping("/order-confirmation")
+    public String orderConfirmation(Model model, HttpSession session, Principal principal) throws Exception {
+        if(principal == null) {return "homepage";}
+
+        Booking booking = (Booking) session.getAttribute("booking");
+        List<Ticket> tickets = ticketRepo.findByBookingId(booking.getId());
+        List<Seat> seats = new ArrayList<>();
+
+        for(int i = 0; i < tickets.size(); i++) { // Add all seats from booking to seats
+            seats.addAll(seatRepo.getSeatById(tickets.get(i).getSeatId().getId()));
+            seats.get(i).setSeatStatus(1);
+            seatRepo.save(seats.get(i));
+        } // for
+
+        Show show = booking.getShow();
+        Movie movie = movieServices.findById(show.movie_id.getId());
+        String totalCost = String.format("%.2f", booking.getTotalCost());
+
+        booking.setConfirmed(1);
+        bookingRepo.save(booking);
+
+
+        model.addAttribute("seats", seats);
+        model.addAttribute("tickets", tickets);
+        model.addAttribute("movie", movie);
+        model.addAttribute("show", show);
+        model.addAttribute("total", totalCost);
+        model.addAttribute("booking", booking);
+        return "order-confirmation";
+    }
 
     private String calculateTotal(List<Ticket> ticketList) {
         double total = 0.0;

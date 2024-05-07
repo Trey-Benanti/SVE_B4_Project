@@ -121,7 +121,9 @@
                     <option th:each="card : ${cards}" th:value="${card.cardNumber}" th:text="${card.cardNumber}"></option>
                     <option>New Card</option>
                 </select>
-                <button type="submit">Confirm</button>
+                <button type="submit">
+                    <a th:href="@{/order-confirmation}">Confirm</a>
+                </button>
                 <button id="add-new-card-btn" type="button">Add New Card</button>
                 <button type="button" onclick="cancelPayment()">Cancel</button>
             </form>
