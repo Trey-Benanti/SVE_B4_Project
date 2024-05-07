@@ -36,11 +36,11 @@
             </option>
         </select>
         <label>Room Number</label>
-        <input type="number" name="room"/>
+        <input type="number" name="room" max="6" min="1"/>
         <label>Date and Time</label>
         <input type="date" name="showDate">
         <select name="timeslot">
-            <option th:each="code : ${T(com.spring.project.models.TimeSlots).values()}"
+            <option th:each="code : ${T(com.spring.project.models.shows.showinfo.TimeSlots).values()}"
                     th:value="${code}"
                     th:text="${code}">
             </option>
