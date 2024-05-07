@@ -37,6 +37,7 @@ public class PromotionService {
 
     // Method to send a promotion to all subscribed users
     public void sendPromotionToSubscribedUsers(Long promotionId) throws MessagingException, UnsupportedEncodingException {
+
         Optional<Promotion> promotionOptional = promoRepository.findById(promotionId);
         if (promotionOptional.isEmpty()) {
             throw new IllegalStateException("Promotion not found");
@@ -61,6 +62,7 @@ public class PromotionService {
         String date = formattedStartDate + " till " + formattedEndDate;
         String promoCode = promotion.getPromoCode();
         String promoMessage = "Get " + promotion.getPercentage() + "% off on your next booking! Offer valid till " + date;
+
         for (User user : subscribedUsers) {
             sendPromoEmail(user, promoCode, promoMessage);
         }
