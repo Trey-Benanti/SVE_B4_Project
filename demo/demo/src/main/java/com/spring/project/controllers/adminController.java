@@ -199,7 +199,7 @@ public class adminController {
         movie.setRating(movieDTO.getRating());
         movie.setReviews(movieDTO.getReviews());
         movie.setSynop(movieDTO.getSynop());
-        movie.setTrailerPhoto(movie.getTrailerPhoto());
+        movie.setTrailerPhoto(movieDTO.getTrailerPhoto());
         movie.setTrailerVideo(movieDTO.getTrailerVideo());
         movie.setNowPlaying(movieDTO.getNowPlaying());
         movie.setCategory(movieDTO.getCategory());
