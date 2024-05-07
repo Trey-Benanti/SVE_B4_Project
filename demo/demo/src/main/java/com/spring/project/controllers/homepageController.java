@@ -3,13 +3,13 @@ package com.spring.project.controllers;
 import java.security.Principal;
 import java.util.List;
 
-import com.spring.project.models.Ticket;
-import com.spring.project.models.TicketRepository;
 import com.spring.project.models.bookings.Booking;
 import com.spring.project.models.bookings.bookingservices.BookingRepository;
 import com.spring.project.models.movies.Movie;
 import com.spring.project.models.movies.movieservices.MovieServices;
 import com.spring.project.models.movies.movieservices.MoviesRepository;
+import com.spring.project.models.tickets.*;
+import com.spring.project.models.tickets.ticketservices.TicketRepository;
 import com.spring.project.models.users.userinfo.Role;
 import com.spring.project.models.users.userservices.UserRepository;
 

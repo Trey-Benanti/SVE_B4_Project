@@ -3,8 +3,6 @@ package com.spring.project.controllers;
 import java.security.Principal;
 import java.util.List;
 
-import com.spring.project.models.Ticket;
-import com.spring.project.models.TicketRepository;
 import com.spring.project.models.bookings.Booking;
 import com.spring.project.models.bookings.bookingservices.BookingRepository;
 import com.spring.project.models.movies.Movie;
@@ -14,7 +12,8 @@ import com.spring.project.models.shows.Show;
 import com.spring.project.models.shows.showinfo.Seat;
 import com.spring.project.models.shows.showservices.SeatRepository;
 import com.spring.project.models.shows.showservices.ShowRepository;
-
+import com.spring.project.models.tickets.Ticket;
+import com.spring.project.models.tickets.ticketservices.TicketRepository;
 import com.spring.project.models.users.userservices.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
