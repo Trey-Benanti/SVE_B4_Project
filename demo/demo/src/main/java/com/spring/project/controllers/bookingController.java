@@ -1,6 +1,7 @@
 package com.spring.project.controllers;
 
 import java.security.Principal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import static java.lang.Math.round;
 
 @Controller
 public class bookingController {
@@ -254,6 +257,8 @@ public class bookingController {
         Show show = booking.getShow(); // Get reference to show
         Movie movie = movieServices.findById(show.movie_id.getId()); // Get reference to movie
 
+        String totalCost = calculateTotal(tickets); // Get total cost
+
         User user = userRepo.findByEmail(principal.getName());
         List<CardInfo> cards = user.getPaymentInfo();
 
@@ -271,7 +276,16 @@ public class bookingController {
         model.addAttribute("tickets", tickets);
         model.addAttribute("movie", movie);
         model.addAttribute("show", show);
+        model.addAttribute("total", totalCost);
         return "checkout";
     } // checkout
+
+    private String calculateTotal(List<Ticket> ticketList) {
+        double total = 0.0;
+        for(int i = 0; i < ticketList.size(); i++) {
+            total += Double.valueOf(ticketList.get(i).getPrice());
+        }
+        return String.format("%.2f", total);
+    } // calculateTotal
 
 }
