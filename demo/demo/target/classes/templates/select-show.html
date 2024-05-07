@@ -105,7 +105,15 @@
 <div id="nav-ctr">
     <nav class="top-nav">
         <a class="nav-link" th:href="@{/}">Home</a>
-        <a class="nav-link" th:href="@{/login}">Login</a>
+        <div class="nav-link" sec:authorize="isAuthenticated">
+            <a class="nav-link" th:href="@{/profile}">Profile</a>
+        </div>
+        <div class="nav-link" sec:authorize="!(isAuthenticated)">
+            <a class="nav-link" th:href="@{/login}">Login</a>
+        </div>
+        <div class="nav-link" sec:authorize="!(isAuthenticated)">
+            <a class="nav-link" th:href="@{/signup}">Register</a>
+        </div>
         <div class="search-ctr">
             <form id="search-form"
                   th:action="@{/search}"
@@ -129,7 +137,7 @@
 </div>
 <div class="container">
     <div class="sidebar movie-preview">
-        <img alt="Movie Preview!" />
+        <img th:src="${movie.trailerPhoto}" alt="Movie Preview!" />
     </div>
     <div class="main-content">
         <div class="movie-details">
