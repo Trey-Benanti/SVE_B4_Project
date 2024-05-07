@@ -389,7 +389,7 @@ public class bookingController {
 
         User user = userRepo.findByEmail(principal.getName());
 
-        sendConfirmEmail(user, seats, show, totalCost, movie);
+        sendConfirmEmail(user, seats, show, totalCost, movie, booking);
 
         model.addAttribute("seats", seats);
         model.addAttribute("tickets", tickets);
@@ -401,7 +401,7 @@ public class bookingController {
     } // orderConfirmation
 
     private void sendConfirmEmail(User user, List<Seat> seatList, Show show,
-                                  String totalCost, Movie movie) throws MessagingException, UnsupportedEncodingException {
+                                  String totalCost, Movie movie, Booking booking) throws MessagingException, UnsupportedEncodingException {
 
         StringBuilder seatsBuilder = new StringBuilder(); // Construct seats string
         for(int i = 0; i < seatList.size(); i++) {
@@ -419,6 +419,7 @@ public class bookingController {
 
         String content = "<h1>Thank you for your order</h1>"
                 + "<h3>Details</h3>"
+                + "<p>" + booking.getId() + "</p>"
                 + "<p>" + "Seats: " + seats + "</p>"
                 + "<p>" + movie.getMovieTitle() + "</p>"
                 + "<p>" + "Rated " + movie.getRating() + "</p>"

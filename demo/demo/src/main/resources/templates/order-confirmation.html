@@ -123,6 +123,7 @@
 
     <div id="confirmation-order-info">
         <h3>Order Summary</h3>
+        <p><strong th:text="'Booking Code: ' + ${booking.id}"></strong></p>
         <p><strong th:text="${movie.movieTitle}"></strong></p>
         <p><strong th:text="${movie.rating}"></strong></p>
         <p><strong th:text="${show.room_id.roomTitle}"></strong></p>
