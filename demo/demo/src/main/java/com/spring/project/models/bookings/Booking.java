@@ -34,10 +34,6 @@ public class Booking {
     @Column(name = "confirmed")
     private int confirmed;
 
-    public double getTotalCost() {
-        return this.totalCost;
-    }
-
     @Column(name = "tax")
     private double tax;
 
