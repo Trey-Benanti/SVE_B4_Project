@@ -444,7 +444,7 @@ public class bookingController {
         doubleTotals[0] += 1.5; // Total + booking fees
 
         String[] totals = {String.format("%.2f", doubleTotals[0]), String.format("%.2f", doubleTotals[1]),
-        String.format("%.2f", doubleTotals[2])};
+        String.format("%.2f", doubleTotals[2])}; // Fix format
 
         return totals;
     } // calculateTotal

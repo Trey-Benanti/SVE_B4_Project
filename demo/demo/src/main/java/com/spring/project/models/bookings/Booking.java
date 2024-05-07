@@ -40,6 +40,7 @@ public class Booking {
     @Column(name = "grossTotal")
     private double grossTotal;
 
+    // Getters and setters
     public Show getShow() {
         return show;
     }
