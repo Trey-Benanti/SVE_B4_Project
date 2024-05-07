@@ -264,7 +264,12 @@
 <div id="nav-ctr">
     <nav class="top-nav">
         <a class="nav-link" th:href="@{/}">Home</a>
-        <a class="nav-link" th:href="@{/login}">Login</a>
+        <div class="nav-link" sec:authorize="isAuthenticated">
+            <a class="nav-link" th:href="@{/profile}">Profile</a>
+            <div class="nav-link" sec:authorize="!(isAuthenticated)">
+                <a class="nav-link" th:href="@{/signup}">Register</a>
+            </div>
+        </div>
         <div class="search-ctr">
             <form id="search-form"
                   th:action="@{/search}"
