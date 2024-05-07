@@ -1,6 +1,7 @@
 package com.spring.project.controllers;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.spring.project.models.Ticket;
@@ -15,7 +16,10 @@ import com.spring.project.models.shows.showinfo.Seat;
 import com.spring.project.models.shows.showservices.SeatRepository;
 import com.spring.project.models.shows.showservices.ShowRepository;
 
+import com.spring.project.models.users.User;
+import com.spring.project.models.users.userinfo.CardInfo;
 import com.spring.project.models.users.userservices.UserRepository;
+import com.spring.project.services.EncryptFacade;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -234,7 +238,39 @@ public class bookingController {
     }
 
     @GetMapping("/checkout")
-    public String checkout() {
+    public String checkout(Model model, HttpSession session, Principal principal) throws Exception {
+        if(principal == null) {return "homepage";}
+
+        EncryptFacade encrypt = EncryptFacade.getInstance();
+
+        Booking booking = (Booking) session.getAttribute("booking"); // Get booking reference
+        List<Ticket> tickets = ticketRepo.findByBookingId(booking.getId()); // Get tickets for booking
+        List<Seat> seats = new ArrayList<>();
+
+        for(int i = 0; i < tickets.size(); i++) { // Add all seats from booking to seats
+            seats.addAll(seatRepo.getSeatById(tickets.get(i).getSeatId().getId()));
+        } // for
+
+        Show show = booking.getShow(); // Get reference to show
+        Movie movie = movieServices.findById(show.movie_id.getId()); // Get reference to movie
+
+        User user = userRepo.findByEmail(principal.getName());
+        List<CardInfo> cards = user.getPaymentInfo();
+
+        for(int i = 0; i < cards.size(); i++) { // Decrypt cards
+            if(!cards.get(i).getCardNumber().equals("")) {
+
+                String decCardNum = encrypt.decryptCard(cards.get(i));
+                String cardLastFour = decCardNum.substring(decCardNum.length() - 4);
+                cardLastFour = "**** **** **** " + cardLastFour;
+                cards.get(i).setCardNumber(cardLastFour);
+            } // if
+        } // for
+        model.addAttribute("cards", cards);
+        model.addAttribute("seats", seats);
+        model.addAttribute("tickets", tickets);
+        model.addAttribute("movie", movie);
+        model.addAttribute("show", show);
         return "checkout";
     } // checkout
 
