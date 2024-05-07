@@ -55,7 +55,6 @@
                 <th class="room-name">Room Name</th>
                 <th class="show-date">Show Date</th>
                 <th class="show-date">Show Time</th>
-                <th>Delete</th>
             </tr>
             <div class="table-content-container" th:each="show : ${shows}">
                 <tr>
@@ -64,7 +63,6 @@
                     <td th:text="${show.room_id.roomTitle}" />
                     <td th:text="${show.showDate}" />
                     <td th:text="${show.time_slot}" />
-                    <td><button>Delete</button></td>
                 </tr>
             </div>
         </table>

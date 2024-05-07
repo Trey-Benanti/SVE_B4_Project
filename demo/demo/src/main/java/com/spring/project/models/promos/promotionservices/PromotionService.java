@@ -70,7 +70,7 @@ public class PromotionService {
     }
     public void sendPromoEmail(User user, String promoCode, String promoMessage) throws MessagingException, UnsupportedEncodingException {
         MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+        MimeMessageHelper helper = new MimeMessageHelper(message);
 
         helper.setFrom("tidalwavetheaters@gmail.com", "Tidal Wave Theaters");
         helper.setTo(user.getEmail());

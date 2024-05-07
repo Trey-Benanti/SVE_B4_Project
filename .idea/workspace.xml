@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c58c1a30-6124-4166-b42d-e330698b43b8" name="Changes" comment="full text search for category" />
+    <list default="true" id="c58c1a30-6124-4166-b42d-e330698b43b8" name="Changes" comment="full text search for category">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/models/promos/promotionservices/PromotionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/models/promos/promotionservices/PromotionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/models/users/userservices/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/java/com/spring/project/models/users/userservices/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/forgotpassword.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/forgotpassword.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/forgotpassword_success.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/src/main/resources/templates/forgotpassword_success.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/controllers/bookingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/controllers/bookingController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/controllers/customerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/controllers/customerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/controllers/homepageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/controllers/homepageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/bookings/Booking.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/bookings/Booking.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/bookings/bookingservices/BookingRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/bookings/bookingservices/BookingRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/promos/promotionservices/PromotionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/promos/promotionservices/PromotionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/users/userservices/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/com/spring/project/models/users/userservices/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/static/css/homepage.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/static/css/homepage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/addschedule.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/addschedule.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/forgotpassword.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/forgotpassword.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/forgotpassword_success.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/forgotpassword_success.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/searchresult.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/searchresult.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/select-seats.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/select-seats.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demo/target/classes/templates/select-show.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo/target/classes/templates/select-show.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -118,6 +140,7 @@
       <workItem from="1714669928536" duration="19013000" />
       <workItem from="1714919623368" duration="14744000" />
       <workItem from="1715012333673" duration="10243000" />
+      <workItem from="1715040808155" duration="2798000" />
     </task>
     <task id="LOCAL-00002" summary="Updated Admin css">
       <option name="closed" value="true" />

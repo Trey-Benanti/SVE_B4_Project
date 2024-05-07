@@ -20,7 +20,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u WHERE u.id = ?1")
     public User retrieveUserByID(long userId);
 
-    @Query
+    @Query("SELECT u FROM User u WHERE u.subscription = ?1")
     List<User> findBySubscription(boolean isSubscribed);
 
      

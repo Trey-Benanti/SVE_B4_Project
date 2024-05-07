@@ -60,11 +60,18 @@
         </div>
     </nav>
 </div>
+<div id="overlay" class="overlay" onclick="closeModal();"></div>
+
 <h2 class="results-header">[[${keyword}]]</h2>
 <h1 class="now-showing-header">Now Showing</h1>
     <div class="movie-overview">
-        <div class="movie-ctr" th:each="movie : ${searchResult}" th:if="${movie.nowPlaying.equals('Now Showing')}">
-            <a class="movie-title" th:text="${movie.movieTitle}" />
+        <div class="movie-ctr" th:each="movie, iterStat : ${searchResult}" th:if="${movie.nowPlaying.equals('Now Showing')}">
+            <div>
+                <a class="movie-title" th:text="${movie.movieTitle}"/>
+                <a class="rating-text" th:text="${movie.rating}" />
+            </div>
+            <div class="category" th:text="${movie.category}"></div>
+
             <iframe width="530" height="365"
                     class="trailer-video"
                     th:src="${movie.trailerVideo}"
@@ -75,22 +82,46 @@
             <div class="rating-ctr">
                 <p class="rating-text" th:text="${movie.rating}" />
             </div>
-            <div class="details-link-ctr">
-                <p class="details-link" th:text="${movie.synop}"></p>
-            </div>
             <div class="book-tickets-btn-ctr">
                 <button class="book-tickets-btn">
                     <a th:href="@{/select-show/{id}(id=${movie.id})}">
                         Book
                     </a>
                 </button>
+                <button class="see-more-btn" th:data-modal-target="'#modal' + ${iterStat.index}">See Details</button>
+                <div th:attr="id='modal' + ${iterStat.index}" class="modal">
+                    <div class="modal-header">
+                        <div class="title" th:text="${movie.movieTitle}"></div>
+                        <button th:data-close-button="'#modal' + ${iterStat.index}" class="close-button">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="trailer-info-bar">
+                            <img class="modal-image" th:src="${movie.trailerPhoto}" alt="Movie Preview" />
+                            <div class="information-down-header">
+                                <div class="information-down">
+                                    <p><strong>Cast</strong> <span th:text="${movie.cast}">[Cast]</span></p>
+                                    <p><strong>Director</strong> <span th:text="${movie.director}">[Director]</span></p>
+                                    <p><strong>Producer</strong> <span th:text="${movie.producer}">[Producer]</span></p>
+                                </div>
+                                <p class="reviews-bar">
+                                    <strong>Reviews: </strong>
+                                <div class="Stars" th:style="'--rating: ' + ${movie.reviews} + ';' + '--percent: calc(' + ${movie.reviews} + ' / 5 * 100%)'" aria-label="Rating of this product is [[${movie.reviews}]] out of 5.">
+                                </div>
+                            </div>
+                        </div>
+                        <p><strong>Synopsis:</strong> <span th:text="${movie.synop}">[Synopsis]</span></p>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
     <h1 class="now-showing-header">Coming Soon</h1>
     <div class="movie-overview">
-        <div class="movie-ctr" th:each="movie : ${searchResult}" th:if="${movie.nowPlaying.equals('Coming Soon')}">
+        <div class="movie-ctr" th:each="movie, iterStat: ${searchResult}" th:if="${movie.nowPlaying.equals('Coming Soon')}">
             <a class="movie-title" th:text="${movie.movieTitle}" />
+            <div class="category" th:text="${movie.category}"></div>
             <iframe width="530" height="365"
                     class="trailer-video"
                     th:src="${movie.trailerVideo}"
@@ -101,17 +132,78 @@
             <div class="rating-ctr">
                 <p class="rating-text" th:text="${movie.rating}" />
             </div>
-            <div class="details-link-ctr">
-                <p class="details-link" th:text="${movie.synop}"></p>
-            </div>
+            <p></p><p></p>
             <div class="book-tickets-btn-ctr">
-                <button class="book-tickets-btn">
-                    <a th:href="@{/select-show/{id}(id=${movie.id})}">
-                        Book
-                    </a>
-                </button>
+
+                <button class="see-more-btn" th:data-modal-target="'#modal' + ${iterStat.index}">See Details</button>
+                <div th:attr="id='modal' + ${iterStat.index}" class="modal">
+                    <div class="modal-header">
+                        <div class="title" th:text="${movie.movieTitle}"></div>
+                        <button th:data-close-button="'#modal' + ${iterStat.index}" class="close-button">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="trailer-info-bar">
+                            <img class="modal-image" th:src="${movie.trailerPhoto}" alt="Movie Preview" />
+                            <div class="information-down-header">
+                                <div class="information-down">
+                                    <p><strong>Cast</strong> <span th:text="${movie.cast}">[Cast]</span></p>
+                                    <p><strong>Director</strong> <span th:text="${movie.director}">[Director]</span></p>
+                                    <p><strong>Producer</strong> <span th:text="${movie.producer}">[Producer]</span></p>
+                                </div>
+                                <p class="reviews-bar">
+                                    <strong>Reviews: </strong>
+                                <div class="Stars" th:style="'--rating: ' + ${movie.reviews} + ';' + '--percent: calc(' + ${movie.reviews} + ' / 5 * 100%)'" aria-label="Rating of this product is [[${movie.reviews}]] out of 5.">
+                                </div>
+                            </div>
+                        </div>
+                        <p><strong>Synopsis:</strong> <span th:text="${movie.synop}">[Synopsis]</span></p>
+
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
+<script th:inline="javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        const overlay = document.getElementById('overlay');
+        const openModalButtons = document.querySelectorAll('[data-modal-target]');
+        const closeModalButtons = document.querySelectorAll('[data-close-button]');
+
+        openModalButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modal = document.querySelector(button.getAttribute('data-modal-target'));
+                openModal(modal);
+            });
+        });
+
+        closeModalButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modal = document.querySelector(button.getAttribute('data-close-button'));
+                closeModal(modal);
+            });
+        });
+
+        function openModal(modal) {
+            if (modal == null) return;
+            modal.classList.add('active');
+            overlay.classList.add('active');
+        }
+
+        function closeModal(modal) {
+            if (modal == null) return;
+            modal.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        overlay.addEventListener('click', () => {
+            const modals = document.querySelectorAll('.modal.active');
+            modals.forEach(modal => {
+                closeModal(modal);
+            });
+        });
+    });
+</script>
+
 </body>
 </html>
