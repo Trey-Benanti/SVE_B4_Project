@@ -51,6 +51,29 @@
     .cart-summary-row span {
         font-size: 18px;
     }
+
+    #new-card-form {
+        margin-top: 15px;
+        width: 300px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
 </style>
 </head>
 <body>
@@ -86,12 +109,49 @@
             <h2>Payment Information</h2>
             <!-- Form for entering payment details -->
             <form id="payment-form">
-                <label for="card-number">Card Number</label>
-                <input type="text" id="card-number" name="card-number" required>
-                <button type="submit">Confirm Payment</button>
+                <select class="select-card">
+                    <option th:each="card : ${cards}" th:value="${card.cardNumber}" th:text="${card.cardNumber}"></option>
+                    <option>New Card</option>
+                </select>
+                <button type="submit">Confirm</button>
+                <button id="add-new-card-btn" type="button">Add New Card</button>
                 <button type="button" onclick="cancelPayment()">Cancel</button>
             </form>
         </div>
+        <form id="new-card-form" style="display: none">
+            <div class="form-group">
+                <label for="ccn">Card Number:</label>
+                <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number"
+                       maxlength="19" placeholder="xxxx xxxx xxxx xxxx" name="cardNumber" required>
+            </div>
+            <div class="form-group">
+                <label for="expiryDate">Expiry Date:</label>
+                <input type="date" id="expiryDate" name="expiryDate" required>
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required>
+            </div>
+            <div class="form-group">
+                <label for="cna">Card Name</label>
+                <input type="text" id="cna" name="cna" required>
+            </div>
+            <div class="form-group">
+                <label for="billingAddrStreet">Street Address</label>
+                <input type="text" id="billingAddrStreet" name="billingAddrStreet" required>
+            </div>
+            <div class="form-group">
+                <label for="billingAddrState">State</label>
+                <input type="text" id="billingAddrState" name="billingAddrState" required>
+            </div>
+            <div class="form-group">
+                <label for="billingAddrZip">Zip</label>
+                <input type="text" id="billingAddrZip" name="billingAddrZip" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save">
+            </div>
+        </form>
     </div>
 
     <div class="sidebar">
@@ -104,7 +164,7 @@
                     <p><strong>Rating:</strong> PG13</p>
                     <p><strong>Duration:</strong> 1 hr. 47 min.</p>
                     <p><strong>Theater:</strong> Theater Theater!</p>
-                    <p><strong>Showtime:</strong> Wednesday, February 21 2024 - 12:45 PM</p>
+                    <p><strong>Showtime:</strong> Wednesday, February 21, 2024 - 12:45 PM</p>
                     <hr>
                     <h3>Your Seats</h3>
                     <p>A6</p>
@@ -123,6 +183,12 @@
         // Redirect to the homepage or previous page
         // This function will be implemented later
     }
+</script>
+
+<script>
+    document.getElementById('add-new-card-btn').addEventListener('click', function() {
+        document.getElementById('new-card-form').style.display = 'block';
+    });
 </script>
 
 </body>
