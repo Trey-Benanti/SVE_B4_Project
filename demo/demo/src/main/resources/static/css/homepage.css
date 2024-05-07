@@ -15,7 +15,9 @@
 html {
     height: 100%;
 }
-
+.top-nav{
+    padding-bottom: 50px;
+}
 body {
     min-height: 100%;
     position: relative;
