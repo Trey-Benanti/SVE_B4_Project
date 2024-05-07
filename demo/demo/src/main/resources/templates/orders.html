@@ -37,9 +37,44 @@
     </div>
     <div class="content">
         <h1 id="content-title">Orders </h1>
-        <div id="orderdisplay">
-            <div class="receipt">
-                <h4>Name: </h4>
+        <div id="orderdisplay" >
+            <div class="receipt" th:each="booking : ${bookings}">
+
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Movie Title</th>
+                            <th>Show Time</th>
+                            <th>Show Date</th>
+                            <th>Total Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td th:text="${booking.getId()}">Booking ID</td>
+                            <td th:text="${booking.getShow().movie_id.getMovieTitle()}">Movie Title</td>
+                            <td th:text="${booking.getShow().time_slot}">Show Time</td>
+                            <td th:text="${booking.getShow().showDate}">Show Date</td>
+                            <td th:text="${booking.getTotalCost()}">Total Costs</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Seat Name</th>
+                            <th>Seat Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="ticket : ${ticketRepo.findByBookingId(booking.getId())}">
+                            <th th:text="${ticket.getSeatId().getSeatLabel()}">Seat Name</th>
+                            <th th:text="${ticket.getPrice()}">Seat Cost</th>
+                        </tr>
+                    </tbody>
+                </table>
+
             </div>
 
         </div>
