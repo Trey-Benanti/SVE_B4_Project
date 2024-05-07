@@ -34,6 +34,12 @@ public class Booking {
     @Column(name = "confirmed")
     private int confirmed;
 
+    @Column(name = "tax")
+    private double tax;
+
+    @Column(name = "grossTotal")
+    private double grossTotal;
+
     public Show getShow() {
         return show;
     }
@@ -76,5 +82,21 @@ public class Booking {
 
     public void setTotalCost(double totalCost) {
         this.totalCost = totalCost;
+    }
+
+    public double getTax() {
+        return tax;
+    }
+
+    public void setTax(double tax) {
+        this.tax = tax;
+    }
+
+    public double getGrossTotal() {
+        return grossTotal;
+    }
+
+    public void setGrossTotal(double grossTotal) {
+        this.grossTotal = grossTotal;
     }
 } // Booking

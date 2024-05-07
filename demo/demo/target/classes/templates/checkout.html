@@ -109,6 +109,8 @@
                 <label for="promo-input"><strong>Promo Code:</strong></label>
                 <input id="promo-input" name="promoCode" />
                 <input type="hidden" name="totalCost" th:value="${total}" />
+                <input type="hidden" name="totalGross" th:value="${gross}" />
+                <input type="hidden" name="totalTax" th:value="${tax}" />
                 <button id="apply-promo-btn" type="submit">Apply</button>
             </form>
         </div>
@@ -119,7 +121,6 @@
             <form id="payment-form">
                 <select class="select-card">
                     <option th:each="card : ${cards}" th:value="${card.cardNumber}" th:text="${card.cardNumber}"></option>
-                    <option>New Card</option>
                 </select>
                 <button type="submit">
                     <a th:href="@{/order-confirmation}">Confirm</a>
@@ -128,11 +129,11 @@
                 <button type="button" onclick="cancelPayment()">Cancel</button>
             </form>
         </div>
-        <form id="new-card-form" style="display: none">
+        <form id="new-card-form" style="display: none" th:action="@{/add-checkout-card/}">
             <div class="form-group">
                 <label for="ccn">Card Number:</label>
                 <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number"
-                       maxlength="19" placeholder="xxxx xxxx xxxx xxxx" name="cardNumber" required>
+                       maxlength="16" placeholder="xxxx xxxx xxxx xxxx" name="cardNumber" required>
             </div>
             <div class="form-group">
                 <label for="expiryDate">Expiry Date:</label>
@@ -159,7 +160,9 @@
                 <input type="text" id="billingAddrZip" name="billingAddrZip" required>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save">
+                <button type="submit">
+                    <a>Save</a>
+                </button>
             </div>
         </form>
     </div>
@@ -178,11 +181,13 @@
                     <hr>
                     <h3>Your Seats</h3>
                     <p th:each="seat : ${seats}" th:text="${seat.seatLabel}"></p>
+                    <p th:text="'Gross: $' + ${gross}"></p>
+                    <p th:text="'Taxes: $' + ${tax}"></p>
+                    <p>Booking Fee: $1.50</p>
                 </div>
             </div>
             <div class="cart-summary-row" data-testid="cs-total">
-                <span>Total:</span>
-                <span th:text="'$' + ${total}"></span>
+                <strong th:text="'Total: $' + ${total}"></strong>
             </div>
         </div>
     </div>

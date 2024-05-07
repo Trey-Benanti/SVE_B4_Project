@@ -267,11 +267,22 @@ public class bookingController {
         Movie movie = movieServices.findById(show.movie_id.getId()); // Get reference to movie
 
         String totalCost;
+        String totalTax;
+        String totalGross;
         if(booking.getTotalCost() == 0) {
-            totalCost = calculateTotal(tickets); // Get total cost
+            String[] totals = calculateTotal(tickets); // Get costs
+            totalCost = totals[0];
+            totalTax = totals[1];
+            totalGross = totals[2];
+            booking.setTotalCost(Double.valueOf(totals[0]));
+            booking.setTax(Double.valueOf(totals[1]));
+            booking.setGrossTotal(Double.valueOf(totals[2]));
+            bookingRepo.save(booking);
         } else {
             totalCost = String.format("%.2f", booking.getTotalCost());
-        }
+            totalTax = String.format("%.2f", booking.getTax());
+            totalGross = String.format("%.2f", booking.getGrossTotal());
+        } // if
 
         User user = userRepo.findByEmail(principal.getName());
         List<CardInfo> cards = user.getPaymentInfo();
@@ -285,6 +296,9 @@ public class bookingController {
                 cards.get(i).setCardNumber(cardLastFour);
             } // if
         } // for
+
+        model.addAttribute("tax", totalTax);
+        model.addAttribute("gross", totalGross);
         model.addAttribute("cards", cards);
         model.addAttribute("seats", seats);
         model.addAttribute("tickets", tickets);
@@ -295,9 +309,37 @@ public class bookingController {
         return "checkout";
     } // checkout
 
+    @GetMapping("/add-checkout-card/")
+    public String addCheckoutCard(HttpSession session, Principal principal, @RequestParam String cardNumber,
+                                  @RequestParam String expiryDate, @RequestParam String cvv, @RequestParam String cna,
+                                  @RequestParam String billingAddrStreet, @RequestParam String billingAddrState,
+                                  @RequestParam String billingAddrZip, Model model) throws Exception {
+
+        User user = userRepo.findByEmail(principal.getName());
+        CardInfo card = new CardInfo(user, cardNumber, cna, expiryDate, cvv, billingAddrStreet, billingAddrState, billingAddrZip);
+
+
+        List<CardInfo> cardList = user.getPaymentInfo();
+
+        if(cardList.size() >= 3) {cardList.remove(0);}
+        cardList.add(card);
+
+        int index = cardList.size() - 1;
+
+        EncryptFacade encrypt = EncryptFacade.getInstance();
+        userRepo.save(user);
+        cardList.get(index).setCardNumber(encrypt.encryptCard(user, user.getPaymentInfo().get(index).getCardNumber(), index));
+
+        user.setPaymentInfo(cardList);
+
+        userRepo.save(user);
+        return "redirect:/checkout";
+    } // addCheckoutCard
+
     @PostMapping("/apply-promo/")
     public String applyPromo(HttpSession session, @RequestParam("promoCode") String promoCode,
-                             @RequestParam String totalCost) {
+                             @RequestParam String totalCost, @RequestParam String totalGross,
+                             @RequestParam String totalTax) {
         Booking booking = (Booking) session.getAttribute("booking");
         List<Promotion> promoList = promoRepo.findAll();
         Promotion promo = null;
@@ -311,7 +353,12 @@ public class bookingController {
         } // for
         if(promo == null) {return "redirect: /checkout";}
 
-        double cost = Double.valueOf(totalCost) - (Double.valueOf(totalCost) * (promo.getPercentage() * .01));
+        double newGross = Double.valueOf(totalGross) - (Double.valueOf(totalGross) * (promo.getPercentage() * .01));
+        double newTax = (newGross * .075);
+        double cost = newGross + newTax + 1.5;
+
+        booking.setTax(newTax);
+        booking.setGrossTotal(newGross);
         booking.setTotalCost(cost);
         booking.setPromo(promo);
         bookingRepo.save(booking);
@@ -384,12 +431,22 @@ public class bookingController {
         mailSender.send(message);
     } // sendConfirmEmail
 
-    private String calculateTotal(List<Ticket> ticketList) {
-        double total = 0.0;
+    // Calculates and returns total with taxes and fees, total without, and taxes.
+    private String[] calculateTotal(List<Ticket> ticketList) {
+        Double[] doubleTotals = {0.0, 0.0, 0.0};
+
         for(int i = 0; i < ticketList.size(); i++) {
-            total += Double.valueOf(ticketList.get(i).getPrice());
+            doubleTotals[0] += Double.valueOf(ticketList.get(i).getPrice());
         }
-        return String.format("%.2f", total);
+        doubleTotals[2] = doubleTotals[0]; // Total without taxes and fees
+        doubleTotals[1] = doubleTotals[0] * .075; // Just taxes
+        doubleTotals[0] += (doubleTotals[0] * .075); // Total + taxes
+        doubleTotals[0] += 1.5; // Total + booking fees
+
+        String[] totals = {String.format("%.2f", doubleTotals[0]), String.format("%.2f", doubleTotals[1]),
+        String.format("%.2f", doubleTotals[2])};
+
+        return totals;
     } // calculateTotal
 
 }
