@@ -34,12 +34,17 @@ public class Booking {
     @Column(name = "confirmed")
     private int confirmed;
 
+    public double getTotalCost() {
+        return this.totalCost;
+    }
+
     @Column(name = "tax")
     private double tax;
 
     @Column(name = "grossTotal")
     private double grossTotal;
 
+    // Getters and setters
     public Show getShow() {
         return show;
     }

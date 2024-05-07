@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.Math;
 
 import com.spring.project.models.users.userinfo.*;
 
@@ -97,8 +98,8 @@ public class User {
 
     // Getters
 
-    public String getID() {
-        return this.id.toString();
+    public int getID() {
+        return Math.toIntExact(this.id);
     }
 
     public String getEmail() {

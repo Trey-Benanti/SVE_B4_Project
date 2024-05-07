@@ -22,6 +22,7 @@ public class Ticket {
 
     @Column(name = "price")
     private String price;
+
     @Column(name = "category")
     private String category;  // Child, Adult, Senior
 

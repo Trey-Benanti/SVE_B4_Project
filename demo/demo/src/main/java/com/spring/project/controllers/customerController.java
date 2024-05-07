@@ -2,6 +2,7 @@ package com.spring.project.controllers;
 
 import com.spring.project.models.bookings.Booking;
 import com.spring.project.models.bookings.bookingservices.BookingRepository;
+import com.spring.project.models.shows.showinfo.Seat;
 import com.spring.project.models.tickets.Ticket;
 import com.spring.project.models.tickets.ticketservices.TicketRepository;
 import com.spring.project.models.users.User;
@@ -136,7 +137,7 @@ public class customerController {
     } // saveCard
 
     @GetMapping("/orders")
-    public String orders(HttpSession session) {
+    public String orders(HttpSession session, Model model, Principal principal) {
         List<Booking> unconfirmed = bookingRepo.findUnconfirmedBookings();
         for(int i = 0; i < unconfirmed.size(); i++) {
             List<Ticket> unconTickets = ticketRepo.findByBookingId(unconfirmed.get(i).getId());
@@ -145,7 +146,16 @@ public class customerController {
             }
             bookingRepo.delete(unconfirmed.get(i));
         }
+
         Booking booking = (Booking) session.getAttribute("booking");
+
+        User user = userRepo.findByEmail(principal.getName());
+
+
+        List<Booking> bookings = bookingRepo.findBookingByUser(user.getID());
+        model.addAttribute("bookings", bookings);
+        model.addAttribute("ticketRepo", ticketRepo);
+
 
         return "orders";
     } // orders
