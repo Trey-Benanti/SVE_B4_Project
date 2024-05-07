@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
@@ -10,16 +12,16 @@
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <nav class="top-nav">
-        <a class="nav-link"th:href="@{/}">Home</a>
-        <a class="nav-link" th:href="@{/admin/}">Admin Options</a>
-        <div sec:authorize="isAuthenticated">
-            <form th:action="@{/logout}" method="post">
-                <input class="logout-button" type="submit" value="Sign Out" />
-            </form>
-        </div>
-    </nav>
-    <div id="promo-card">
+<nav class="top-nav">
+    <a class="nav-link"th:href="@{/}">Home</a>
+    <a class="nav-link" th:href="@{/admin/}">Admin Options</a>
+    <div sec:authorize="isAuthenticated">
+        <form th:action="@{/logout}" method="post">
+            <input class="logout-button" type="submit" value="Sign Out" />
+        </form>
+    </div>
+</nav>
+<div id="promo-card">
     <div>
         <h1 id="headerheader">List of Users</h1>
         <div>
@@ -29,6 +31,8 @@
                 <div>
                     <button type="submit" class="btn btn-primary">Alter Role</button>
                 </div>
+                <p th:text="${role_invalid_id}"></p>
+                <p th:text="${role_edit_self}"></p>
             </form>
         </div>
         <div>
@@ -38,33 +42,35 @@
                 <div>
                     <button type="submit" class="btn btn-primary">Alter Status</button>
                 </div>
+                <p th:text="${status_invalid_id}"></p>
+                <p th:text="${status_edit_self}"></p>
             </form>
         </div>
-        
+
     </div>
-     <br>
-     <br>
+    <br>
+    <br>
     <div>
         <table class="table table-striped table-bordered">
             <thead class="thead-dark">
-                <tr>
-                    <th>User ID</th>
-                    <th>E-mail</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>User Type</th>
-                    <th>User Status</th>
-                </tr>
+            <tr>
+                <th>User ID</th>
+                <th>E-mail</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>User Type</th>
+                <th>User Status</th>
+            </tr>
             </thead>
             <tbody>
-                <tr th:each="user: ${listUsers}">
-                    <td th:text="${user.id}">User ID</td>
-                    <td th:text="${user.email}">E-mail</td>
-                    <td th:text="${user.firstName}">First Name</td>
-                    <td th:text="${user.lastName}">Last Name</td>
-                    <td th:text="${user.role}">Role</td>
-                    <td th:text="${user.status}">Status</td>
-                </tr>
+            <tr th:each="user: ${listUsers}">
+                <td th:text="${user.id}">User ID</td>
+                <td th:text="${user.email}">E-mail</td>
+                <td th:text="${user.firstName}">First Name</td>
+                <td th:text="${user.lastName}">Last Name</td>
+                <td th:text="${user.role}">Role</td>
+                <td th:text="${user.status}">Status</td>
+            </tr>
             </tbody>
         </table>
     </div>
