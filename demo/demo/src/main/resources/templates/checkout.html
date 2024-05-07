@@ -1,57 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Checkout</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
     <link rel="stylesheet" type="text/css"
           href="/css/UserTopNav.css"
           th:href="@{/css/UserTopNav.css}"  />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-    }
-    .container {
-        display: flex;
-        max-width: 1200px;
-        margin: 20px auto;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-    }
-    .checkout {
-        flex: 1;
-        padding: 30px;
-    }
-    .sidebar {
-        padding: 30px;
-        background-color: #007bff;
-        color: #fff;
-        height: 100%;
-        overflow-y: auto;
-    }
-    .cart-summary {
-        margin-top: 20px;
-    }
-    .cart-summary h2 {
-        margin-bottom: 20px;
-        color: #fff;
-    }
-    .cart-summary-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-    .cart-summary-row span {
-        font-size: 18px;
-    }
-</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .checkout {
+            flex: 1;
+            padding: 30px;
+        }
+        .sidebar {
+            padding: 30px;
+            background-color: #007bff;
+            color: #fff;
+            height: 100%;
+            overflow-y: auto;
+        }
+        .cart-summary {
+            margin-top: 20px;
+        }
+        .cart-summary h2 {
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        .cart-summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .cart-summary-row span {
+            font-size: 18px;
+        }
+
+        #new-card-form {
+            margin-top: 15px;
+            width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+    </style>
 </head>
 <body>
 <div id="nav-ctr">
@@ -78,8 +101,18 @@
         <div class="ticket-info">
             <h2>Your Tickets</h2>
             <!-- Placeholder for displaying selected tickets -->
-            <p>You have selected <strong>2 tickets</strong> for <strong>Bob Marley</strong>.</p>
+            <p>You have selected <strong>2 tickets</strong> for <strong th:text="${movie.movieTitle}"></strong>.</p>
             <!-- Add more ticket details if needed -->
+        </div>
+        <div id="add-promo-ctr">
+            <form id="promo-form" th:action="@{/apply-promo/}" method="post">
+                <label for="promo-input"><strong>Promo Code:</strong></label>
+                <input id="promo-input" name="promoCode" />
+                <input type="hidden" name="totalCost" th:value="${total}" />
+                <input type="hidden" name="totalGross" th:value="${gross}" />
+                <input type="hidden" name="totalTax" th:value="${tax}" />
+                <button id="apply-promo-btn" type="submit">Apply</button>
+            </form>
         </div>
 
         <div class="payment-info">
@@ -87,15 +120,51 @@
             <!-- Form for entering payment details -->
             <form id="payment-form">
                 <select class="select-card">
-                    <option>Card 1</option>
-                    <option>Card 2</option>
+                    <option th:each="card : ${cards}" th:value="${card.cardNumber}" th:text="${card.cardNumber}"></option>
                 </select>
-                <button type="submit">Confirm</button>
+                <button type="submit">
+                    <a th:href="@{/order-confirmation}">Confirm</a>
+                </button>
+                <button id="add-new-card-btn" type="button">Add New Card</button>
                 <button type="button" onclick="cancelPayment()">Cancel</button>
-                <button type="button" class="add-card-button">Add new payment method</button>
             </form>
         </div>
-
+        <form id="new-card-form" style="display: none" th:action="@{/add-checkout-card/}">
+            <div class="form-group">
+                <label for="ccn">Card Number:</label>
+                <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number"
+                       maxlength="16" placeholder="xxxx xxxx xxxx xxxx" name="cardNumber" required minlength="16">
+            </div>
+            <div class="form-group">
+                <label for="expiryDate">Expiry Date:</label>
+                <input type="date" id="expiryDate" name="expiryDate" required>
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required>
+            </div>
+            <div class="form-group">
+                <label for="cna">Card Name</label>
+                <input type="text" id="cna" name="cna" required>
+            </div>
+            <div class="form-group">
+                <label for="billingAddrStreet">Street Address</label>
+                <input type="text" id="billingAddrStreet" name="billingAddrStreet" required>
+            </div>
+            <div class="form-group">
+                <label for="billingAddrState">State</label>
+                <input type="text" id="billingAddrState" name="billingAddrState" required>
+            </div>
+            <div class="form-group">
+                <label for="billingAddrZip">Zip</label>
+                <input type="text" id="billingAddrZip" name="billingAddrZip" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">
+                    <a>Save</a>
+                </button>
+            </div>
+        </form>
     </div>
 
     <div class="sidebar">
@@ -104,19 +173,21 @@
             <div class="mt-3">
                 <!-- Movie information -->
                 <div class="collapse show">
-                    <p><strong>Movie:</strong> Bob Marley: One Love</p>
-                    <p><strong>Rating:</strong> PG13</p>
-                    <p><strong>Duration:</strong> 1 hr. 47 min.</p>
-                    <p><strong>Theater:</strong> Theater Theater!</p>
-                    <p><strong>Showtime:</strong> Wednesday, February 21 2024 - 12:45 PM</p>
+                    <p><strong th:text="${movie.movieTitle}"></strong></p>
+                    <p><strong th:text="${movie.rating}"></strong></p>
+                    <p><strong th:text="${show.room_id.roomTitle}"></strong></p>
+                    <p><strong th:text="${show.showDate}">Showtime:</strong></p>
+                    <p><strong th:text="${show.time_slot}"></strong></p>
                     <hr>
                     <h3>Your Seats</h3>
-                    <p>A6</p>
+                    <p th:each="seat : ${seats}" th:text="${seat.seatLabel}"></p>
+                    <p th:text="'Gross: $' + ${gross}"></p>
+                    <p th:text="'Taxes: $' + ${tax}"></p>
+                    <p>Booking Fee: $1.50</p>
                 </div>
             </div>
             <div class="cart-summary-row" data-testid="cs-total">
-                <span>Total:</span>
-                <span>$0.00</span>
+                <strong th:text="'Total: $' + ${total}"></strong>
             </div>
         </div>
     </div>
@@ -127,6 +198,12 @@
         // Redirect to the homepage or previous page
         // This function will be implemented later
     }
+</script>
+
+<script>
+    document.getElementById('add-new-card-btn').addEventListener('click', function() {
+        document.getElementById('new-card-form').style.display = 'block';
+    });
 </script>
 
 </body>

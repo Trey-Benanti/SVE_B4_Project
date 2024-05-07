@@ -308,39 +308,66 @@ public class adminController {
     } // Promotions
 
     @PostMapping("/admin/alterUserRole")
-    public String alterUserRole(@RequestParam("userId") Long userId, Principal principal) {
+    public String alterUserRole(@RequestParam("userId") Long userId, Principal principal, Model model) {
         User currentUser = userRepo.findByEmail(principal.getName());
         User user = userRepo.retrieveUserByID(userId);
+
+        if (user == null) {
+            List<User> listUsers = userRepo.findAll();
+            model.addAttribute("listUsers", listUsers);
+            model.addAttribute("role_invalid_id", "User Not Found");
+            return "manageusers";
+        }
+
         if (user != currentUser) {
             if (user.getRole() == Role.ROLE_ADMIN) {
                 user.setRole(Role.ROLE_CUSTOMER);
             } else if (user.getRole() == Role.ROLE_CUSTOMER) {
                 user.setRole(Role.ROLE_ADMIN);
             } // if
-        } // if
-        
+        } else { // if
+            List<User> listUsers = userRepo.findAll();
+            model.addAttribute("listUsers", listUsers);
+            model.addAttribute("role_edit_self", "Cannot edit self");
+            return "manageusers";
+        }
+
         userRepo.save(user);
 
         return "redirect:/admin/manageusers";
     }
 
     @PostMapping("/admin/alterUserStatus")
-    public String alterUserStatus(@RequestParam("userId") Long userId, Principal principal) {
+    public String alterUserStatus(@RequestParam("userId") Long userId, Principal principal, Model model) {
         User currentUser = userRepo.findByEmail(principal.getName());
         User user = userRepo.retrieveUserByID(userId);
+
+        if (user == null) {
+            List<User> listUsers = userRepo.findAll();
+            model.addAttribute("listUsers", listUsers);
+            model.addAttribute("status_invalid_id", "User Not Found");
+            return "manageusers";
+        }
+
         if (user != currentUser) {
             if (user.getStatus() == UserStatus.STATUS_ACTIVE) {
                 user.setStatus(UserStatus.STATUS_SUSPENDED);
             } else if (user.getStatus() == UserStatus.STATUS_SUSPENDED) {
                 user.setStatus(UserStatus.STATUS_ACTIVE);
             } // if
+        } else {
+            List<User> listUsers = userRepo.findAll();
+            model.addAttribute("listUsers", listUsers);
+            model.addAttribute("status_edit_self", "Cannot edit self");
+            return "manageusers";
         } // if
-        
+
         userRepo.save(user);
 
         return "redirect:/admin/manageusers";
     }
-    
+
+
 
 
 } // homepageController

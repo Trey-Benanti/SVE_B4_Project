@@ -38,6 +38,13 @@ public class Booking {
         return this.totalCost;
     }
 
+    @Column(name = "tax")
+    private double tax;
+
+    @Column(name = "grossTotal")
+    private double grossTotal;
+
+    // Getters and setters
     public Show getShow() {
         return show;
     }
@@ -64,5 +71,37 @@ public class Booking {
 
     public void setConfirmed(int confirmed) {
         this.confirmed = confirmed;
+    }
+
+    public Promotion getPromo() {
+        return promo;
+    }
+
+    public void setPromo(Promotion promo) {
+        this.promo = promo;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public double getTax() {
+        return tax;
+    }
+
+    public void setTax(double tax) {
+        this.tax = tax;
+    }
+
+    public double getGrossTotal() {
+        return grossTotal;
+    }
+
+    public void setGrossTotal(double grossTotal) {
+        this.grossTotal = grossTotal;
     }
 } // Booking
