@@ -202,7 +202,7 @@ public class bookingController {
         for (int i = 0; i < (seats.size() + 6) / 7; i++) {
             result.append("<div style='display: flex;'>");
             for (int j = 0; j < 7 && count < seats.size(); j++) {
-                result.append("<div style='width: 50px; height: 50px; background-color: ");
+                result.append("<div style='width: 25px; height: 25px; padding: 5px; margin:5px; background-color: ");
 
                 boolean isInBooking = false;
                 for (int k = 0; k < ticketsInBooking.size(); k++) {
@@ -211,15 +211,24 @@ public class bookingController {
                     }
                 }
 
-                result.append(seats.get(count).getSeatStatus() == 1 || isInBooking ? "red" : "white");
+                if (seats.get(count).getSeatStatus() == 1) {
+                    result.append("rgb(206,98,67)"); // already booked
+                } else if (isInBooking) {
+                    result.append("rgb(221,160,57)"); // currently picked
+                } else {
+                    result.append("rgb(155,182,189)"); // not picked
+                }
+  
                 result.append("; display: flex; justify-content: center; align-items: center;'>");
-                result.append(row).append(j + 1); // Label format: rowLetter + columnNumber
+                result.append(row).append(j + 1); // visual Label format: rowLetter + columnNumber
                 result.append("</div>");
                 count++;
             }
             result.append("</div>");
             row++;
         }
+        result.append("<div style='width: 90%; height: 15px; padding: 5px; margin:5px; background-color: rgb(155,182,189); display: flex; justify-content: center; align-items: center;'>");
+        result.append("screen</div>");
 
         return result.toString();
     }

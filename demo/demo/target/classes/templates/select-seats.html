@@ -32,7 +32,7 @@
         .container {
             max-width: 1000px;
             min-height: 60px;
-            background-image: radial-gradient(#CBE1EB, #5DA9C2);
+            background: var(--sand-yellow);
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             width: 800px;
@@ -57,7 +57,7 @@
         }
 
         .movie-preview img {
-            width: 80%;
+            width: 70%;
             border-radius: 8px;
             padding-top: 10px;
             padding-bottom: 10px;
@@ -117,6 +117,7 @@
             margin-left: 10px;
             text-align: left;
             animation: 1.2s slipIn;
+            background: var(--sand-yellow);
         }
 
         .selected-seat {
@@ -185,7 +186,11 @@
         }
         h2 {
             margin-bottom: 20px;
-            color: #007bff;
+            color: var(--burgundy-wine);
+        }
+        .info-box{
+           margin-top: 5%; 
+           color: var(--burgundy-wine);
         }
         ul {
             list-style: none;
@@ -208,7 +213,7 @@
             top: 50%;
             right: 10px;
             transform: translateY(-50%);
-            background-color: #ff4444;
+            background-color: var(--olive-green);
             color: #fff;
             border: none;
             padding: 5px 10px;
@@ -217,6 +222,7 @@
             transition: opacity 0.3s ease;
         }
         li:hover .delete-btn {
+            background-color: var(--turquoise-sea);
             display: inline-block;
         }
         .order-total {
@@ -224,7 +230,7 @@
             margin-top: 20px;
         }
         #order-summary > button {
-            background-color: #007bff;
+            background-color: var(--turquoise-sea);
             border: none;
             padding: 10px 20px;
             border-radius: 4px;
@@ -233,7 +239,7 @@
             margin-right: 10px;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: var(--cloudy-grey);
         }
 
         .ticket-header {
@@ -241,6 +247,17 @@
             max-height: 600px;
             width: 200px;
         }
+        
+.reg-button {
+    background-color: var(--golden-sun);
+    border-radius: 5px;
+    padding: 12px;
+    margin-top: 10px;
+}
+
+.reg-button:hover {
+    background-color: var(--terra-cotta);
+}
     </style>
 </head>
 <body>
@@ -287,35 +304,49 @@
         <div class="sidebar" id="sidebar">
             <form method="post">
                 <label>Select Seat</label>
+                <br>
+                <br>
                 <select class="drop" name="seat_pick">
                     <option th:each="seat : ${free_seats}"
                             th:value="${seat.getId()}"
                             th:text="${seat.getSeatLabel()}">
                     </option>
                 </select>
+                <br>
+                <br>
                 <label>Select Age Range</label>
+                <br>
+                <br>
                 <select class="drop" name="age_range">
                     <option>Adult</option>
                     <option>Senior</option>
                     <option>Child</option>
                 </select>
-                <button type="submit">Add Ticket</button>
+                <br>
+                <br>
+                <button class="reg-button"type="submit">Add Ticket</button>
             </form>
         </div>
     </div>
     <h2>Tickets:</h2>
-    <div th:each="ticket, ticketIndex : ${tickets}">
-        <span th:text="${ticket.getSeatId().getSeatLabel()}"></span>
-    </div>
+    <div class="info-box">
+        <li th:each="ticket : ${tickets}">
+            <span th:text="${ticket.getSeatId().getSeatLabel()} + ' - $' + ${ticket.price}"></span>
+            <p th:if="${ticket.price == movie.getAdultTicket()}" th:text="'Adult'"></p>
+            <p th:if="${ticket.price == movie.getChildTicket()}" th:text="'Child'"></p>
+            <p th:if="${ticket.price == movie.getSeniorTicket()}" th:text="'Senior'"></p>
+        </li>
     <form th:action="@{/delete-ticket/}" method="post">
-        <button type="submit">Delete</button>
+        <button class="reg-button" type="submit">Delete</button>
     </form>
 </div>
-<div>
-    <button>
-        <a th:href="@{/checkout}">Checkout</a>
-    </button>
+    <div style="margin-top: 50%;">
+        <button class="reg-button">
+            <a th:href="@{/checkout}">Checkout</a>
+        </button>
+    </div>
 </div>
+
 
 <footer class="img-footer">
     <img th:src="@{/css/images/Waves_Sand.png}" alt="Tidal Waves Theaters" width="100%">
