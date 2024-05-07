@@ -6,8 +6,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.spring.project.models.Ticket;
-import com.spring.project.models.TicketRepository;
+import com.spring.project.models.tickets.Ticket;
+import com.spring.project.models.tickets.ticketservices.TicketRepository;
 import com.spring.project.models.bookings.Booking;
 import com.spring.project.models.bookings.bookingservices.BookingRepository;
 import com.spring.project.models.movies.Movie;
