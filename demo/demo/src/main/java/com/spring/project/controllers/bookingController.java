@@ -12,6 +12,8 @@ import com.spring.project.models.bookings.bookingservices.BookingRepository;
 import com.spring.project.models.movies.Movie;
 import com.spring.project.models.movies.movieservices.MovieServices;
 import com.spring.project.models.movies.movieservices.MoviesRepository;
+import com.spring.project.models.promos.Promotion;
+import com.spring.project.models.promos.promotionservices.PromoRepository;
 import com.spring.project.models.shows.Show;
 import com.spring.project.models.shows.showinfo.Seat;
 import com.spring.project.models.shows.showservices.SeatRepository;
@@ -56,6 +58,9 @@ public class bookingController {
 
     @Autowired
     private BookingRepository bookingRepo;
+
+    @Autowired
+    private PromoRepository promoRepo;
 
     @GetMapping("/select-show")
     public String selectShow(HttpSession session) {
@@ -257,7 +262,12 @@ public class bookingController {
         Show show = booking.getShow(); // Get reference to show
         Movie movie = movieServices.findById(show.movie_id.getId()); // Get reference to movie
 
-        String totalCost = calculateTotal(tickets); // Get total cost
+        String totalCost;
+        if(booking.getTotalCost() == 0) {
+            totalCost = calculateTotal(tickets); // Get total cost
+        } else {
+            totalCost = String.format("%.2f", booking.getTotalCost());
+        }
 
         User user = userRepo.findByEmail(principal.getName());
         List<CardInfo> cards = user.getPaymentInfo();
@@ -277,8 +287,33 @@ public class bookingController {
         model.addAttribute("movie", movie);
         model.addAttribute("show", show);
         model.addAttribute("total", totalCost);
+        model.addAttribute("booking", booking);
         return "checkout";
     } // checkout
+
+    @PostMapping("/apply-promo/")
+    public String applyPromo(HttpSession session, @RequestParam("promoCode") String promoCode,
+                             @RequestParam String totalCost) {
+        Booking booking = (Booking) session.getAttribute("booking");
+        List<Promotion> promoList = promoRepo.findAll();
+        Promotion promo = null;
+
+        if(booking.getPromo() != null) {return "redirect:/checkout";}
+
+        for(int i = 0; i < promoList.size(); i++) {
+            if(promoList.get(i).getPromoCode().equals(promoCode)) {
+                promo = promoList.get(i);
+            }
+        } // for
+        if(promo == null) {return "redirect: /checkout";}
+
+        double cost = Double.valueOf(totalCost) - (Double.valueOf(totalCost) * (promo.getPercentage() * .01));
+        booking.setTotalCost(cost);
+        booking.setPromo(promo);
+        bookingRepo.save(booking);
+
+        return "redirect:/checkout";
+    } // applyPromo
 
     private String calculateTotal(List<Ticket> ticketList) {
         double total = 0.0;

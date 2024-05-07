@@ -61,4 +61,20 @@ public class Booking {
     public void setConfirmed(int confirmed) {
         this.confirmed = confirmed;
     }
+
+    public Promotion getPromo() {
+        return promo;
+    }
+
+    public void setPromo(Promotion promo) {
+        this.promo = promo;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
+    }
 } // Booking
