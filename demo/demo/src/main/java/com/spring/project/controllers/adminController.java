@@ -57,6 +57,7 @@ public class adminController {
 
     @Autowired
     private PromoRepository promoRepository;
+    
     @Autowired
     private PromotionService promotionService;
 
